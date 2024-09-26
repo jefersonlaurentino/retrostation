@@ -1,101 +1,97 @@
-import Image from "next/image";
+'use client'
+
+// import Carrossel from "../components/Carrossel";
+import Header from "../components/Header";
+import { useState, useEffect } from 'react'
+import Card from "../components/Card";
+import localFont from "next/font/local";
+import { funcoes } from "@/components/funcoes";
+
+const designer = localFont({src:"./fonts/DESIGNER.otf"})
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [ , setActiveTheme ] = useState<string>('system');
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "system" || !savedTheme) {
+      applySystemTheme();
+      setActiveTheme("system");
+    } else {
+      applyTheme(savedTheme);
+      setActiveTheme(savedTheme);
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleSystemThemeChange = () => {
+      if (!savedTheme || savedTheme === "system") {
+        applySystemTheme();
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleSystemThemeChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleSystemThemeChange);
+    };
+  }, []);
+
+  const applyTheme = (theme: string) => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else if (theme === 'light') {
+      document.documentElement.classList.remove('dark');
+    }
+  };
+
+  const handleThemeChange = (newTheme: string) => {
+    setActiveTheme(newTheme)
+    localStorage.setItem('theme', newTheme);
+    if (newTheme === 'system') {
+      applySystemTheme();
+    } else {
+      applyTheme(newTheme);
+    }
+  };
+
+  const applySystemTheme = () => {
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (systemPrefersDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }
+
+  const array = funcoes.jogos
+
+const secao = [
+  "Destaques", "Corrida" , "aventura" , "Gta"
+]
+
+  return (
+    <>
+    <Header/>
+    {/* <Carrossel/> */}
+    <main>
+      {secao.map((secao)=>secao && 
+        <section className="w-11/12 m-auto my-6" key={secao}>
+          <h2 className={`${designer.className} text-3xl dark:text-white`}>{secao.toLocaleUpperCase()}</h2>
+            <div className="flex gap-4 pb-4 overflow-y-hidden pl-2 py-2">
+              {array.map((jogo)=> jogo.destaques.map((e)=>(e.toLocaleUpperCase() == secao.toLocaleUpperCase()) &&
+                <Card key={jogo.id} id={jogo.id} titulo={jogo.titulo} img={jogo.banner} promocao={jogo.promocao} valorAnterior={jogo.valorAnterior} valorAtual={jogo.valorAtual}/>
+              ))}
+            </div>
+        </section>
+      )}
+    </main>
+    <footer className="flex items-center justify-center pt-32">
+      <div className="flex items-center gap-2">
+          <button onClick={() => handleThemeChange('light')} className="text-black dark:text-white border-2">Light Theme</button>
+          <button onClick={() => handleThemeChange('dark')} className="text-black dark:text-white border-2">Light Theme</button>
+          <button onClick={() => handleThemeChange('system')} className="text-black dark:text-white border-2">Light Theme</button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </footer>
+    </>
   );
 }

@@ -1,0 +1,78 @@
+[
+    {
+        "id": 1,
+        "titulo": "gta",
+        "descrição": "ijfie",
+        "img": [
+            "efjnjef",
+            "fjejenf",
+            "sfnjdnf"
+        ],
+        "banner": "https://i.ytimg.com/vi/f9reJSG2mvQ/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDu8O8s0lG1zQhB0vtcVkIfFtaNoA",
+        "valor": 20,
+        "desconto": 10
+    },
+    {
+        "id":2,
+        "titulo": "black",
+        "descrição": "ijdfbsdfie",
+        "img": [
+            "efjnjef",
+            "fjejenf",
+            "sfnjdnf"
+        ],
+        "banner": "https://i.ytimg.com/vi/9j9LEPcosP8/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCM81a3i4cn-eLG_JvcqetWGcRO5w",
+        "valor": 30,
+        "desconto": 15
+    },
+    {
+        "id":3,
+        "titulo": "black",
+        "descrição": "ijdfbsdfie",
+        "img": [
+            "efjnjef",
+            "fjejenf",
+            "sfnjdnf"
+        ],
+        "valor": 30,
+        "desconto": 15
+    },
+    {
+        "id":4,
+        "titulo": "black",
+        "descrição": "ijdfbsdfie",
+        "img": [
+            "efjnjef",
+            "fjejenf",
+            "sfnjdnf"
+        ],
+        "valor": 30,
+        "banner": "https://i.ytimg.com/vi/hY5-YRy2hpA/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAnp1BEYalSMxhxjiFay0X7mea5pg",
+        "desconto": 15
+    },
+    {
+        "id":5,
+        "titulo": "black",
+        "descrição": "ijdfbsdfie",
+        "img": [
+            "efjnjef",
+            "fjejenf",
+            "sfnjdnf"
+        ],
+        "valor": 30,
+        "banner": "https://i.ytimg.com/vi/BTIu4hdFHDU/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDhXOacG0j1CcW6FWYf1-PK1E_MMw",
+        "desconto": 15
+    },
+    {
+        "id":6,
+        "titulo": "black",
+        "descrição": "ijdfbsdfie",
+        "img": [
+            "efjnjef",
+            "fjejenf",
+            "sfnjdnf"
+        ],
+        "valor": 30,
+        "desconto": 15
+    }
+]
