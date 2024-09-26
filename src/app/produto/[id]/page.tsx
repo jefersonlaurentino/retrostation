@@ -14,11 +14,11 @@ import maior18 from "../../../../public/image/faixaEtaria/maior18.jpg";
 import Button from "../../../components/Button";
 import { BsShare } from "react-icons/bs";
 import { useEffect } from "react";
-import localFont from "next/font/local";
+// import localFont from "next/font/local";
 import { useParams } from "next/navigation"
 import { funcoes } from "../../../components/funcoes"
 
-const designer = localFont({src:"../../fonts/DESIGNER.otf"})
+// const designer = localFont({src:"../../fonts/DESIGNER.otf"})
 
 const jogos = funcoes.jogos
 
@@ -149,7 +149,7 @@ export default function Produto() {
         <>
         <Header/>
         <main className="flex flex-col text-black dark:text-white max-w-6xl m-auto">
-            <h1 className={`p-5 text-3xl md:text-5xl ${designer.className} underline`}>{jogos[jogo].titulo}</h1>
+            <h1 className={`p-5 text-3xl md:text-5xl  underline`}>{jogos[jogo].titulo}</h1>
             <div className="relative">
                 <div className="flex flex-col w-full md:w-2/3">
                     <div className="ver relative w-10/12 h-[186px] md:h-[300px] max-w-[500px] rounded-lg m-auto overflow-hidden" onMouseMove={mostraSetas} onMouseOut={ocutarSetas}>
