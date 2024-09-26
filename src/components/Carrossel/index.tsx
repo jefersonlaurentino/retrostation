@@ -4,7 +4,7 @@ import { SlArrowRight } from "react-icons/sl";
 import Image from "next/image";
 import { funcoes } from "../funcoes" 
 
-const jogos = funcoes.jogosArray
+const jogos = funcoes.jogos
 
 export default function Carrossel() {
 
