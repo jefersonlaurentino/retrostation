@@ -79,7 +79,7 @@ const secao = [
           <h2 className={` text-3xl dark:text-white`}>{secao.toLocaleUpperCase()}</h2>
             <div className="flex gap-4 pb-4 overflow-y-hidden pl-2 py-2">
               {array.map((jogo)=> jogo.destaques.map((e)=>(e.toLocaleUpperCase() == secao.toLocaleUpperCase()) &&
-                <Card key={jogo.id} id={jogo.id} titulo={jogo.titulo} img={jogo.banner} promocao={jogo.promocao} valorAnterior={jogo.valorAnterior} valorAtual={jogo.valorAtual}/>
+                <Card key={jogo.id} id={jogo.id} titulo={jogo.titulo} img={jogo.banner} faixaEtaria={jogo.faixaEtaria} promocao={jogo.promocao} valorAnterior={jogo.valorAnterior} valorAtual={jogo.valorAtual}/>
               ))}
             </div>
         </section>

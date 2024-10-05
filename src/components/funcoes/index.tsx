@@ -103,6 +103,25 @@ const jogos = [
     valorAnterior: "130,00",
     valorAtual: "128,00",
     },
+    {
+    id: "06",
+    titulo: "NFS Underground 2",
+    descricao: ["Bem-vindo aos anos 80. Da década de penteados glam, dos excessos e dos ternos pastel, vem a história de um homem que sobe ao topo da cadeia criminal no retorno de Grand Theft Auto." , "Vice City é uma grande área urbana que engloba de praias até pântanos e do glamour até o gueto, e é a mais variada, completa e animada cidade digital já criada. Combinando uma jogabilidade não linear com uma narrativa centrada nos personagens, você chega a uma cidade cheia de prazeres e degradação, e tem a oportunidade de dominá-la como quiser."],
+    desenvolvedor: "Rockstar North",
+    editora: "Rockstar Games",
+    dataLançamento: "27/08/2002",
+    generos: [ "corrida" ],
+    recursos: [ "Compativel com Controle" , "Jogo para até 2 pessoa" ],
+    promocao: false,
+    faixaEtaria: "12",
+    banner: "https://upload.wikimedia.org/wikipedia/pt/e/e3/Nfsu2_capa_pt.jpg",
+    bannerName: "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/9333c000d509d8c82858967b42ff46f8.svg",
+    imagens: [ "https://upload.wikimedia.org/wikipedia/pt/thumb/5/51/NFSU2_Corrida.jpg/348px-NFSU2_Corrida.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/b0353d1406b5264dc18326a811bc5bb5.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/0301d4689fa8e170ceefe118a18b3afb.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/e689e87adb68899abb7957e4b0d70612.jpg" ],
+    video: [ "koGT_QaCgcU" , "xsunzH3b7hI" ],
+    destaques: [ "corrida" ],
+    valorAnterior: "130,00",
+    valorAtual: "128,00",
+    },
 ]
 
 export const funcoes = {

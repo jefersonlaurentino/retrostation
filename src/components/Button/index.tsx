@@ -1,5 +1,5 @@
 interface ButtonProps{
-    children:string;
+    children?:string;
     style?:string;
     f_function?: () => void;
 }

@@ -1,17 +1,55 @@
 import Image from "next/image";
-import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import { funcoes } from "../../components/funcoes"
+import Button from "../Button";
+import { useAgeContext } from "@/contexts/FaixaEtariaJogo";
+import { useRouter } from "next/navigation";
 
 type cardProps = {
     id: string;
     titulo: string;
     img: string;
     promocao?: boolean;
+    faixaEtaria: string
     valorAnterior: string;
     valorAtual: string;
 }
 
 export default function Card(props:cardProps) {
+    const [ idade , setIdade ] = useState<string | null>(null)
+    useEffect(()=>{
+        setIdade(window.sessionStorage.getItem("idade"))
+    },[])
+    const { setIdadePermitida } = useAgeContext()
+    const router = useRouter()
+    
+    const validarFaixaEtaria = (url :string , faixaEtaria :string) => {
+        console.log(idade);
+        if (idade != null) {
+            if (Number(idade) >= 18 || faixaEtaria == "livre") {
+                router.push(url)
+                window.sessionStorage.setItem("idadePermitida",faixaEtaria)
+                setIdadePermitida(Number(faixaEtaria))
+            } else {
+                if (Number(idade) >= Number(faixaEtaria)) {
+                    router.push(url)
+                    window.sessionStorage.setItem("idadePermitida",faixaEtaria)
+                    setIdadePermitida(Number(faixaEtaria))
+                } else {
+                    setIdadePermitida(Number(faixaEtaria))
+                    window.sessionStorage.setItem("idadePermitida",faixaEtaria)
+                    router.push(`/idade/${props.titulo.replace(/[" "]/g,"-")}`)
+                }
+            }
+        } else {
+            setIdadePermitida(Number(faixaEtaria))
+            window.sessionStorage.setItem("idadePermitida",faixaEtaria)
+            window.sessionStorage.setItem("jogo", props.id)
+            window.sessionStorage.setItem("idadePermitida", props.faixaEtaria)
+            router.push(`/idade/${props.titulo.replace(/[" "]/g,"-")}`)
+    }
+}
+
     return(
         <>
         <div className="card relative bg-white min-w-52 md:min-w-52 md:w-28 hover:border-red-600 hover:scale-105 border-[3px] border-[#0E0A18] duration-300 rounded-xl before:bg-white after:bg-white dark:after:bg-[#0E0A18] dark:before:bg-[#0E0A18] before:border-black before:border-r-[3px] after:border-black after:border-l-[3px]
@@ -43,7 +81,8 @@ export default function Card(props:cardProps) {
                     </div>
                 </article>}
             </div>
-            <Link href={`/produto/${props.id}`} className="absolute top-0 left-0 w-full h-full"></Link>
+            <Button f_function={()=>validarFaixaEtaria(`/produto/${props.id}` , props.faixaEtaria)} style="absolute top-0 left-0 w-full h-full"/>
+            {/* <button onChangeCapture={()=>setnumero(Number(props.faixaEtaria))} className="absolute top-0 left-0 w-full h-full" ></button> */}
         </div>
         </>
     )

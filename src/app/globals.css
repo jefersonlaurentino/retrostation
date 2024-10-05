@@ -67,6 +67,19 @@
 .requesitos > div > div {
     margin: 1rem 0;
 }
+
+.anima_arrow {
+    transform: rotate(-180deg);
+}
+
+.button_verificar_idade_true {
+    background-color: #1E40AF;
+}
+
+.button_verificar_idade {
+    background-color: #525252;
+    cursor: not-allowed;
+}
 /* 
 .slider{
     margin: 0 auto;

@@ -14,9 +14,9 @@ import maior18 from "../../../../public/image/faixaEtaria/maior18.jpg";
 import Button from "../../../components/Button";
 import { BsShare } from "react-icons/bs";
 import { useEffect } from "react";
-// import localFont from "next/font/local";
-import { useParams } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { funcoes } from "../../../components/funcoes"
+import { useAgeContext } from "@/contexts/FaixaEtariaJogo";
 
 // const designer = localFont({src:"../../fonts/DESIGNER.otf"})
 
@@ -110,6 +110,8 @@ const limparGaleria = () => {
 }
 
 export default function Produto() {
+    const { idadePermitida ,setIdadePermitida} = useAgeContext()
+    const router = useRouter()
     const params = useParams()
     const id = params.id as string
     const jogoTrue:string[] = []
@@ -136,6 +138,11 @@ export default function Produto() {
         return classificacao
     }
 
+    let faixaEtariaSet:number;
+    useEffect(()=>{
+        faixaEtariaSet = Number(jogos[jogo].faixaEtaria)
+    },[idadePermitida])
+
     useEffect(()=>{
         const galeria = document.querySelector(".galeria")?.firstChild
         const focus = galeria!.lastChild as HTMLDivElement
@@ -143,6 +150,28 @@ export default function Produto() {
         const primeiroElementoGaleria = galeria as HTMLDivElement
         primeiroElementoGaleria.classList.remove("border-transparent")
         primeiroElementoGaleria.classList.add("border-red-800")
+
+        const idadeSet = window.sessionStorage.getItem("idade")
+        console.log("idade" + idadeSet);
+        console.log("idadeRe" + faixaEtariaSet);
+        
+        if (!idadeSet || !faixaEtariaSet) {
+            
+            window.sessionStorage.setItem("idadePermitida", jogos[jogo].faixaEtaria)
+            setIdadePermitida(Number(jogos[jogo].faixaEtaria))
+            window.sessionStorage.setItem("jogo", jogos[jogo].id)
+            
+            router.push(`/idade/${jogos[jogo].titulo.replace(/[" "]/g,"-")}`)
+        } else {
+            window.sessionStorage.setItem("idadePermitida", jogos[jogo].faixaEtaria)
+            setIdadePermitida(Number(jogos[jogo].faixaEtaria))
+            console.log(idadeSet);
+            console.log(faixaEtariaSet);
+            
+            if (Number(idadeSet) < Number(faixaEtariaSet)) {
+                router.push(`/idade/${jogos[jogo].titulo.replace(/[" "]/g,"-")}`)
+            }
+        }
     },[])
 
     return(
