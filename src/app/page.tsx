@@ -7,7 +7,7 @@ import Card from "../components/Card";
 import localFont from "next/font/local";
 import { funcoes } from "@/components/funcoes";
 
-const designer = localFont({src:"./fonts/DESIGNER.otf"})
+const designer = localFont({src:"./fonts/designer.otf"})
 
 export default function Home() {
   const [ , setActiveTheme ] = useState<string>('system');

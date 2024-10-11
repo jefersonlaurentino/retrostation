@@ -12,7 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useImagemContext } from "@/contexts/contextFotoPerfil";
 import localFont from "next/font/local";
-const designer = localFont({src:"../fonts/DESIGNER.otf"})
+const designer = localFont({src:"../fonts/designer.otf"})
 
 export default function Perfil() {
     const { imagemAvatar } = useImagemContext()
