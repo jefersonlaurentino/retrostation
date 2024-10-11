@@ -3,21 +3,17 @@
 import Button from "@/components/Button";
 import CampoInput from "@/components/CampoInput";
 import Header from "@/components/Header";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { VscEdit } from "react-icons/vsc";
 import { HiMiniArrowRightOnRectangle } from "react-icons/hi2";
 import { useForm } from "react-hook-form"
 import Modal from "@/components/Modal";
 import Image from "next/image";
-import sem from "../../../public/image/avatares/sem.jpg"
 import Link from "next/link";
+import { useImagemContext } from "@/contexts/contextFotoPerfil";
 
 export default function Perfil() {
-    const [ fotoPerfil , setFotoPerfil ] = useState(sem)
-
-    useEffect(()=>{
-        setFotoPerfil(sem)
-    },[])
+    const { imagemAvatar } = useImagemContext()
 
     const { register, handleSubmit, formState } = useForm({
         mode: "onBlur",
@@ -37,22 +33,36 @@ export default function Perfil() {
         document.querySelector('body')!.setAttribute("style","overflow: hidden;")
     }
 
+    // function getSessionStorageSize() {
+    //     // let sessionStorage = window.sessionStorage
+    //     let total = 0;
+    //     for (let item in sessionStorage) {
+    //       if (sessionStorage.hasOwnProperty(item)) {
+    //         total += sessionStorage.getItem(item)!.length;
+    //       }
+    //     }
+    //     // O tamanho é calculado em caracteres, vamos converter para KB
+    //     return (total / 1024).toFixed(2); // Retorna em KB
+    //   }
+      
+    //   console.log("Tamanho do sessionStorage usado: " + getSessionStorageSize() + " KB");
+
     return(
         <>
-        <Header fotoPerfil={fotoPerfil}/>
+        <Header/>
         <main className="flex flex-col md:flex-row max-w-5xl m-auto">
-            <Modal setFotoPerfil={setFotoPerfil}/>
+            <Modal/>
             <aside className="flex flex-col md:w-1/4 mt-8 pl-2">
                 <div className="foto_perfil relative flex justify-center max-h-52 mb-7">
                     <div className="w-44 h-44 rounded-full bg-blue-700 overflow-hidden">
                         <Image
-                            src={fotoPerfil}
+                            src={imagemAvatar}
                             alt="imagen do seu avatar"
                             width={150}
                             className="w-full"
                         />
                     </div>
-                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-full p-1 text-2xl border border-black">
+                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-full p-1 text-2xl border border-black cursor-pointer">
                         <VscEdit onClick={modal}/>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 'use client'
 import Image, { StaticImageData } from "next/image"
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import mulherMorena from "../../../public/image/avatares/mulherMorena.webp"
 import mulherPaz from "../../../public/image/avatares/mulherPaz.webp"
 import av from "../../../public/image/avatares/1.webp"
@@ -9,10 +9,7 @@ import h from "../../../public/image/avatares/h.webp"
 import h2 from "../../../public/image/avatares/h2.webp"
 import sem from "../../../public/image/avatares/sem.jpg"
 import Button from "../Button"
-
-type setFotoPerfilProps = {
-    setFotoPerfil: Dispatch<SetStateAction<StaticImageData>>,
-}
+import { useImagemContext } from "@/contexts/contextFotoPerfil"
 
 const  teste = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
@@ -27,7 +24,8 @@ const imagensAvatares = [
     [ "av2", av2 ],
 ]
 
-export default function Modal({setFotoPerfil}:setFotoPerfilProps) {
+export default function Modal() {
+    const { setImagemAvatar } = useImagemContext()
     
     const setavt = (avt:string | null) =>{
         const avtSelect = avt
@@ -37,9 +35,10 @@ export default function Modal({setFotoPerfil}:setFotoPerfilProps) {
                     setAvatarselect(avt[1]as StaticImageData)
                 }
             })
+        } else {
+            setAvatarselect(sem)
         }
     }
-       
         
     useEffect(()=>{
         setavt(window.sessionStorage.getItem("avt"))
@@ -48,16 +47,7 @@ export default function Modal({setFotoPerfil}:setFotoPerfilProps) {
 const fecharmodal = () =>{
     document.querySelector('.modal')?.classList.add("hidden")
     document.querySelector('body')!.removeAttribute("style")
-
     setavt(window.sessionStorage.getItem("avt"))
-    // const avtSelect = window.sessionStorage.getItem("avt")
-    //     if (avtSelect) {
-    //         imagensAvatares.forEach((avt)=>{
-    //             if (avt[0] == avtSelect) {
-    //                 setAvatarselect(avt[1]as StaticImageData)
-    //             }
-    //         })
-    //     }
 }
     const [ avatarSelect , setAvatarselect ] = useState(sem)
     const [ avatarAnterios , setAvatarAnterios ] = useState<string>("")
@@ -94,7 +84,7 @@ const fecharmodal = () =>{
                         fecharmodal()
                     }}>Cancelar</Button>
                     <Button style="bg-blue-600 text-white" f_function={()=>{
-                        setFotoPerfil(avatarSelect)
+                        setImagemAvatar(avatarSelect)
                         window.sessionStorage.setItem("avt",avatarAnterios)
                         fecharmodal()
                     }}>Salvar</Button>

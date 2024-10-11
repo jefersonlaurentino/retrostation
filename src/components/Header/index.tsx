@@ -3,18 +3,18 @@
 import logoWhite from "../../../public/image/logo_white.png";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { FaUserLarge } from "react-icons/fa6";
+import { useImagemContext } from "@/contexts/contextFotoPerfil";
 
-type headerprops = {
-    fotoPerfil?: StaticImageData,
-}
-
-export default function Header({fotoPerfil}:headerprops){
+export default function Header(){
     useEffect(()=>{
         const getLogin = window.sessionStorage.getItem("login")
+        window.sessionStorage.setItem("login",'')
         SetPesquisa(getLogin);
     },[])
+
+    const { imagemAvatar } = useImagemContext()
 
     const [ Pesquisar , SetPesquisa ] = useState<string|null>(null)
     
@@ -42,12 +42,12 @@ export default function Header({fotoPerfil}:headerprops){
                     :
                     <Link href={"/perfil"} className="flex items-center justify-between gap-1 border-2 rounded-lg max-w-[140px] px-1">
                         <Image
-                            src={fotoPerfil!}
+                            src={imagemAvatar}
                             alt="foto do perfil"
                             width={32}
                             className="rounded-full"
                         />
-                        <p className="text-white font-mono">Luna</p>
+                        <p className="text-white font-mono">Jott4</p>
                     </Link>}
                 </nav>
             </div>
