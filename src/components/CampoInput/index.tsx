@@ -30,12 +30,12 @@ interface CampoInputProps{
 export default function CampoInput(props:CampoInputProps){
     return (
         <>
-        <div className="flex flex-col w-1/2">
+        <div className="flex flex-col w-full">
             <div className="flex flex-col relative">
-                <input {...props.register} placeholder={props.placeholder} className={`outline-none border-b-2 border-black/50 focus:border-principal ${props.style} dark:text-black`}/>
+                <input {...props.register} type={props.type} placeholder={props.placeholder} className={`outline-none bg-transparent border-b-2 border-black/50 focus:border-principal ${props.style} dark:text-black`}/>
                 {props.children}
             </div>
-            {(props.msg != undefined) && <div className={`${props.name} text-red-800 pl-2 h-4 flex items-center`}>tste</div>}
+            {(props.msg != undefined) && <div className={`${props.name} text-red-800 h-4 flex items-center`}>senha ou e-mail incoreto</div>}
         </div>
         </>
     )

@@ -4,10 +4,10 @@
 import Header from "../components/Header";
 import { useState, useEffect } from 'react'
 import Card from "../components/Card";
-// import localFont from "next/font/local";
+import localFont from "next/font/local";
 import { funcoes } from "@/components/funcoes";
 
-// const designer = localFont({src:"./fonts/DESIGNER.otf"})
+const designer = localFont({src:"./fonts/DESIGNER.otf"})
 
 export default function Home() {
   const [ , setActiveTheme ] = useState<string>('system');
@@ -76,7 +76,7 @@ const secao = [
     <main>
       {secao.map((secao)=>secao && 
         <section className="w-11/12 m-auto my-6" key={secao}>
-          <h2 className={` text-3xl dark:text-white`}>{secao.toLocaleUpperCase()}</h2>
+          <h2 className={`${designer.className} text-3xl dark:text-white`}>{secao.toLocaleUpperCase()}</h2>
             <div className="flex gap-4 pb-4 overflow-y-hidden pl-2 py-2">
               {array.map((jogo)=> jogo.destaques.map((e)=>(e.toLocaleUpperCase() == secao.toLocaleUpperCase()) &&
                 <Card key={jogo.id} id={jogo.id} titulo={jogo.titulo} img={jogo.banner} faixaEtaria={jogo.faixaEtaria} promocao={jogo.promocao} valorAnterior={jogo.valorAnterior} valorAtual={jogo.valorAtual}/>
