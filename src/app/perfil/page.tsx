@@ -46,7 +46,7 @@ export default function Perfil() {
     const { imagemAvatar } = useImagemContext()
     const { dataLoginUser , setReloud } = useDataLogin()
 
-    const { handleSubmit , register, setValue , formState: { errors } } = useForm<formProps>({
+    const { handleSubmit , register, setValue , setError, formState: { errors } } = useForm<formProps>({
         criteriaMode: "all",
         mode: "all",
         resolver: zodResolver(schamaForm),
@@ -88,6 +88,10 @@ export default function Perfil() {
     const handleSubmitData = (data: formProps) => {
         const avatar = window.sessionStorage.getItem('avt')
         
+        if (window.sessionStorage.getItem(`user${data.dataUser.mail}`)) {
+            setError('dataUser.mail', { type: 'custom' , message: 'Erro adicione outro E-mail' })
+            return
+        }
         //verifica se o usuário trocou o E-mail
         if (data.dataUser.mail != dataLoginUser?.dataUser.mail) {
             window.sessionStorage.removeItem(`user${dataLoginUser?.dataUser.mail}`)

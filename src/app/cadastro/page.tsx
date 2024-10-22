@@ -90,6 +90,10 @@ export default function Cadastro() {
             setError('dataUser.cpf', { type: 'custom' , message: 'cpf invalido' })
             return
         }
+        if (window.sessionStorage.getItem(`user${data.dataUser.mail}`)) {
+            setError('dataUser.mail', { type: 'custom' , message: 'Erro adicione outro E-mail' })
+            return
+        }
         window.sessionStorage.setItem(`user${data.dataUser.mail}`, JSON.stringify(data))
         router.push('/login')
     }
