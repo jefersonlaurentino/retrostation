@@ -1,36 +1,26 @@
 'use client'
+
 import Image, { StaticImageData } from "next/image"
 import { useEffect, useState } from "react"
-import mulherMorena from "../../../public/image/avatares/mulherMorena.webp"
-import mulherPaz from "../../../public/image/avatares/mulherPaz.webp"
-import av from "../../../public/image/avatares/1.webp"
-import av2 from "../../../public/image/avatares/2.webp"
-import h from "../../../public/image/avatares/h.webp"
-import h2 from "../../../public/image/avatares/h2.webp"
 import sem from "../../../public/image/avatares/sem.jpg"
 import Button from "../Button"
-import { useImagemContext } from "@/contexts/contextFotoPerfil"
+import { imagensAvatares, useImagemContext } from "@/contexts/contextFotoPerfil"
+import { useDataLogin } from "@/contexts/contexUserLogin"
 
 const  teste = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
 }
 
-const imagensAvatares = [
-    ["mulherMorena", mulherMorena ],
-    [ "mulherPaz", mulherPaz ],
-    [ "h", h ],
-    [ "h2", h2 ],
-    [ "av", av ],
-    [ "av2", av2 ],
-]
 
 export default function Modal() {
+    const { dataLoginUser } = useDataLogin()
     const { setImagemAvatar } = useImagemContext()
+    const arrayImagensAvatares = imagensAvatares
     
     const setavt = (avt:string | null) =>{
         const avtSelect = avt
         if (avtSelect) {
-            imagensAvatares.forEach((avt)=>{
+            arrayImagensAvatares.forEach((avt)=>{
                 if (avt[0] == avtSelect) {
                     setAvatarselect(avt[1]as StaticImageData)
                 }
@@ -41,17 +31,20 @@ export default function Modal() {
     }
         
     useEffect(()=>{
-        setavt(window.sessionStorage.getItem("avt"))
-    },[])
+        if (dataLoginUser) {
+            setavt(dataLoginUser!.dataUser.avatar!)
+        }
+    },[dataLoginUser])
+    
+    const [ avatarSelect , setAvatarselect ] = useState(sem)
+    const [ avatarAnterios , setAvatarAnterios ] = useState<string>("")
+    
     
 const fecharmodal = () =>{
     document.querySelector('.modal')?.classList.add("hidden")
     document.querySelector('body')!.removeAttribute("style")
-    setavt(window.sessionStorage.getItem("avt"))
+    setavt(window.sessionStorage.getItem('avt'))
 }
-    const [ avatarSelect , setAvatarselect ] = useState(sem)
-    const [ avatarAnterios , setAvatarAnterios ] = useState<string>("")
-
     return(
         <>
         <div onClick={fecharmodal} className="modal fixed top-0 left-0 w-full h-full bg-neutral-200/80 z-10 flex justify-center items-center hidden">
@@ -85,7 +78,18 @@ const fecharmodal = () =>{
                     }}>Cancelar</Button>
                     <Button style="bg-blue-600 text-white" f_function={()=>{
                         setImagemAvatar(avatarSelect)
-                        window.sessionStorage.setItem("avt",avatarAnterios)
+                        const dataUser = {
+                            ...dataLoginUser,
+                            dataUser: {
+                                ...dataLoginUser?.dataUser,
+                                avatar: avatarAnterios,
+                            },
+                        }
+                        
+                        window.sessionStorage.setItem("avt", avatarAnterios)
+                        window.sessionStorage.setItem("login",JSON.stringify(dataUser))
+                        window.sessionStorage.setItem(`user${dataLoginUser?.dataUser.mail}`,JSON.stringify(dataUser))
+                        
                         fecharmodal()
                     }}>Salvar</Button>
                 </div>

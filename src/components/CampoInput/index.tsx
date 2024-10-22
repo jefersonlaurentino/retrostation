@@ -1,42 +1,32 @@
+import { ChangeEvent } from "react";
 import { UseFormProps } from "react-hook-form"
 
 interface CampoInputProps{
     name:string,
     type:string,
-    funcaoChan?: (value: string)=> void,
     label?:string,
     placeholder?:string,
     style?:string,
     children?: JSX.Element,
-    required?:boolean,
-    msg?:boolean,
-    register?: UseFormProps
+    functionChange?: (value:ChangeEvent<HTMLInputElement>)=> void,
+    value?: string;
+    dimencao?:string,
+    register?: UseFormProps,
+    maxLength?:number,
+    minLength?:number,
+    focus?:boolean,
+    disabled?:boolean,
 }
 
-// const teste = (id:string) => {
-    
-//     if (id == "cdt_Conf_Senha") {
-//         const senha = document.querySelector<HTMLInputElement>("#cdt_Senha")!.value
-//         const confSenha = document.querySelector<HTMLInputElement>("#cdt_Conf_Senha")!.value
-//         if (senha != confSenha) {
-//             document.querySelector<HTMLDivElement>(".cdt_Conf_Senha")!.innerHTML="a senha não corresponde"
-//         } else {
-//             document.querySelector<HTMLDivElement>(".cdt_Conf_Senha")!.innerHTML=""
-//         }
-//     }
-        
-// }
-
 export default function CampoInput(props:CampoInputProps){
+
     return (
         <>
-        <div className="flex flex-col w-full">
-            <div className="flex flex-col relative">
-                <input {...props.register} type={props.type} placeholder={props.placeholder} className={`outline-none bg-transparent border-b-2 border-black/50 focus:border-principal ${props.style} dark:text-black`}/>
+            <div className={`flex flex-col relative w-full ${props.dimencao}`}>
+                <label htmlFor={props.label}></label>
+                <input id={props.name} {...props.register} type={props.type} disabled={props.disabled} onChange={props.functionChange} value={props.value} autoFocus={props.focus} maxLength={props.maxLength} minLength={props.minLength} placeholder={props.placeholder} className={`pl-1 outline-none border-b-2 border-black/50 focus:border-principal ${props.style} dark:text-black placeholder:text-black`}/>
                 {props.children}
             </div>
-            {(props.msg != undefined) && <div className={`${props.name} text-red-800 h-4 flex items-center`}>senha ou e-mail incoreto</div>}
-        </div>
         </>
     )
 }

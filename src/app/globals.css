@@ -80,6 +80,30 @@
     background-color: #525252;
     cursor: not-allowed;
 }
+
+.div_campo_input {
+    display: flex;
+    flex-direction: column;
+    height: 48px;
+    margin: 2px 0;
+}
+
+.div_campo_input p {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: 1rem;
+    line-height: 15px;
+    color: red;
+}
+
+.disabled {
+    color: #aaaaaa;
+    cursor: not-allowed;
+}
+
+
+/*  cursor-not-allowed text-neutral-500 */
 /* 
 .slider{
     margin: 0 auto;

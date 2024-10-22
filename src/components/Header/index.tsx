@@ -6,13 +6,21 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaUserLarge } from "react-icons/fa6";
 import { useImagemContext } from "@/contexts/contextFotoPerfil";
+import { useDataLogin } from "@/contexts/contexUserLogin";
 
 export default function Header(){
+    const { dataLoginUser } = useDataLogin()
+    const [ nickName , setNickName ] = useState<string>('******')
     useEffect(()=>{
         const getLogin = window.sessionStorage.getItem("login")
-        window.sessionStorage.setItem("login",'')
         SetPesquisa(getLogin);
     },[])
+
+    useEffect(()=>{
+        if (dataLoginUser) {
+            setNickName(dataLoginUser.dataUser.nickName)
+        }
+    },[dataLoginUser])
 
     const { imagemAvatar } = useImagemContext()
 
@@ -47,7 +55,7 @@ export default function Header(){
                             width={32}
                             className="rounded-full"
                         />
-                        <p className="text-white font-mono">Jott4</p>
+                        <p className="text-white font-mono">{nickName}</p>
                     </Link>}
                 </nav>
             </div>
