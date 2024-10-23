@@ -30,7 +30,7 @@ const faixaEtaria = () =>{
 }
 
 
-const arrayJogos = new Array
+const arrayJogos:number[] = []
 jogos.forEach((j, i )=>{
     if (i == 2 ) {
         arrayJogos.push(i)

@@ -2,7 +2,7 @@
 
 import { useAgeContext } from "@/contexts/FaixaEtariaJogo"
 import { camposPreenchidos } from "./funcoes"
-import { useCallback, useEffect, useState } from "react"
+import { useEffect } from "react"
 import Button from "../Button"
 import Link from "next/link"
 import { useIdadeContext } from "@/contexts/contextIdade"

@@ -5,7 +5,7 @@ import { TbAlertOctagonFilled } from "react-icons/tb";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import React from "react";
 import { tes } from "./funcoes";
-import Campo, { nameJogos } from "./campo";
+import Campo from "./campo";
 
 export default function ModalIdade({ jogo } : { jogo: string }) {
     

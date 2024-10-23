@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import { SlArrowLeft } from "react-icons/sl";
 import { SlArrowRight } from "react-icons/sl";
 import Image from "next/image";
-import { funcoes } from "../funcoes" 
-
-const jogos = funcoes.jogos
+import { jogos } from "../funcoes" 
 
 export default function Carrossel() {
 

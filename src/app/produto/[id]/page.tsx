@@ -7,7 +7,6 @@ import { useAgeContext } from "@/contexts/FaixaEtariaJogo";
 import { useParams } from "next/navigation";
 import { jogos } from "@/components/funcoes";
 import { useEffect } from "react";
-import { number } from "zod";
 
 export default function Produto() {
     const { setIdadePermitida } = useAgeContext()

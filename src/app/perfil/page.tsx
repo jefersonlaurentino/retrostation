@@ -16,7 +16,6 @@ import { useDataLogin } from "@/contexts/contexUserLogin";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { regexAge, regexCel, regexNickName_Email, regexZipCode } from "@/components/funcoes/funcoesForm";
-import { useAgeContext } from "@/contexts/FaixaEtariaJogo";
 import { useIdadeContext } from "@/contexts/contextIdade";
 const designer = localFont({src:"../fonts/designer.otf"})
 
@@ -49,7 +48,7 @@ export default function Perfil() {
     const { dataLoginUser , setReloud } = useDataLogin()
     const { setPermicaoReloud } = useIdadeContext()
 
-    const { handleSubmit , register, setValue , setError, formState: { errors } } = useForm<formProps>({
+    const { handleSubmit , register, setValue , formState: { errors } } = useForm<formProps>({
         criteriaMode: "all",
         mode: "all",
         resolver: zodResolver(schamaForm),
