@@ -1,6 +1,6 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import { funcoes } from "../../components/funcoes"
+import React from "react";
+import { calculoDesconto } from "../../components/funcoes"
 import Button from "../Button";
 import { useAgeContext } from "@/contexts/FaixaEtariaJogo";
 import { useRouter } from "next/navigation";
@@ -16,39 +16,8 @@ type cardProps = {
 }
 
 export default function Card(props:cardProps) {
-    const [ idade , setIdade ] = useState<string | null>(null)
-    useEffect(()=>{
-        setIdade(window.sessionStorage.getItem("idade"))
-    },[])
     const { setIdadePermitida } = useAgeContext()
     const router = useRouter()
-    
-    const validarFaixaEtaria = (url :string , faixaEtaria :string) => {
-        console.log(idade);
-        if (idade != null) {
-            if (Number(idade) >= 18 || faixaEtaria == "livre") {
-                router.push(url)
-                window.sessionStorage.setItem("idadePermitida",faixaEtaria)
-                setIdadePermitida(Number(faixaEtaria))
-            } else {
-                if (Number(idade) >= Number(faixaEtaria)) {
-                    router.push(url)
-                    window.sessionStorage.setItem("idadePermitida",faixaEtaria)
-                    setIdadePermitida(Number(faixaEtaria))
-                } else {
-                    setIdadePermitida(Number(faixaEtaria))
-                    window.sessionStorage.setItem("idadePermitida",faixaEtaria)
-                    router.push(`/idade/${props.titulo.replace(/[" "]/g,"-")}`)
-                }
-            }
-        } else {
-            setIdadePermitida(Number(faixaEtaria))
-            window.sessionStorage.setItem("idadePermitida",faixaEtaria)
-            window.sessionStorage.setItem("jogo", props.id)
-            window.sessionStorage.setItem("idadePermitida", props.faixaEtaria)
-            router.push(`/idade/${props.titulo.replace(/[" "]/g,"-")}`)
-    }
-}
 
     return(
         <>
@@ -68,7 +37,7 @@ export default function Card(props:cardProps) {
                 {props.promocao ? <article className="flex flex-col text-black px-2 py-1 h-full justify-around">
                     <h3 className="text-center text-xl font-bold">{props.titulo}</h3>
                     <div className="flex gap-2 items-center justify-between md:px-3 font-semibold">
-                        <p className="bg-blue-600 rounded-full px-2">{props.valorAtual != "Grátis" && funcoes.calculoDesconto(props.valorAnterior,props.valorAtual)}</p>
+                        <p className="bg-blue-600 rounded-full px-2">{props.valorAtual != "Grátis" && calculoDesconto(props.valorAnterior,props.valorAtual)}</p>
                         <div>
                             <p className="line-through text-neutral-400 text-end">{`${(props.valorAtual != "Grátis") ? 'R$ '+props.valorAnterior : ""}`}</p>
                             <p className="text-end text-lg font-bold">{`${(props.valorAtual != "Grátis") ? 'R$ '+props.valorAtual : props.valorAtual}`}</p>
@@ -81,8 +50,9 @@ export default function Card(props:cardProps) {
                     </div>
                 </article>}
             </div>
-            <Button f_function={()=>validarFaixaEtaria(`/produto/${props.id}` , props.faixaEtaria)} style="absolute top-0 left-0 w-full h-full"/>
-            {/* <button onChangeCapture={()=>setnumero(Number(props.faixaEtaria))} className="absolute top-0 left-0 w-full h-full" ></button> */}
+            <Button f_function={()=>{
+                router.push(`/produto/${props.id}`)
+                setIdadePermitida(Number(props.faixaEtaria))}} style="absolute top-0 left-0 w-full h-full"/>
         </div>
         </>
     )

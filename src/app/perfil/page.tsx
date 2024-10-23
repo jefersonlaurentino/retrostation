@@ -16,6 +16,8 @@ import { useDataLogin } from "@/contexts/contexUserLogin";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { regexAge, regexCel, regexNickName_Email, regexZipCode } from "@/components/funcoes/funcoesForm";
+import { useAgeContext } from "@/contexts/FaixaEtariaJogo";
+import { useIdadeContext } from "@/contexts/contextIdade";
 const designer = localFont({src:"../fonts/designer.otf"})
 
 const schamaForm = z.object({
@@ -45,6 +47,7 @@ type formProps = z.infer<typeof schamaForm>
 export default function Perfil() {
     const { imagemAvatar } = useImagemContext()
     const { dataLoginUser , setReloud } = useDataLogin()
+    const { setPermicaoReloud } = useIdadeContext()
 
     const { handleSubmit , register, setValue , setError, formState: { errors } } = useForm<formProps>({
         criteriaMode: "all",
@@ -88,13 +91,10 @@ export default function Perfil() {
     const handleSubmitData = (data: formProps) => {
         const avatar = window.sessionStorage.getItem('avt')
         
-        if (window.sessionStorage.getItem(`user${data.dataUser.mail}`)) {
-            setError('dataUser.mail', { type: 'custom' , message: 'Erro adicione outro E-mail' })
-            return
-        }
         //verifica se o usuário trocou o E-mail
         if (data.dataUser.mail != dataLoginUser?.dataUser.mail) {
             window.sessionStorage.removeItem(`user${dataLoginUser?.dataUser.mail}`)
+            return
         }
         
         let setDataUser;
@@ -135,6 +135,7 @@ export default function Perfil() {
             
         window.sessionStorage.setItem(`login`, JSON.stringify(setDataUser))
         setReloud(Math.random() * 10)
+        setPermicaoReloud(Math.random() * 10)
     }
 
     const modal = () =>{
@@ -184,6 +185,8 @@ export default function Perfil() {
                         <Link href="/" onClick={()=>{
                                 window.sessionStorage.removeItem("login")
                                 window.sessionStorage.removeItem("avt")
+                                window.sessionStorage.removeItem("idade")
+                                setPermicaoReloud(Math.random() * 10)
                             }} className="flex items-center gap-2  border-2 p-2 rounded-lg">
                             <HiMiniArrowRightOnRectangle className="text-2xl"/>
                             <p>Sair da Conta</p>

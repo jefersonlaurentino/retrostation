@@ -25,7 +25,7 @@ type dataLoginUserProps = {
     confPassword: string,
 }
 
-type userProps = {
+export type userProps = {
     dataUser: dataLoginUserProps
 }
 

@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import { useState, useEffect } from 'react'
 import Card from "../components/Card";
 import localFont from "next/font/local";
-import { funcoes } from "@/components/funcoes";
+import { jogos } from "@/components/funcoes";
 
 const designer = localFont({src:"./fonts/designer.otf"})
 
@@ -63,7 +63,7 @@ export default function Home() {
     }
   }
 
-  const array = funcoes.jogos
+  const array = jogos
 
 const secao = [
   "Destaques", "Corrida" , "aventura" , "Gta"

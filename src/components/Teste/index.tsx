@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation"
 import { useDataLogin } from "@/contexts/contexUserLogin"
 import { useState } from "react"
 import { PiEye, PiEyeClosed } from "react-icons/pi"
+import { useIdadeContext } from "@/contexts/contextIdade"
 
 const schamaForm = z.object({
     userLogin: z.object({
@@ -24,6 +25,7 @@ type formProps = z.infer<typeof schamaForm>
 
 export default function Teste() {
     const { setReloud } = useDataLogin()
+    const { setPermicaoReloud } = useIdadeContext()
     const router = useRouter()
 
     const {
@@ -54,7 +56,9 @@ const handleUserSubmit = (data:formProps) => {
         const passwordUser = usuario.dataUser.password
         if (passwordUser == data.userLogin.password) {
             window.sessionStorage.setItem('login', getUser );
+            window.sessionStorage.removeItem('idade');
             setReloud(Math.random() * 10)
+            setPermicaoReloud(Math.random() * 10)
             router.push('/')
             return
         }

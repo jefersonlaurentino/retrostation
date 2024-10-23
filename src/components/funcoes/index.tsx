@@ -124,7 +124,7 @@ const jogos = [
     },
 ]
 
-export const funcoes = {
+export {
     jogos,
     calculoDesconto,
 }

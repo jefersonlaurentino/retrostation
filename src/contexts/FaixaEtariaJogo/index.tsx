@@ -21,7 +21,7 @@
 // };
 'use client'
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 // Definir o tipo para o contexto
 interface AgeContextType {
@@ -35,6 +35,19 @@ const FaixaEtaria = createContext<AgeContextType | null>(null);
 // Provedor do contexto
 const FaixaEtariaProvider = ({ children }: { children: ReactNode }) => {
   const [ idadePermitida , setIdadePermitida] = useState<number>(0);
+
+  useEffect(()=>{
+    const getIdadePermitida = window.sessionStorage.getItem('idadePermitida')
+    if (getIdadePermitida) {
+      setIdadePermitida(Number(getIdadePermitida))
+    }
+  },[])
+
+  useEffect(()=>{
+    if (idadePermitida != 0) {
+      window.sessionStorage.setItem('idadePermitida', idadePermitida.toString())
+    }
+  },[idadePermitida])
 
   return (
     <FaixaEtaria.Provider value={{ idadePermitida , setIdadePermitida }}>
