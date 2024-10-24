@@ -26,8 +26,11 @@ const IdadePermitidaProvider = ({ children }: {children:ReactNode}) => {
                 setIdadeUsuario(calcularIdade(dadosUsuario.dataUser.age , idadePermitida))
                 return
             }
+
             if (window.sessionStorage.getItem('idade')) {
                 setIdadeUsuario(calcularIdade(window.sessionStorage.getItem('idade')!, idadePermitida))
+            } else {
+                setIdadeUsuario(false)
             }
         }
 
