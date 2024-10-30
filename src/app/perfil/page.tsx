@@ -83,20 +83,17 @@ export default function Perfil() {
             setValue('dataUser.number', dataLoginUser.dataUser.number)
         }
     },[dataLoginUser])
-
-    console.log("erros",errors);
-    
     
     const handleSubmitData = (data: formProps) => {
         const avatar = window.sessionStorage.getItem('avt')
+        const jogosCompradosUser = window.sessionStorage.getItem('login')
+        let setDataUser;
         
         //verifica se o usuário trocou o E-mail
         if (data.dataUser.mail != dataLoginUser?.dataUser.mail) {
             window.sessionStorage.removeItem(`user${dataLoginUser?.dataUser.mail}`)
-            return
         }
         
-        let setDataUser;
         if (avatar || dataLoginUser?.dataUser.avatar) {
             if (avatar) {
                 setDataUser = {
@@ -130,6 +127,23 @@ export default function Perfil() {
                 }
             }
         }
+
+        if (jogosCompradosUser) {
+            const jogosComprados = JSON.parse(jogosCompradosUser)
+            if (jogosComprados.dataUser.jogosComprados) {
+                setDataUser = {
+                    ...setDataUser,
+                    dataUser: {
+                        ...setDataUser.dataUser,
+                        jogosComprados: [
+                            ...jogosComprados.dataUser.jogosComprados,
+                        ]
+                    }
+                }
+            }
+            
+        }
+
         window.sessionStorage.setItem(`user${data.dataUser.mail}`, JSON.stringify(setDataUser))
             
         window.sessionStorage.setItem(`login`, JSON.stringify(setDataUser))

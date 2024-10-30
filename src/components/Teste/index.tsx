@@ -8,7 +8,7 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useDataLogin } from "@/contexts/contexUserLogin"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { PiEye, PiEyeClosed } from "react-icons/pi"
 import { useIdadeContext } from "@/contexts/contextIdade"
 
@@ -27,6 +27,10 @@ export default function Teste() {
     const { setReloud } = useDataLogin()
     const { setPermicaoReloud } = useIdadeContext()
     const router = useRouter()
+
+    useEffect(()=>{
+        if (window.sessionStorage.getItem('login')) router.push('/')
+    },[])
 
     const {
         handleSubmit,
@@ -59,8 +63,24 @@ const handleUserSubmit = (data:formProps) => {
             window.sessionStorage.removeItem('idade');
             setReloud(Math.random() * 10)
             setPermicaoReloud(Math.random() * 10)
-            router.push('/')
-            return
+
+            if (window.sessionStorage.getItem('pageProduto')) {
+                const produto = window.sessionStorage.getItem('pageProduto')
+                const id = produto!.indexOf('-')
+                if (id > 0) {
+                    window.sessionStorage.setItem('cart', JSON.stringify([produto!.slice( id + 1, produto!.length)]))
+                    window.sessionStorage.removeItem('pageProduto')
+                    router.push(produto!.slice(0 , id))
+                    return
+                } else {
+                    window.sessionStorage.removeItem('pageProduto')
+                    router.push(window.sessionStorage.getItem('pageProduto')!)
+                    return
+                }
+            } else {
+                router.push('/')
+                return
+            }
         }
     }
     setError('userLogin.password', {type: 'manual' , message: "senha ou E-mail invalido"})

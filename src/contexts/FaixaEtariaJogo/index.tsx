@@ -1,27 +1,12 @@
-// import { createContext, useContext, useState, ReactNode } from "react";
-
-// // Define o tipo para o contexto, com a idade e uma função para atualizá-la
-// type IdadeContextProps = {
-//   idade: number;
-//   setIdade: (idade: number) => void;
-// }
-
-// // Cria o contexto com valores padrão (inicialmente `0` para a idade)
-// const FaixaEtaria = createContext<IdadeContextProps | number>(0);
-
-// // Define o provider que envolverá os componentes que usarão o contexto
-// const FaixaEtariaProvider = ({ children }: { children: ReactNode }) => {
-//   const [idade, setIdade] = useState<number>(0);
-
-//   return (
-//     <FaixaEtaria.Provider value={{ idade , setIdade }}>
-//       {children}
-//     </FaixaEtaria.Provider>
-//   );
-// };
 'use client'
 
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import livre from "../../../public/image/faixaEtaria/livre.jpg";
+import maior10 from "../../../public/image/faixaEtaria/maior10.jpg";
+import maior12 from "../../../public/image/faixaEtaria/maior12.jpg";
+import maior14 from "../../../public/image/faixaEtaria/maior14.jpg";
+import maior16 from "../../../public/image/faixaEtaria/maior16.jpg";
+import maior18 from "../../../public/image/faixaEtaria/maior18.jpg";
 
 // Definir o tipo para o contexto
 interface AgeContextType {
@@ -46,6 +31,7 @@ const FaixaEtariaProvider = ({ children }: { children: ReactNode }) => {
   useEffect(()=>{
     if (idadePermitida != 0) {
       window.sessionStorage.setItem('idadePermitida', idadePermitida.toString())
+
     }
   },[idadePermitida])
 
@@ -55,6 +41,26 @@ const FaixaEtariaProvider = ({ children }: { children: ReactNode }) => {
     </FaixaEtaria.Provider>
   );
 };
+
+export const verificaFaixaEtaria = (faixaEtaria: string) =>{
+  const faixa = faixaEtaria
+  let classificacao
+  if (faixa == "livre") {
+      classificacao = livre
+  } else if (faixa == "10") {
+      classificacao = maior10
+  } else if (faixa == "12") {
+      classificacao = maior12
+  } else if (faixa == "14") {
+      classificacao = maior14
+  } else if (faixa == "16") {
+      classificacao = maior16
+  } else {
+      classificacao = maior18
+  }
+
+  return classificacao
+}
 
 // Hook para usar o contexto
 const useAgeContext = () => {

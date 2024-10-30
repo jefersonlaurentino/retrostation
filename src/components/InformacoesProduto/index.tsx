@@ -1,24 +1,16 @@
-'use client'
-
 import { IoLogoWindows } from "react-icons/io5";
 import { SlArrowLeft } from "react-icons/sl";
 import { SlArrowRight } from "react-icons/sl";
 import Header from "../../components/Header";
-import Image from "next/image";
-import livre from "../../../public/image/faixaEtaria/livre.jpg";
-import maior10 from "../../../public/image/faixaEtaria/maior10.jpg";
-import maior12 from "../../../public/image/faixaEtaria/maior12.jpg";
-import maior14 from "../../../public/image/faixaEtaria/maior14.jpg";
-import maior16 from "../../../public/image/faixaEtaria/maior16.jpg";
-import maior18 from "../../../public/image/faixaEtaria/maior18.jpg";
+import Image, { StaticImageData } from "next/image";
 import Button from "../../components/Button";
 import { BsShare } from "react-icons/bs";
 import { useEffect } from "react";
-import { useParams } from "next/navigation"
-import { jogos , calculoDesconto } from "../../components/funcoes"
-import { useAgeContext } from "@/contexts/FaixaEtariaJogo";
+import { calculoDesconto } from "../../components/funcoes"
+import localFont from "next/font/local";
+import { useRouter , usePathname} from "next/navigation";
 
-// const designer = localFont({src:"../../fonts/DESIGNER.otf"})
+const designer = localFont({src:"../../app/fonts/designer.otf"})
 
 const verImagemProduto =  (evt:EventTarget) => {
     const mostrar = document.querySelector(".ver")!
@@ -107,38 +99,115 @@ const limparGaleria = () => {
     })   
 }
 
-export default function InformacoesProduto() {
-    const { idadePermitida ,setIdadePermitida} = useAgeContext()
-    const params = useParams()
-    const id = params.id as string
-    const jogoTrue:string[] = []
-    jogos.map(e=>jogoTrue.push(e.id))
-    const jogo = jogoTrue.indexOf(id)
 
-    const faixaEtaria = () =>{
-        const faixa = jogos[jogo].faixaEtaria
-        let classificacao
-        if (faixa == "livre") {
-            classificacao = livre
-        } else if (faixa == "10") {
-            classificacao = maior10
-        } else if (faixa == "12") {
-            classificacao = maior12
-        } else if (faixa == "14") {
-            classificacao = maior14
-        } else if (faixa == "16") {
-            classificacao = maior16
-        } else {
-            classificacao = maior18
+
+export type typeDataJogo = {
+    id: string,
+    titulo: string,
+    descricao: string[],
+    desenvolvedor: string,
+    editora: string,
+    dataLançamento: string,
+    generos: string[],
+    recursos: string[],
+    promocao: boolean,
+    faixaEtaria: StaticImageData,
+    banner: string,
+    bannerName: string,
+    imagens: string[],
+    video: string[],
+    destaques: string[],
+    valorAnterior: string,
+    valorAtual: string,
+    naBiblioteca?: boolean,
+}
+
+export default function InformacoesProduto({ id , titulo , descricao , desenvolvedor , editora , bannerName , dataLançamento , faixaEtaria , generos , imagens , promocao , recursos , valorAnterior , valorAtual , video , naBiblioteca }: typeDataJogo ) {
+    const Router = useRouter()
+    const pathName = usePathname()
+
+    const comprar = (evt: React.MouseEvent<HTMLButtonElement> , id: string) => {
+        
+
+        if (evt.currentTarget.textContent == "Comprar") {
+
+            if (!window.sessionStorage.getItem('login')) {
+                window.sessionStorage.setItem('pageProduto', `/comprar-${id}`)
+                Router.push('/login');
+                return
+            }
+            Router.push('/comprar')
+            window.sessionStorage.setItem('cart' , JSON.stringify([id]))
+            return
         }
 
-        return classificacao
+        if (!window.sessionStorage.getItem('login')) {
+            window.sessionStorage.setItem('pageProduto', pathName)
+            Router.push('/login');
+            return
+        }
+        
+        const getCarrinhoCompras = window.sessionStorage.getItem('comprasCarrinho')
+    
+        if (getCarrinhoCompras) {
+            if (getCarrinhoCompras.includes(id)) {
+                return
+            }
+        }
+    
+        if (getCarrinhoCompras) {
+            let setCarrinho = JSON.parse(getCarrinhoCompras)
+            setCarrinho = setCarrinho = [
+                ...setCarrinho,
+                id,
+            ]
+            window.sessionStorage.setItem('comprasCarrinho', JSON.stringify(setCarrinho))
+        } else {
+            const arrayCarrinhoCompras: string[] = [];
+            arrayCarrinhoCompras.push(id)
+            window.sessionStorage.setItem('comprasCarrinho' , JSON.stringify(arrayCarrinhoCompras) )
+        }
     }
+    
+    // const { idadePermitida ,setIdadePermitida} = useAgeContext()
+    // const params = useParams()
+    // const nameJogo = params.nome as string
+    // const tituloJogo = nameJogo.replace(/%20/g,' ')
+    // const jogoTrue:string[] = []
+    // jogos.map((e)=>{
+    //     jogoTrue.push(e.titulo)
+    // })
+    
+    // const jog = jogos.find((e)=>{
+    //     return e.titulo == tituloJogo
+    // })
 
-    let faixaEtariaSet:number;
-    useEffect(()=>{
-        faixaEtariaSet = Number(jogos[jogo].faixaEtaria)
-    },[idadePermitida])
+    // const jogo = jogos[0]
+
+    // const verificaFaixaEtaria = () =>{
+    //     const faixa = faixaEtaria
+    //     let classificacao
+    //     if (faixa == "livre") {
+    //         classificacao = livre
+    //     } else if (faixa == "10") {
+    //         classificacao = maior10
+    //     } else if (faixa == "12") {
+    //         classificacao = maior12
+    //     } else if (faixa == "14") {
+    //         classificacao = maior14
+    //     } else if (faixa == "16") {
+    //         classificacao = maior16
+    //     } else {
+    //         classificacao = maior18
+    //     }
+
+    //     return classificacao
+    // }
+
+    // let faixaEtariaSet:number;
+    // useEffect(()=>{
+    //     faixaEtariaSet = Number(faixaEtaria)
+    // },[faixaEtaria])
 
     useEffect(()=>{
         const galeria = document.querySelector(".galeria")?.firstChild
@@ -148,57 +217,57 @@ export default function InformacoesProduto() {
         primeiroElementoGaleria.classList.remove("border-transparent")
         primeiroElementoGaleria.classList.add("border-red-800")
 
-        const idadeSet = window.sessionStorage.getItem("idade")
-        console.log("idade" + idadeSet);
-        console.log("idadeRe" + faixaEtariaSet);
+        // const idadeSet = window.sessionStorage.getItem("idade")
+        // console.log("idade" + idadeSet);
+        // console.log("idadeRe" + faixaEtariaSet);
         
-        if (!idadeSet || !faixaEtariaSet) {
+        // if (!idadeSet || !faixaEtariaSet) {
             
-            window.sessionStorage.setItem("idadePermitida", jogos[jogo].faixaEtaria)
-            setIdadePermitida(Number(jogos[jogo].faixaEtaria))
-            window.sessionStorage.setItem("jogo", jogos[jogo].id)
-            // document.querySelector('.modal')?.classList.remove('hidden')
-            // router.push(`/idade/${jogos[jogo].titulo.replace(/[" "]/g,"-")}`)
-        } else {
-            window.sessionStorage.setItem("idadePermitida", jogos[jogo].faixaEtaria)
-            setIdadePermitida(Number(jogos[jogo].faixaEtaria))
-            console.log(idadeSet);
-            console.log(faixaEtariaSet);
+        //     window.sessionStorage.setItem("idadePermitida", faixaEtaria)
+        //     setIdadePermitida(Number(jogo.faixaEtaria))
+        //     window.sessionStorage.setItem("jogo", jogo.id)
+        //     // document.querySelector('.modal')?.classList.remove('hidden')
+        //     // router.push(`/idade/${jogo.titulo.replace(/[" "]/g,"-")}`)
+        // } else {
+        //     window.sessionStorage.setItem("idadePermitida", jogo.faixaEtaria)
+        //     setIdadePermitida(Number(jogo.faixaEtaria))
+        //     console.log(idadeSet);
+        //     console.log(faixaEtariaSet);
             
-            if (Number(idadeSet) < Number(faixaEtariaSet)) {
-                // document.querySelector('.modal')?.classList.remove('hidden')
-                // router.push(`/idade/${jogos[jogo].titulo.replace(/[" "]/g,"-")}`)
-            }
-        }
+        //     if (Number(idadeSet) < Number(faixaEtariaSet)) {
+        //         // document.querySelector('.modal')?.classList.remove('hidden')
+        //         // router.push(`/idade/${jogo.titulo.replace(/[" "]/g,"-")}`)
+        //     }
+        // }
     },[])
 
-    const user = JSON.parse(window.sessionStorage.getItem('login')!)
+    // const user = JSON.parse(window.sessionStorage.getItem('login')!)
 
-    let naBliblioteca=false
-    if (user) {
-        if (user.dataUser.jogosComprados) {
-            user.dataUser.jogosComprados.map((j :number) =>{
-                if(j == jogo) {
-                    naBliblioteca = true
-                }
-            });
-    }
-    }
+    // let naBliblioteca=false
+    // if (user) {
+    //     if (user.dataUser.jogosComprados) {
+    //         user.dataUser.jogosComprados.map((j :number) =>{
+    //             if(j == jogo) {
+    //                 naBliblioteca = true
+    //             }
+    //         });
+    // }
+    // }
     
     return(
         <>
         <Header/>
         <main className="flex flex-col text-black dark:text-white max-w-6xl m-auto">
-            <h1 className={`p-5 text-3xl md:text-5xl  underline`}>{jogos[jogo].titulo}</h1>
+            <h1 className={`p-5 text-3xl md:text-5xl ${designer.className} underline`}>{titulo}</h1>
             <div className="relative">
                 <div className="flex flex-col w-full md:w-2/3">
                     <div className="ver relative w-10/12 h-[186px] md:h-[300px] max-w-[500px] rounded-lg m-auto overflow-hidden" onMouseMove={mostraSetas} onMouseOut={ocutarSetas}>
                         <div className="video">
-                            {jogos[jogo].video[0] ? 
-                            <iframe width="560" src={`https://www.youtube.com/embed/${jogos[jogo].video[0]}?autoplay=1`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen>
+                            {video[0] ? 
+                            <iframe width="560" src={`https://www.youtube.com/embed/${video[0]}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen>
                             </iframe> : <div className="img">
                                 <Image
-                                    src={jogos[jogo].imagens[0]}
+                                    src={imagens[0]}
                                     width={250}
                                     height={250}
                                     alt="Imagem de uma cena do jogo"
@@ -214,7 +283,7 @@ export default function InformacoesProduto() {
                         <SlArrowLeft className="absolute p-1 rounded-full text-3xl bg-neutral-800 text-white -translate-y-1/2 left-0 top-1/2 max-sm:hidden"/>
                         <SlArrowRight className="absolute p-1 rounded-full text-3xl bg-neutral-800 text-white -translate-y-1/2 right-0 top-1/2 max-sm:hidden"/>
                         <div className="galeria flex gap-1 py-2 m-auto w-10/12 min-w-[250px] max-w-[450px] overflow-y-hidden">
-                            {jogos[jogo].video.map((video , index)=>
+                            {video.map((video , index)=>
                                 <div key={index} className="border-4 md:border-2 border-transparent rounded-lg cursor-pointer relative">
                                     <div className="video w-[93px] h-[67px] overflow-hidden rounded-lg">
                                         <iframe width="560" src={`https://www.youtube.com/embed/${video}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen>
@@ -225,7 +294,7 @@ export default function InformacoesProduto() {
                             )}
 
 
-                            {jogos[jogo].imagens.map((img , index)=>
+                            {imagens.map((img , index)=>
                                 <div key={index} className="border-4 md:border-2 border-transparent cursor-pointer relative h-[67px] min-w-[89px] w-[90px] rounded-lg overflow-hidden">
                                     <div className="img">
                                     <Image
@@ -243,40 +312,42 @@ export default function InformacoesProduto() {
                         </div>
                     </div>
 
-                    <aside className="w-full md:absolute md:right-0 md:top-0 md:w-1/3 p-3 bg-black text-white">
+                    <aside className="w-full md:right-0 md:top-0 md:w-1/3 p-3 bg-black text-white md:absolute">
                         <Image
-                            src={jogos[jogo].bannerName}
+                            src={bannerName}
                             width={90}
                             height={90}
                             alt="Nome do jogo"
                             className="w-3/4 m-auto py-20 max-md:hidden"
                         />
                         <div className="flex gap-3 items-center justify-center mb-3">
-                            {jogos[jogo].promocao && 
-                            <><p className="bg-blue-700 px-1 rounded-lg">{calculoDesconto(jogos[jogo].valorAnterior, jogos[jogo].valorAtual)}</p>
-                            <p className="line-through text-sm">{`R$ ${jogos[jogo].valorAnterior}`}</p>
+                            {promocao &&
+                            <><p className="bg-blue-700 px-1 rounded-lg">{calculoDesconto(valorAnterior, valorAtual)}</p>
+                            <p className="line-through text-sm">{`R$ ${valorAnterior}`}</p>
                             </>}
-                            <p className="font-semibold">{`R$ ${jogos[jogo].valorAtual}`}</p>
+                            <p className="font-semibold">{`R$ ${valorAtual}`}</p>
                         </div>
                         <div className="flex flex-col gap-4 my-4">
-                            {(naBliblioteca)? 
+                            {(naBiblioteca)?
                             <Button style="bg-blue-800 hover:bg-blue-700">
                                 na bliblioteca
                             </Button>
                             :
-                            <Button style="bg-blue-800 hover:bg-blue-700">
+                            <button
+                                onClick={(e)=>comprar(e , id)}
+                                className="bg-blue-800 text-center rounded-lg py-1 font-semibold text-xl  hover:bg-blue-700">
                                 Comprar
-                            </Button>
+                            </button>
                         }
-                            <Button style="bg-neutral-700 hover:bg-neutral-600">
-
+                            <button 
+                                onClick={(e)=>comprar(e , id)}
+                                className="bg-neutral-600 text-center rounded-lg py-1 font-semibold text-xl  hover:bg-neutral-500">
                                 Adicionar ao Carrinho
-                            </Button>
+                            </button>
                         </div>
-
                         <div className="flex gap-3 items-center p-2 rounded-lg border">
                             <Image
-                                src={faixaEtaria()}
+                                src={faixaEtaria}
                                 width={40}
                                 height={40}
                                 alt="classificação da fixa etária"
@@ -284,19 +355,18 @@ export default function InformacoesProduto() {
                             />
                             <p>Violençia, linguagem imprópria</p>
                         </div>
-
                         <div>
                             <div className="flex justify-between gap-3 my-3 border-b">
                                 <p>Desenvolvedor</p>
-                                <p className="text-right">{jogos[jogo].desenvolvedor}</p>
+                                <p className="text-right">{desenvolvedor}</p>
                             </div>
                             <div className="flex justify-between gap-3 my-3 border-b">
                                 <p>Editora</p>
-                                <p className="text-right">{jogos[jogo].editora}</p>
+                                <p className="text-right">{editora}</p>
                             </div>
                             <div className="flex justify-between gap-3 my-3 border-b">
                                 <p>Data de lançamento</p>
-                                <p className="text-right">{jogos[jogo].dataLançamento}</p>
+                                <p className="text-right">{dataLançamento}</p>
                             </div>
                             <div className="flex justify-between gap-3 my-3 border-b">
                                 <p>Plataforma</p>
@@ -310,24 +380,24 @@ export default function InformacoesProduto() {
                     </aside>
 
                     <article className="py-3 w-11/12 md:w-10/12 m-auto">
-                        {jogos[jogo].descricao.map((text , index)=><p key={index} className="indent-4 my-2">{text}</p>)}
+                        {descricao.map((text , index)=><p key={index} className="indent-4 my-2">{text}</p>)}
                         <div className="flex my-3">
                             <div className="border-r-2 w-1/2">
                                 <h4>Gênerros</h4>
                                 <div className="text-black flex gap-2 my-2">
-                                    {jogos[jogo].generos.map((type)=><p className="bg-neutral-300 inline-flex rounded-lg px-2" key={type}>{type}</p>)}
+                                    {generos.map((type)=><p className="bg-neutral-300 inline-flex rounded-lg px-2" key={type}>{type}</p>)}
                                 </div>
                             </div>
                             <div className="w-1/2 px-3">
                                 <h4>Recursos</h4>
                                 <div className="text-black">
-                                    {jogos[jogo].recursos.map((type)=><p className="bg-neutral-300 inline-flex rounded-lg px-2 my-2" key={type}>{type}</p>)}
+                                    {recursos.map((type)=><p className="bg-neutral-300 inline-flex rounded-lg px-2 my-2" key={type}>{type}</p>)}
                                 </div>
                             </div>
                         </div>
 
                         <section className="bg-neutral-900 text-white p-4">
-                            <h3>Requisitos de sistema de {jogos[jogo].titulo}</h3>
+                            <h3>Requisitos de sistema de {titulo}</h3>
                             <h4 className="mt-6 underline">Windows</h4>
                             <div className="requesitos flex gap-4">
                                 <div className="w-1/2">

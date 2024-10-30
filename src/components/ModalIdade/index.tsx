@@ -7,7 +7,8 @@ import React from "react";
 import { tes } from "./funcoes";
 import Campo from "./campo";
 
-export default function ModalIdade({ jogo } : { jogo: string }) {
+export default function ModalIdade({ tituloJogo } : { tituloJogo: string }) {
+    tituloJogo = tituloJogo.replace(/%20/g,' ')
     
     return(
         <>
@@ -16,7 +17,7 @@ export default function ModalIdade({ jogo } : { jogo: string }) {
                 <div className="flex justify-center my-4">
                     <TbAlertOctagonFilled className="text-8xl"/>
                 </div>
-                <h1 className="text-4xl text-center">O conteúdo de {jogo} pode não ser adequado para todas as idades.</h1>
+                <h1 className="text-4xl text-center">O conteúdo de {tituloJogo} pode não ser adequado para todas as idades.</h1>
                 <p className="text-lg msg_padrao">Para continuar, forneça sua data de nascimento. Veja nossa <Link href={"/"} className="underline text-cyan-600">Política de privacidade <FaRegShareFromSquare className="inline-flex"/></Link></p>
                 <p className="text-lg my-9 text-red-700 msg_recusado hidden text-center">Desculpe, mas você não pode acessar este conteúdo.</p>
                 <div className="div_idades flex gap-3 my-5 max-w-[1000px] m-auto justify-between">

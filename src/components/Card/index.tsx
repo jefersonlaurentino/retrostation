@@ -51,7 +51,7 @@ export default function Card(props:cardProps) {
                 </article>}
             </div>
             <Button f_function={()=>{
-                router.push(`/produto/${props.id}`)
+                router.push(`/produto/${props.titulo.toLocaleLowerCase()}`)
                 setIdadePermitida(Number(props.faixaEtaria))}} style="absolute top-0 left-0 w-full h-full"/>
         </div>
         </>

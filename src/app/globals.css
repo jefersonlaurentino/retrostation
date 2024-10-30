@@ -26,6 +26,9 @@
     transition-duration: 300ms;
 }
 
+/* .teste {
+} */
+
 .card:hover::before {
     border-right: 3px solid red;
 }
@@ -100,6 +103,18 @@
 .disabled {
     color: #aaaaaa;
     cursor: not-allowed;
+}
+
+@media (max-width: 450px) {
+    .alert_erro {
+        padding-bottom: 12rem;
+    }
+}
+
+@media (max-width: 400px) and (max-height: 600px ) {
+    .alert img{
+        width: 200px;
+    }
 }
 
 

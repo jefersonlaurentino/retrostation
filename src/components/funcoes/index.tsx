@@ -36,15 +36,15 @@ const jogos = [
     dataLançamento: "11/04/2005",
     generos: [ "corrida" ],
     recursos: [ "Compativel com Controle" , "Jogo para até 2 Pessoas" ],
-    promocao: false,
+    promocao: true,
     faixaEtaria: "14",
     banner: "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/e8ae1f733bc7d3b05c506de67f4b4f7f.jpg?im=Resize=640",
     bannerName: "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/a4863c27d856c6ce47b49aed738df14a.png",
     imagens: [ "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/9a12941047f5ff6b6e244a08cdc762da.jpg", "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/40c5a67e7ac7061dd9d76ead5b0e9555.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/2b68a28ff744321feca3a1cd814536f0.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/749ace7c507d0c8b25d34d0deeb37001.jpg" ],
     video: [ "axe9aGcTTWg" , "FPhyhAM41K8" ],
     destaques: [ "corrida" ],
-    valorAnterior: "130,00",
-    valorAtual: "128,00",
+    valorAnterior: "128,00",
+    valorAtual: "28,00"
     },
     {
     id: "03",
@@ -63,7 +63,7 @@ const jogos = [
     video: [ "a4q6wKGQoik" ],
     destaques: [ "ação" , "aventura" , "destaques" ],
     valorAnterior: "150,00",
-    valorAtual: "58,00",
+    valorAtual: "58,00"
     },
     {
     id: "04",
@@ -81,8 +81,8 @@ const jogos = [
     imagens: [ "https://media-rockstargames-com.akamaized.net/tina-uploads/tina-modules/bully/b11ccecce27c5213cdaacf0df3181e8781272e9b.jpg" , "https://media-rockstargames-com.akamaized.net/tina-uploads/tina-modules/bully/047a7ab24bf95536079d39153b99c1bfbb7dd85e.jpg" , "https://media-rockstargames-com.akamaized.net/tina-uploads/tina-modules/bully/771a35810e503471c64b3ff8d3a64ba82aed2f7a.jpg?im=Resize=1440" , "https://media-rockstargames-com.akamaized.net/tina-uploads/tina-modules/bully/a4b78595f5d93193eef9e46c3d7978d574b31a5e.jpg?im=Resize=1440" , "https://media-rockstargames-com.akamaized.net/tina-uploads/tina-modules/bully/3f477bd48cde11f98013777355d08ec1d5986ea6.jpg?im=Resize=1440" ],
     video: [ "M4g9vf3gX5E" , "88KNf0MtU14" ],
     destaques: [ "ação" , "aventura" , "destaques" ],
-    valorAnterior: "130,00",
-    valorAtual: "128,00",
+    valorAnterior: "128,00",
+    valorAtual: "128,00"
     },
     {
     id: "05",
@@ -100,7 +100,7 @@ const jogos = [
     imagens: [ "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/7c3466bd07d09ec14c9555505ea4e6af.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/b0353d1406b5264dc18326a811bc5bb5.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/0301d4689fa8e170ceefe118a18b3afb.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/e689e87adb68899abb7957e4b0d70612.jpg" ],
     video: [ "W-7zhljUPJg" ],
     destaques: [ "ação" , "aventura" , "gta" ],
-    valorAnterior: "130,00",
+    valorAnterior: "128,00",
     valorAtual: "128,00",
     },
     {
@@ -119,8 +119,27 @@ const jogos = [
     imagens: [ "https://upload.wikimedia.org/wikipedia/pt/thumb/5/51/NFSU2_Corrida.jpg/348px-NFSU2_Corrida.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/b0353d1406b5264dc18326a811bc5bb5.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/0301d4689fa8e170ceefe118a18b3afb.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/e689e87adb68899abb7957e4b0d70612.jpg" ],
     video: [ "koGT_QaCgcU" , "xsunzH3b7hI" ],
     destaques: [ "corrida" ],
-    valorAnterior: "130,00",
-    valorAtual: "128,00",
+    valorAnterior: "128,00",
+    valorAtual: "128,00"
+    },
+    {
+    id: "07",
+    titulo: "NFS Underground 2 teste",
+    descricao: ["Bem-vindo aos anos 80. Da década de penteados glam, dos excessos e dos ternos pastel, vem a história de um homem que sobe ao topo da cadeia criminal no retorno de Grand Theft Auto." , "Vice City é uma grande área urbana que engloba de praias até pântanos e do glamour até o gueto, e é a mais variada, completa e animada cidade digital já criada. Combinando uma jogabilidade não linear com uma narrativa centrada nos personagens, você chega a uma cidade cheia de prazeres e degradação, e tem a oportunidade de dominá-la como quiser."],
+    desenvolvedor: "Rockstar North",
+    editora: "Rockstar Games",
+    dataLançamento: "27/08/2002",
+    generos: [ "corrida" ],
+    recursos: [ "Compativel com Controle" , "Jogo para até 2 pessoa" ],
+    promocao: false,
+    faixaEtaria: "12",
+    banner: "https://upload.wikimedia.org/wikipedia/pt/e/e3/Nfsu2_capa_pt.jpg",
+    bannerName: "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/9333c000d509d8c82858967b42ff46f8.svg",
+    imagens: [ "https://upload.wikimedia.org/wikipedia/pt/thumb/5/51/NFSU2_Corrida.jpg/348px-NFSU2_Corrida.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/b0353d1406b5264dc18326a811bc5bb5.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/0301d4689fa8e170ceefe118a18b3afb.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/e689e87adb68899abb7957e4b0d70612.jpg" ],
+    video: [ "koGT_QaCgcU" , "xsunzH3b7hI" ],
+    destaques: [ "corrida" ],
+    valorAnterior: "128,00",
+    valorAtual: "128,00"
     },
 ]
 
