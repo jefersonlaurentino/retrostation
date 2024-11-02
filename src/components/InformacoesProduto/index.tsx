@@ -3,12 +3,13 @@ import { SlArrowLeft } from "react-icons/sl";
 import { SlArrowRight } from "react-icons/sl";
 import Header from "../../components/Header";
 import Image, { StaticImageData } from "next/image";
-import Button from "../../components/Button";
 import { BsShare } from "react-icons/bs";
 import { useEffect } from "react";
 import { calculoDesconto } from "../../components/funcoes"
 import localFont from "next/font/local";
 import { useRouter , usePathname} from "next/navigation";
+import { useContextItensCart } from "@/contexts/contextItensCart";
+import Link from "next/link";
 
 const designer = localFont({src:"../../app/fonts/designer.otf"})
 
@@ -99,8 +100,6 @@ const limparGaleria = () => {
     })   
 }
 
-
-
 export type typeDataJogo = {
     id: string,
     titulo: string,
@@ -125,21 +124,26 @@ export type typeDataJogo = {
 export default function InformacoesProduto({ id , titulo , descricao , desenvolvedor , editora , bannerName , dataLançamento , faixaEtaria , generos , imagens , promocao , recursos , valorAnterior , valorAtual , video , naBiblioteca }: typeDataJogo ) {
     const Router = useRouter()
     const pathName = usePathname()
+    const { totalItensCart , setTotalItensCart } = useContextItensCart()
 
     const comprar = (evt: React.MouseEvent<HTMLButtonElement> , id: string) => {
-        
-
         if (evt.currentTarget.textContent == "Comprar") {
-
+            console.log('inter');
+            
             if (!window.sessionStorage.getItem('login')) {
+                console.log('inter logi');
                 window.sessionStorage.setItem('pageProduto', `/comprar-${id}`)
                 Router.push('/login');
                 return
             }
             Router.push('/comprar')
+            console.log('inter els');
             window.sessionStorage.setItem('cart' , JSON.stringify([id]))
+            console.log(id);
+            
             return
         }
+        console.log('passou');
 
         if (!window.sessionStorage.getItem('login')) {
             window.sessionStorage.setItem('pageProduto', pathName)
@@ -162,52 +166,14 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                 id,
             ]
             window.sessionStorage.setItem('comprasCarrinho', JSON.stringify(setCarrinho))
+            setTotalItensCart(totalItensCart+1)
         } else {
             const arrayCarrinhoCompras: string[] = [];
             arrayCarrinhoCompras.push(id)
             window.sessionStorage.setItem('comprasCarrinho' , JSON.stringify(arrayCarrinhoCompras) )
+            setTotalItensCart(totalItensCart+1)
         }
     }
-    
-    // const { idadePermitida ,setIdadePermitida} = useAgeContext()
-    // const params = useParams()
-    // const nameJogo = params.nome as string
-    // const tituloJogo = nameJogo.replace(/%20/g,' ')
-    // const jogoTrue:string[] = []
-    // jogos.map((e)=>{
-    //     jogoTrue.push(e.titulo)
-    // })
-    
-    // const jog = jogos.find((e)=>{
-    //     return e.titulo == tituloJogo
-    // })
-
-    // const jogo = jogos[0]
-
-    // const verificaFaixaEtaria = () =>{
-    //     const faixa = faixaEtaria
-    //     let classificacao
-    //     if (faixa == "livre") {
-    //         classificacao = livre
-    //     } else if (faixa == "10") {
-    //         classificacao = maior10
-    //     } else if (faixa == "12") {
-    //         classificacao = maior12
-    //     } else if (faixa == "14") {
-    //         classificacao = maior14
-    //     } else if (faixa == "16") {
-    //         classificacao = maior16
-    //     } else {
-    //         classificacao = maior18
-    //     }
-
-    //     return classificacao
-    // }
-
-    // let faixaEtariaSet:number;
-    // useEffect(()=>{
-    //     faixaEtariaSet = Number(faixaEtaria)
-    // },[faixaEtaria])
 
     useEffect(()=>{
         const galeria = document.querySelector(".galeria")?.firstChild
@@ -216,43 +182,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
         const primeiroElementoGaleria = galeria as HTMLDivElement
         primeiroElementoGaleria.classList.remove("border-transparent")
         primeiroElementoGaleria.classList.add("border-red-800")
-
-        // const idadeSet = window.sessionStorage.getItem("idade")
-        // console.log("idade" + idadeSet);
-        // console.log("idadeRe" + faixaEtariaSet);
-        
-        // if (!idadeSet || !faixaEtariaSet) {
-            
-        //     window.sessionStorage.setItem("idadePermitida", faixaEtaria)
-        //     setIdadePermitida(Number(jogo.faixaEtaria))
-        //     window.sessionStorage.setItem("jogo", jogo.id)
-        //     // document.querySelector('.modal')?.classList.remove('hidden')
-        //     // router.push(`/idade/${jogo.titulo.replace(/[" "]/g,"-")}`)
-        // } else {
-        //     window.sessionStorage.setItem("idadePermitida", jogo.faixaEtaria)
-        //     setIdadePermitida(Number(jogo.faixaEtaria))
-        //     console.log(idadeSet);
-        //     console.log(faixaEtariaSet);
-            
-        //     if (Number(idadeSet) < Number(faixaEtariaSet)) {
-        //         // document.querySelector('.modal')?.classList.remove('hidden')
-        //         // router.push(`/idade/${jogo.titulo.replace(/[" "]/g,"-")}`)
-        //     }
-        // }
     },[])
-
-    // const user = JSON.parse(window.sessionStorage.getItem('login')!)
-
-    // let naBliblioteca=false
-    // if (user) {
-    //     if (user.dataUser.jogosComprados) {
-    //         user.dataUser.jogosComprados.map((j :number) =>{
-    //             if(j == jogo) {
-    //                 naBliblioteca = true
-    //             }
-    //         });
-    // }
-    // }
     
     return(
         <>
@@ -329,21 +259,23 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                         </div>
                         <div className="flex flex-col gap-4 my-4">
                             {(naBiblioteca)?
-                            <Button style="bg-blue-800 hover:bg-blue-700">
-                                na bliblioteca
-                            </Button>
-                            :
-                            <button
-                                onClick={(e)=>comprar(e , id)}
-                                className="bg-blue-800 text-center rounded-lg py-1 font-semibold text-xl  hover:bg-blue-700">
-                                Comprar
-                            </button>
-                        }
-                            <button 
-                                onClick={(e)=>comprar(e , id)}
-                                className="bg-neutral-600 text-center rounded-lg py-1 font-semibold text-xl  hover:bg-neutral-500">
-                                Adicionar ao Carrinho
-                            </button>
+                                <Link href={'/biblioteca'} className="bg-blue-800 hover:bg-blue-700 text-center rounded-lg py-1 text-xl font-semibold">
+                                    na bliblioteca
+                                </Link>
+                                :
+                                <>
+                                    <button
+                                    onClick={(e)=>comprar(e , id)}
+                                    className="bg-blue-800 text-center rounded-lg py-1 font-semibold text-xl  hover:bg-blue-700">
+                                        Comprar
+                                    </button>
+                                    <button 
+                                    onClick={(e)=>comprar(e , id)}
+                                    className="bg-neutral-600 text-center rounded-lg py-1 font-semibold text-xl  hover:bg-neutral-500">
+                                        Adicionar ao Carrinho
+                                    </button>
+                                </>
+                            }
                         </div>
                         <div className="flex gap-3 items-center p-2 rounded-lg border">
                             <Image

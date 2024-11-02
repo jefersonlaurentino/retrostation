@@ -1,12 +1,10 @@
 import { IoIosArrowDown } from "react-icons/io"
 import { submit, verMaisInfor } from "./funcoesPageComprar"
 import { inforCart } from "./SectionItensProdutos"
+import { useContextItensCart } from "@/contexts/contextItensCart"
 
 export default function TelaComprar({data}:{data:inforCart | undefined}) {
-    
-
-    console.log(data);
-    
+    const { setTotalItensCart } = useContextItensCart()
     return(
         <>
         {data &&
@@ -40,7 +38,10 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                         <p>Total a pagar:</p>
                         <p>R$ {(data.valorTotal-data.valorDesconto).toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</p>
                     </div>
-                    <button onClick={()=>submit(data.arrayJogos)} className="bg-blue-700 rounded-lg md:my-2 px-2 py-1">
+                    <button onClick={()=>{
+                        submit(data.arrayJogos)
+                        setTotalItensCart(0)
+                    }} className="bg-blue-700 rounded-lg md:my-2 px-2 py-1">
                         comprar
                     </button>
                 </section>

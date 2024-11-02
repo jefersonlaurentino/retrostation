@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import Card from "../components/Card";
 import localFont from "next/font/local";
 import { jogos } from "@/components/funcoes";
+import Rodape from "@/components/Rodape";
 
 const designer = localFont({src:"./fonts/designer.otf"})
 
@@ -85,6 +86,7 @@ const secao = [
         </section>
       )}
     </main>
+    <Rodape/>
     <footer className="flex items-center justify-center pt-32">
       <div className="flex items-center gap-2">
           <button onClick={() => handleThemeChange('light')} className="text-black dark:text-white border-2">Light Theme</button>

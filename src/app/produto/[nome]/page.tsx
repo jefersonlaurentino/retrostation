@@ -8,6 +8,8 @@ import { useParams } from "next/navigation";
 import { jogos } from "@/components/funcoes";
 import { useEffect, useState } from "react";
 import ModalErro from "@/components/ModalErro";
+import Header from "@/components/Header";
+import Rodape from "@/components/Rodape";
 
 export default function Produto() {
     const { setIdadePermitida } = useAgeContext()
@@ -49,33 +51,39 @@ export default function Produto() {
         <>
             { (jogo) ? 
                 (idadeUsuario)?
-                    <InformacoesProduto 
-                        id={jogo.id}
-                        titulo={jogo!.titulo}
-                        banner={jogo.banner}
-                        bannerName={jogo.bannerName}
-                        dataLançamento={jogo.dataLançamento}
-                        descricao={jogo.descricao}
-                        desenvolvedor={jogo.desenvolvedor}
-                        destaques={jogo.destaques}
-                        editora={jogo.editora}
-                        faixaEtaria={verificaFaixaEtaria(jogo.faixaEtaria)}
-                        generos={jogo.generos}
-                        imagens={jogo.imagens}
-                        promocao={jogo.promocao}
-                        recursos={jogo.recursos}
-                        valorAnterior={jogo.valorAnterior}
-                        valorAtual={jogo.valorAtual}
-                        video={jogo.video}
-                        naBiblioteca={jogoBiblioteca}
-                        key={jogo.id}
-                    />
+                    <>
+                        <InformacoesProduto 
+                            id={jogo.id}
+                            titulo={jogo!.titulo}
+                            banner={jogo.banner}
+                            bannerName={jogo.bannerName}
+                            dataLançamento={jogo.dataLançamento}
+                            descricao={jogo.descricao}
+                            desenvolvedor={jogo.desenvolvedor}
+                            destaques={jogo.destaques}
+                            editora={jogo.editora}
+                            faixaEtaria={verificaFaixaEtaria(jogo.faixaEtaria)}
+                            generos={jogo.generos}
+                            imagens={jogo.imagens}
+                            promocao={jogo.promocao}
+                            recursos={jogo.recursos}
+                            valorAnterior={jogo.valorAnterior}
+                            valorAtual={jogo.valorAtual}
+                            video={jogo.video}
+                            naBiblioteca={jogoBiblioteca}
+                            key={jogo.id}
+                        />
+                        <Rodape/>
+                    </>
                     : 
                     <ModalIdade 
                         tituloJogo={nome as string}
                     />
-                : 
-                <ModalErro/>
+                :
+                <>
+                    <Header/>
+                    <ModalErro text="desculpa! produto não encontrado." height="h-[calc(100dvh-53px)]"/>
+                </> 
             }
         </>
     )

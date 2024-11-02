@@ -10,7 +10,7 @@ const calculoDesconto = (valorAnterio:string , valorAtual:string) => {
 const jogos = [
     {
         id: "01",
-        titulo: "GTA SAN ANDREAS",
+        titulo: "gta san andreas",
         descricao: [ "Há 5 anos, Carl Johnson fugiu das pressões da vida em Los Santos, San Andreas... uma cidade que se destruía com gangues, drogas e corrupção, onde estrelas de cinema e milionários fazem o melhor que podem para evitar traficantes e bandidos." , "É o começo dos anos 90. Carl volta para casa. A sua mãe foi assassinada, a sua família ruiu e seus amigos de infância estão todos indo em direção ao desastre." , "Para piorar tudo, dois policiais corruptos armaram para que ele fosse acusado de homicídio. CJ é forçado a embarcar numa jornada que o levará por todo o estado de San Andreas para salvar sua família e assumir o controle das ruas."],
         desenvolvedor: "Rockstar North",
         editora: "Rockstar Games",
@@ -29,7 +29,7 @@ const jogos = [
     },
     {
     id: "02",
-    titulo: "Midnight club 3",
+    titulo: "midnight club 3",
     descricao: ["A série que levou as corridas em pistas fechadas para as ruas da cidade está de volta para elevar o patamar mais uma vez." , "Equipe sua máquina com as rodas, os acabamentos e as melhorias mais atuais. Enfrente a elite das corridas de rua acelerando pelo trânsito a mais de 200 km/h."],
     desenvolvedor: "Rockstar San Diego",
     editora: "Rockstar Games",
@@ -48,7 +48,7 @@ const jogos = [
     },
     {
     id: "03",
-    titulo: "Red Dead Revolver",
+    titulo: "red dead revolver",
     descricao: ["Vasto, ríspido e sem lei. Quando era jovem, você foi incapaz de impedir o massacre da sua família nas mãos de bandidos. Após muitos anos, você ganha a vida como caçador de recompensas, entregando criminosos à justiça enquanto luta para desvendar o mistério do seu passado. Você precisa encontrar quem assassinou sua família e, então, se vingar." , "Um eletrizante jogo estilo arcade em terceira pessoa repleto de tiroteios intensos, Red Dead Revolver é uma clássica história de vingança no faroeste indomável."],
     desenvolvedor: "Rockstar San Diego",
     editora: "Rockstar Games",
@@ -67,7 +67,7 @@ const jogos = [
     },
     {
     id: "04",
-    titulo: "Bully",
+    titulo: "bully",
     descricao: ["Domine os corredores da Bullworth Academy no papel de Jimmy Hopkins, um estudante endiabrado que deve superar os obstáculos de uma escola preparatória em decadência onde mentirosos, trapaceiros e esnobes são os membros mais populares do corpo estudantil e docente. Confronte valentões, passe a perna nos professores e realize atividades extracurriculares fora do campus na cidade de Bullworth enquanto aprende a sobreviver ao ano escolar e a tomar controle da escola."],
     desenvolvedor: "Rockstar Vancouver",
     editora: "Rockstar Games",
@@ -86,7 +86,7 @@ const jogos = [
     },
     {
     id: "05",
-    titulo: "Gta Vice City",
+    titulo: "gta vice city",
     descricao: ["Bem-vindo aos anos 80. Da década de penteados glam, dos excessos e dos ternos pastel, vem a história de um homem que sobe ao topo da cadeia criminal no retorno de Grand Theft Auto." , "Vice City é uma grande área urbana que engloba de praias até pântanos e do glamour até o gueto, e é a mais variada, completa e animada cidade digital já criada. Combinando uma jogabilidade não linear com uma narrativa centrada nos personagens, você chega a uma cidade cheia de prazeres e degradação, e tem a oportunidade de dominá-la como quiser."],
     desenvolvedor: "Rockstar North",
     editora: "Rockstar Games",
@@ -105,26 +105,7 @@ const jogos = [
     },
     {
     id: "06",
-    titulo: "NFS Underground 2",
-    descricao: ["Bem-vindo aos anos 80. Da década de penteados glam, dos excessos e dos ternos pastel, vem a história de um homem que sobe ao topo da cadeia criminal no retorno de Grand Theft Auto." , "Vice City é uma grande área urbana que engloba de praias até pântanos e do glamour até o gueto, e é a mais variada, completa e animada cidade digital já criada. Combinando uma jogabilidade não linear com uma narrativa centrada nos personagens, você chega a uma cidade cheia de prazeres e degradação, e tem a oportunidade de dominá-la como quiser."],
-    desenvolvedor: "Rockstar North",
-    editora: "Rockstar Games",
-    dataLançamento: "27/08/2002",
-    generos: [ "corrida" ],
-    recursos: [ "Compativel com Controle" , "Jogo para até 2 pessoa" ],
-    promocao: false,
-    faixaEtaria: "12",
-    banner: "https://upload.wikimedia.org/wikipedia/pt/e/e3/Nfsu2_capa_pt.jpg",
-    bannerName: "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/9333c000d509d8c82858967b42ff46f8.svg",
-    imagens: [ "https://upload.wikimedia.org/wikipedia/pt/thumb/5/51/NFSU2_Corrida.jpg/348px-NFSU2_Corrida.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/b0353d1406b5264dc18326a811bc5bb5.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/0301d4689fa8e170ceefe118a18b3afb.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/e689e87adb68899abb7957e4b0d70612.jpg" ],
-    video: [ "koGT_QaCgcU" , "xsunzH3b7hI" ],
-    destaques: [ "corrida" ],
-    valorAnterior: "128,00",
-    valorAtual: "128,00"
-    },
-    {
-    id: "07",
-    titulo: "NFS Underground 2 teste",
+    titulo: "nfs underground 2",
     descricao: ["Bem-vindo aos anos 80. Da década de penteados glam, dos excessos e dos ternos pastel, vem a história de um homem que sobe ao topo da cadeia criminal no retorno de Grand Theft Auto." , "Vice City é uma grande área urbana que engloba de praias até pântanos e do glamour até o gueto, e é a mais variada, completa e animada cidade digital já criada. Combinando uma jogabilidade não linear com uma narrativa centrada nos personagens, você chega a uma cidade cheia de prazeres e degradação, e tem a oportunidade de dominá-la como quiser."],
     desenvolvedor: "Rockstar North",
     editora: "Rockstar Games",

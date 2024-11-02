@@ -1,15 +1,13 @@
 import Image from "next/image";
 import joy from "../../../public/image/joyStick/joyStick_aviso.png"
 import Link from "next/link";
-import Header from "../Header";
 
-export default function ModalErro() {
+export default function ModalErro({text , height , linkHidden }: {text:string , height?:string , linkHidden?:string }) {
     return(
         <>
-            <Header/>
-            <section className="alert_erro flex flex-col items-center justify-center gap-3 w-full h-[calc(100vh-53px)] text-2xl">
-                <h1 className="px-2 text-center">Desculpa! produto não encontrado.</h1>
-                <Link href={'/'} className="bg-blue-700 px-2 py-1 rounded-lg text-white">voltar a home</Link>
+            <section className={`alert_erro flex flex-col items-center justify-center gap-3 w-full ${height} text-2xl`}>
+                <h2 className="px-2 text-center">{text}</h2>
+                <Link href={'/'} className={`bg-blue-700 px-2 py-1 rounded-lg text-white ${linkHidden}`}>voltar a home</Link>
                 <div className="alert absolute bottom-0 right-0 -z-10">
                     <Image
                         src={joy}

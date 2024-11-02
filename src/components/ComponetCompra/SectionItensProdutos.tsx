@@ -8,6 +8,7 @@ import { dataJogoProps, tamanhoCard } from "./funcoesPageComprar";
 import { jogos } from '../../components/funcoes/index'
 import { useEffect, useState } from 'react';
 import TelaComprar from "./TelaComprar";
+import { useContextItensCart } from "@/contexts/contextItensCart";
 
 export type inforCart = {
         valorDesconto: number,
@@ -17,10 +18,12 @@ export type inforCart = {
     }
 
 export default function SectionItensProdutos() {
+    const { totalItensCart , setTotalItensCart } = useContextItensCart()
     const [ arrayCartJogos , setArrayCartJogos] = useState<Array<dataJogoProps>>();
     const [ inforValueCart , setInforValueCart ] = useState<inforCart | undefined>()
     const [ reloudCart , setReloudCart ] = useState<boolean>(false)
     let getListJogos: string[];
+    const arrayIdJogos:string[]=[]
     useEffect(()=>{
         const getCart = window.sessionStorage.getItem('cart')
         getListJogos = JSON.parse(getCart!)
@@ -29,7 +32,7 @@ export default function SectionItensProdutos() {
         }
         
         window.addEventListener('resize', tamanhoCard)
-        setTimeout(tamanhoCard,80)
+        setTimeout(tamanhoCard,220)
         setReloudCart(true)
     },[])
 
@@ -59,6 +62,7 @@ export default function SectionItensProdutos() {
             setArrayCartJogos(arrayCartJogos?.filter(j=>j.id != cardJogo.id))
             
             tamanhoCard()
+            setTotalItensCart(totalItensCart-1)
         }
 
         useEffect(()=>{
@@ -68,11 +72,17 @@ export default function SectionItensProdutos() {
                     setArrayCartJogos(undefined)
                     return
                 }
-                const arrayIdJogos:string[]=[]
-                arrayCartJogos?.filter((jogo)=>arrayIdJogos?.push(jogo.id))
-                window.sessionStorage.setItem('cart', JSON.stringify(arrayIdJogos))
-                window.sessionStorage.setItem('comprasCarrinho', JSON.stringify(arrayIdJogos))
-                valorApagar() 
+
+                if (window.sessionStorage.getItem('cart')?.includes(window.sessionStorage.getItem('comprasCarrinho')!)) {
+                    arrayCartJogos?.filter((jogo)=>arrayIdJogos?.push(jogo.id))
+                    window.sessionStorage.setItem('cart', JSON.stringify(arrayIdJogos))
+                    window.sessionStorage.setItem('comprasCarrinho', JSON.stringify(arrayIdJogos))
+                    valorApagar() 
+                } else {
+                    arrayCartJogos?.filter((jogo)=>arrayIdJogos?.push(jogo.id))
+                    window.sessionStorage.setItem('cart', JSON.stringify(arrayIdJogos))
+                    valorApagar() 
+                }
             }
         },[arrayCartJogos])
 

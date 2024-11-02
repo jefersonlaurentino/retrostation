@@ -20,7 +20,7 @@ export type dataJogoProps = {
     mail?: string,
 }
 
-type teste = {
+export type datauserProps = {
     dataUser: dataJogoProps
 }
 
@@ -28,7 +28,7 @@ type teste = {
 
 const submit = (getListCartJogo:string) => {
     const getListJogos = JSON.parse(getListCartJogo)
-    const userLogado: teste = JSON.parse(window.sessionStorage.getItem('login')!)
+    const userLogado:datauserProps = JSON.parse(window.sessionStorage.getItem('login')!)
     let setDataUser: object;
     if (userLogado.dataUser.jogosComprados) {
         setDataUser = {
@@ -54,8 +54,13 @@ const submit = (getListCartJogo:string) => {
     }
     window.sessionStorage.setItem('login', JSON.stringify(setDataUser))
     window.sessionStorage.setItem(`user${userLogado.dataUser.mail}`, JSON.stringify(setDataUser))
+    
+    if (window.sessionStorage.getItem('cart')?.includes(window.sessionStorage.getItem('comprasCarrinho')!)) {
+        window.sessionStorage.removeItem('cart')
+        window.sessionStorage.removeItem('comprasCarrinho')
+        return
+    }
     window.sessionStorage.removeItem('cart')
-    window.sessionStorage.removeItem('comprasCarrinho')
 }
 
 const verMaisInfor = () => {
