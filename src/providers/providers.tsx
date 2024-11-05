@@ -15,7 +15,9 @@ export default function Providers({ children }: { children :React.ReactNode}) {
                 <ImagemAvatarProvider>
                     <IdadePermitidaProvider>
                         <ItensCartProvider>
-                            { children }
+                            {/* <ThemaDarkProvider> */}
+                                { children }
+                            {/* </ThemaDarkProvider> */}
                         </ItensCartProvider>
                     </IdadePermitidaProvider>
                 </ImagemAvatarProvider>

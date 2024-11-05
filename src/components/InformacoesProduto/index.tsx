@@ -128,10 +128,8 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
 
     const comprar = (evt: React.MouseEvent<HTMLButtonElement> , id: string) => {
         if (evt.currentTarget.textContent == "Comprar") {
-            console.log('inter');
             
             if (!window.sessionStorage.getItem('login')) {
-                console.log('inter logi');
                 window.sessionStorage.setItem('pageProduto', `/comprar-${id}`)
                 Router.push('/login');
                 return
@@ -139,11 +137,9 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
             Router.push('/comprar')
             console.log('inter els');
             window.sessionStorage.setItem('cart' , JSON.stringify([id]))
-            console.log(id);
             
             return
         }
-        console.log('passou');
 
         if (!window.sessionStorage.getItem('login')) {
             window.sessionStorage.setItem('pageProduto', pathName)
@@ -251,7 +247,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                             className="w-3/4 m-auto py-20 max-md:hidden"
                         />
                         <div className="flex gap-3 items-center justify-center mb-3">
-                            {promocao &&
+                            {promocao && valorAtual != 'Grátis' &&
                             <><p className="bg-blue-700 px-1 rounded-lg">{calculoDesconto(valorAnterior, valorAtual)}</p>
                             <p className="line-through text-sm">{`R$ ${valorAnterior}`}</p>
                             </>}

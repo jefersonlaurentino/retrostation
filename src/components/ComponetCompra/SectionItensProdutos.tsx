@@ -38,17 +38,22 @@ export default function SectionItensProdutos() {
 
     const valorApagar = () =>{
             const jogoPromo = arrayCartJogos!.filter((j)=>j.promocao===true)
+            
             let valorDesconto: number=0;
             const arrayIdJogos:string[]=[];
             let valueJogos = 0
             if (jogoPromo) {
                 jogoPromo.map((j)=>{
-                    valorDesconto+=(parseFloat(j.valorAnterior.replace(/,/g,'.'))-parseFloat(j.valorAtual.replace(/,/g,'.')))
+                    if (j.valorAtual != 'Grátis') {
+                        valorDesconto+=(parseFloat(j.valorAnterior.replace(/,/g,'.'))-parseFloat(j.valorAtual.replace(/,/g,'.')))
+                    }
                 })
             } 
             
             arrayCartJogos?.forEach(j=>{
-                valueJogos += parseFloat(j.valorAnterior.replace(/,/g,'.'))
+                if (j.valorAtual != 'Grátis') {
+                    valueJogos += parseFloat(j.valorAnterior.replace(/,/g,'.'))
+                }
             });
             arrayCartJogos?.forEach((jogo)=>arrayIdJogos.push(jogo.id))
             const re:inforCart = { valorDesconto , totalItems: arrayCartJogos!.length , valorTotal: valueJogos , arrayJogos: JSON.stringify(arrayIdJogos)}
@@ -59,6 +64,11 @@ export default function SectionItensProdutos() {
         const removeJogo = (evt: React.MouseEvent<HTMLButtonElement>) =>{
             const buttonClick = evt.currentTarget.parentNode?.parentNode?.parentNode
             const cardJogo =  buttonClick as HTMLDivElement
+            
+            if (window.sessionStorage.getItem('cart')?.length === window.sessionStorage.getItem('comprasCarrinho')?.length && window.sessionStorage.getItem('cart')?.length === 6) {
+                window.sessionStorage.removeItem('comprasCarrinho')
+            }
+
             setArrayCartJogos(arrayCartJogos?.filter(j=>j.id != cardJogo.id))
             
             tamanhoCard()
@@ -113,7 +123,7 @@ export default function SectionItensProdutos() {
                                         <h2>{jogo.titulo}</h2>
                                     </div>
                                     <div className="text-right">
-                                        {jogo.promocao == true ? 
+                                        {jogo.promocao == true && jogo.valorAtual != 'Grátis' ? 
                                             <>
                                                 <div className="flex gap-2 justify-end leading-tight">
                                                     <p className='bg-blue-600 text-white rounded-full px-1'>{calculoDesconto(jogo.valorAnterior, jogo.valorAtual)}</p>
