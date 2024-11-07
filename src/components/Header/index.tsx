@@ -11,8 +11,9 @@ import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { useContextItensCart } from "@/contexts/contextItensCart";
 import { useRouter } from "next/navigation";
 import { jogos } from "../funcoes";
-import { IoSearchSharp } from "react-icons/io5";
+import { IoMenu, IoSearchSharp } from "react-icons/io5";
 import { typeJogos } from "@/app/biblioteca/page";
+import Menu from "../Menu";
 
 export default function Header(){
     const { dataLoginUser } = useDataLogin()
@@ -44,7 +45,7 @@ export default function Header(){
             document.querySelector(".button_pesquisa")?.classList.remove('text-black')
             document.querySelector(".button_pesquisa")?.classList.add('text-white')
             document.querySelector(".button_pesquisa")?.classList.remove('border-black')
-            document.querySelector(".button_pesquisa")?.classList.add('border-white')
+            document.querySelector(".button_pesquisa")?.classList.add('border-secundaria')
             document.querySelector(".button_pesquisa")?.classList.remove('translate-y-12')
             document.querySelector(".button_pesquisa")?.classList.remove('-translate-x-1')
             inputPesquisaJogos?.classList.remove('p-1')
@@ -71,7 +72,7 @@ export default function Header(){
         document.querySelector(".button_pesquisa")?.classList.add('-translate-x-1')
         document.querySelector(".button_pesquisa")?.classList.remove('text-white')
         document.querySelector(".button_pesquisa")?.classList.add('text-black')
-        document.querySelector(".button_pesquisa")?.classList.remove('border-white')
+        document.querySelector(".button_pesquisa")?.classList.remove('border-secundaria')
         document.querySelector(".button_pesquisa")?.classList.add('border-black')
         const inputPesquisaJogos = document.querySelector('.campo_animacao_input input') as HTMLInputElement | null
         document.querySelector('.campo_animacao_input')?.classList.remove('hidden')
@@ -95,15 +96,28 @@ export default function Header(){
     
     return (
         <>
-        <header className="p-2 flex justify-between items-center bg-black shadow-principal shadow-lg sticky top-0 w-full z-50">
-            <Link href={"/"} aria-label="voltar para a tela inicial">
-                <Image 
-                    src={logoWhite}
-                    width={100}
-                    alt="Logo do site"
-                    className="w-32 md:w-48"
-                />
-            </Link>
+        <header className="p-2 flex justify-between items-center bg-black shadow-secundaria shadow-lg sticky top-0 w-full z-50">
+            <Menu />
+            <div className="flex items-center text-white">
+                <button 
+                    className="text-xl"
+                    aria-label="Entrar no menu"
+                    onClick={()=>{
+                        document.querySelector('.menu')?.classList.add('left-0')
+                        document.querySelector('.menu')?.classList.remove('-left-full')
+                    }}
+                >
+                    <IoMenu />
+                </button>
+                <Link href={"/"} aria-label="voltar para a tela inicial">
+                    <Image
+                        src={logoWhite}
+                        width={100}
+                        alt="Logo do site"
+                        className="w-32 md:w-48"
+                    />
+                </Link>
+            </div>
             <div className="flex gap-2 items-center">
                 <button aria-label="ir ao carrinho" onClick={()=>{
                     const teste = window.sessionStorage.getItem('comprasCarrinho')
@@ -111,9 +125,9 @@ export default function Header(){
                         window.sessionStorage.setItem('cart',teste)
                         Router.push('/comprar')
                     }
-                }} className="text-white p-1 pr-2 mr-2 rounded-md border-2 text-xl relative">
+                }} className="text-white p-1 pr-2 mr-2 rounded-md border-2 border-secundaria text-xl relative">
                     <HiOutlineShoppingCart />
-                    <span className="absolute -top-2 -right-3 rounded-full bg-red-600 text-sm px-1">{
+                    <span className="absolute -top-2 -right-3 rounded-full bg-terciaria text-sm px-1">{
                     (totalItensCart >= 10)? 
                         (totalItensCart > 99)?
                             '99'
@@ -125,12 +139,12 @@ export default function Header(){
                 </button>
                 <nav>
                     {(logado == null)? 
-                    <Link href={"/login"} aria-label="ir para tela de login" className="relative border-principal text-principal hover:text-white font-bold z-0 overflow-hidden border-2 rounded-lg px-2 py-1 animaButton flex items-center gap-2">
+                    <Link href={"/login"} aria-label="ir para tela de login" className="relative border-secundaria text-secundaria hover:text-black font-bold z-0 overflow-hidden border-2 rounded-lg px-2 py-1 animaButton flex items-center gap-2">
                         <FaUserLarge/>
                         <p>Entrar</p>
                     </Link>
                     :
-                    <Link href={"/perfil"} aria-label="ir para tela do perfil" className="flex items-center justify-between gap-1 border-2 rounded-lg max-w-[140px] px-1">
+                    <Link href={"/perfil"} aria-label="ir para tela do perfil" className="flex items-center justify-between gap-1 border-2 rounded-lg max-w-[140px] border-b-secundaria border-r-secundaria border-l-terciaria border-t-terciaria px-1">
                         <Image
                             src={imagemAvatar}
                             alt="foto do perfil"
@@ -143,7 +157,7 @@ export default function Header(){
                 <button 
                     onClick={animacaoInput}
                     aria-label="pesquisar jogos"
-                    className="button_pesquisa border-2 z-30 p-1 rounded-lg duration-500 text-white">
+                    className="button_pesquisa border-2 border-secundaria z-30 p-1 rounded-lg duration-500 text-white">
                     <IoSearchSharp/>
                 </button>
             </div>

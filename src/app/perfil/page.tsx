@@ -189,7 +189,7 @@ export default function Perfil() {
                                 className="w-full"
                             />
                         </div>
-                        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-full p-1 text-2xl border border-black cursor-pointer">
+                        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 dark:text-black bg-white rounded-full p-1 text-2xl border border-black cursor-pointer">
                             <VscEdit onClick={modal}/>
                         </div>
                     </div>
@@ -200,7 +200,7 @@ export default function Perfil() {
                                 window.sessionStorage.removeItem("avt")
                                 window.sessionStorage.removeItem("idade")
                                 setPermicaoReloud(Math.random() * 10)
-                            }} className="flex items-center gap-2  border-2 p-2 rounded-lg">
+                            }} className="flex items-center gap-2  border-2 p-2 rounded-lg bg-terciaria">
                             <HiMiniArrowRightOnRectangle className="text-2xl"/>
                             <p>Sair da Conta</p>
                         </Link>
@@ -214,6 +214,7 @@ export default function Perfil() {
                             <div className="flex max-md:flex-col gap-3">
                                 <div className="div_campo_input md:w-1/3">
                                     <CampoInput 
+                                        style="dark:bg-dark dark:border-primaria dark:placeholder-primaria" 
                                         register={register('dataUser.name')} 
                                         name="nome" 
                                         type="text"
@@ -223,6 +224,7 @@ export default function Perfil() {
                                 </div>
                                 <div className="div_campo_input md:w-1/4">
                                     <CampoInput 
+                                        style="dark:bg-dark dark:border-primaria dark:placeholder-primaria" 
                                         register={register('dataUser.nickName')} 
                                         name="nickName" 
                                         type="text"
@@ -233,6 +235,7 @@ export default function Perfil() {
                                 </div>
                                 <div className="div_campo_input md:w-1/3">
                                     <CampoInput 
+                                        style="dark:bg-dark dark:border-primaria dark:placeholder-primaria" 
                                         register={register('dataUser.mail')} 
                                         name="mail" 
                                         type="text"
@@ -245,6 +248,7 @@ export default function Perfil() {
                             <div className="flex max-md:flex-col gap-3">
                                 <div className="div_campo_input md:w-1/4">
                                     <CampoInput 
+                                        style="dark:bg-dark dark:border-primaria dark:placeholder-primaria" 
                                         register={register('dataUser.age')} 
                                         name="idade" 
                                         type="text"
@@ -255,17 +259,18 @@ export default function Perfil() {
                                 </div>
                                 <div className="div_campo_input md:w-1/3">
                                     <CampoInput 
+                                        style="disabled dark:bg-dark dark:border-primaria/40 dark:placeholder-primaria/40" 
                                         register={register('dataUser.cpf')} 
                                         name="cpf" 
                                         type="text"
                                         placeholder="CPF"
                                         disabled={true}
-                                        style="disabled"
                                     />
                                     {errors.dataUser?.cpf?.message && <p>{errors.dataUser.cpf.message}</p>}
                                 </div>
                                 <div className="div_campo_input md:w-1/3">
                                     <CampoInput 
+                                        style="dark:bg-dark dark:border-primaria dark:placeholder-primaria" 
                                         register={register('dataUser.cel')} 
                                         name="cel" 
                                         type="text"
@@ -278,6 +283,7 @@ export default function Perfil() {
                             <div className="flex max-md:flex-col md:gap-3">
                                 <div className="div_campo_input md:w-1/4">
                                     <CampoInput 
+                                        style="dark:bg-dark dark:border-primaria dark:placeholder-primaria" 
                                         register={register('dataUser.zipCode')} 
                                         name="cep" 
                                         type="text"
@@ -287,23 +293,23 @@ export default function Perfil() {
                                     {errors.dataUser?.zipCode?.message && <p>{errors.dataUser.zipCode.message}</p>}
                                 </div>
                                 <div className="div_campo_input md:w-1/3">
-                                    <CampoInput
+                                    <CampoInput 
+                                        style="disabled dark:bg-dark dark:border-primaria/40 dark:placeholder-primaria/40"
                                         register={register('dataUser.city')}
                                         name="city"
                                         type="text"
                                         placeholder="Cidade"
                                         disabled={true}
-                                        style="disabled"
                                         />
                                     {errors.dataUser?.city?.message && <p>{errors.dataUser.city.message}</p>}
                                 </div>
                                 <div className="div_campo_input md:w-1/3">
                                     <CampoInput 
+                                        style="disabled dark:bg-dark dark:border-primaria/40 dark:placeholder-primaria/40"
                                         register={register('dataUser.state')} 
                                         name="state" 
                                         type="text"
                                         placeholder="Estado"
-                                        style="disabled"
                                         disabled={true}
                                     />
                                     {errors.dataUser?.state?.message && <p>{errors.dataUser.state.message}</p>}
@@ -311,7 +317,8 @@ export default function Perfil() {
                             </div>
                             <div className="flex max-md:flex-col md:gap-6">
                                 <div className="div_campo_input  md:w-9/12">
-                                    <CampoInput
+                                    <CampoInput 
+                                        style="dark:bg-dark dark:border-primaria dark:placeholder-primaria"
                                         register={register('dataUser.address')}
                                         name="endereco"
                                         type="text"
@@ -321,6 +328,7 @@ export default function Perfil() {
                                 </div>
                                 <div className="div_campo_input md:w-1/6">
                                     <CampoInput 
+                                        style="dark:bg-dark dark:border-primaria dark:placeholder-primaria" 
                                         register={register('dataUser.number')} 
                                         name="numero_casa" 
                                         type="text"
@@ -331,8 +339,8 @@ export default function Perfil() {
                             </div>
                         </div>
                         <div className="flex flex-col md:flex-row-reverse justify-center gap-4 pt-7 pb-2">
-                            <Button type="submit" style="bg-blue-700 text-white">Salvar</Button>
-                            <Button style="bg-neutral-600 text-white">Cancelar</Button>
+                            <Button type="submit" style="bg-secundaria text-black">Salvar</Button>
+                            <Button style="bg-terciaria text-white">Cancelar</Button>
                         </div>
                     </form>
                 </section>

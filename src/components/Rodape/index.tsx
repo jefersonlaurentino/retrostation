@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Rodape() {
     return(
         <>
-        <footer className="flex flex-col gap-3 p-3 pt-7 bg-black text-white">
+        <footer className="flex flex-col gap-3 p-3 pt-7 bg-[#101422] text-white">
             <section className="flex justify-around max-sm:grid max-sm:grid-cols-2 gap-3 max-sm:m-auto">
                 <article>
                     <h5 className="underline">Informações</h5>

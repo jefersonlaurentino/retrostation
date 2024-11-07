@@ -12,11 +12,10 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        principal: "#9400D3",
-        dark: "#1a1a1a",
-        secundaria: "#318d09",
-        terceira: "#1E3A8A",
-        quarta: "#FF7F50",
+        primaria: "#f4f4f4",
+        dark: "#080f1f",
+        secundaria: "#00B7F2",
+        terciaria: "#F42E76",
       },
       width: {
         tamanhoCarrossel: "38rem",

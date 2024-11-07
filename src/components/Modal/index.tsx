@@ -47,8 +47,8 @@ const fecharmodal = () =>{
 }
     return(
         <>
-        <div onClick={fecharmodal} className="modal fixed top-0 left-0 w-full h-full bg-neutral-200/80 z-10 flex justify-center items-center mt-6 hidden">
-            <div onClick={(e)=>childClickLock(e)} className="w-10/12 max-w-2xl h-4/5 rounded-lg shadow-2xl overflow-hidden bg-white">
+        <div onClick={fecharmodal} className="modal fixed top-0 left-0 w-full h-full bg-neutral-200/80 dark:bg-dark z-10 flex justify-center items-center mt-6 hidden">
+            <div onClick={(e)=>childClickLock(e)} className="w-10/12 max-w-2xl h-4/5 rounded-lg shadow-2xl overflow-hidden bg-primaria text-black">
                 <div className="flex flex-col gap-2 items-center p-2 h-[calc(100%-50px)] overflow-x-hidden">
                     <h2>Escolha um Avatar</h2>
                     <Image
@@ -75,10 +75,10 @@ const fecharmodal = () =>{
                     </div>
                 </div>
                     <div className="flex justify-center pt-2 gap-2">
-                        <Button style="bg-neutral-500 text-white" f_function={()=>{
+                        <Button style="bg-terciaria text-white" f_function={()=>{
                             fecharmodal()
                         }}>Cancelar</Button>
-                        <Button style="bg-blue-600 text-white" f_function={()=>{
+                        <Button style="bg-secundaria text-black" f_function={()=>{
                             setImagemAvatar(avatarSelect)
                             const dataUser = {
                                 ...dataLoginUser,

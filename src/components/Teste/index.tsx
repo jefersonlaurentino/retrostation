@@ -106,7 +106,9 @@ const [ stateOlho , setStateOlho] = useState('password')
             <h1 className="text-center text-2xl">Login</h1>
             <div className="flex flex-col gap-3">
                 <div className="div_campo_input">
-                    <CampoInput register={register('userLogin.mail')} type="text" placeholder="E-mail" name="email" style="placeholder:text-black"
+                    <CampoInput register={register('userLogin.mail')} type="text" placeholder="E-mail" name="email"
+                    focus
+                    style="placeholder:text-black bg-primaria"
                     functionChange={value=>{
                         const valueMail = value.currentTarget.value.replace(/\s+/g,'')
                         setValue('userLogin.mail', valueMail)
@@ -121,7 +123,7 @@ const [ stateOlho , setStateOlho] = useState('password')
                     type={stateOlho}
                     placeholder="Senha" 
                     name="senha" 
-                    style="placeholder:text-black"
+                    style="placeholder:text-black bg-primaria"
                     functionChange={value=>{
                         const valuePassword = value.currentTarget.value.replace(/\s+/g,'')
                         setValue('userLogin.password', valuePassword)
@@ -150,8 +152,8 @@ const [ stateOlho , setStateOlho] = useState('password')
                     <Link href={"/cadastro"} className="">Esqueceu a senha?</Link>
                 </div>
                 <div className="flex flex-col gap-3">
-                    <Button type="submit" style="bg-blue-600 text-white">Entrar</Button>
-                    <Link href={"/cadastro"} className="bg-red-600 text-center text-lg text-white font-bold py-1 rounded-lg">Criar conta</Link>
+                    <Button type="submit" style="bg-secundaria text-black">Entrar</Button>
+                    <Link href={"/cadastro"} className="bg-terciaria text-center text-lg text-white font-bold py-1 rounded-lg">Criar conta</Link>
                 </div>
             </div>
         </form>

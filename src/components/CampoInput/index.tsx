@@ -24,7 +24,7 @@ export default function CampoInput(props:CampoInputProps){
         <>
             <div className={`flex flex-col relative w-full ${props.dimencao}`}>
                 <label htmlFor={props.label}></label>
-                <input id={props.name} {...props.register} type={props.type} disabled={props.disabled} onChange={props.functionChange} value={props.value} autoFocus={props.focus} maxLength={props.maxLength} minLength={props.minLength} placeholder={props.placeholder} className={`pl-1 outline-none border-b-2 border-black/50 focus:border-principal ${props.style} dark:text-black placeholder:text-black`}/>
+                <input id={props.name} {...props.register} type={props.type} disabled={props.disabled} onChange={props.functionChange} value={props.value} autoFocus={props.focus} maxLength={props.maxLength} minLength={props.minLength} placeholder={props.placeholder} className={`pl-1 outline-none border-b-2 border-black/50 bg-primaria focus:border-secundaria ${props.style} placeholder:text-black`}/>
                 {props.children}
             </div>
         </>

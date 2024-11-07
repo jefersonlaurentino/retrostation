@@ -6,6 +6,7 @@ import { ImagemAvatarProvider } from "@/contexts/contextFotoPerfil"
 import { DataUserProvider } from "@/contexts/contexUserLogin"
 import { IdadePermitidaProvider } from "@/contexts/contextIdade"
 import { ItensCartProvider } from "@/contexts/contextItensCart"
+import { ThemaDarkProvider } from "@/contexts/contextThemaDark"
 
 export default function Providers({ children }: { children :React.ReactNode}) {
     return(
@@ -15,9 +16,9 @@ export default function Providers({ children }: { children :React.ReactNode}) {
                 <ImagemAvatarProvider>
                     <IdadePermitidaProvider>
                         <ItensCartProvider>
-                            {/* <ThemaDarkProvider> */}
+                            <ThemaDarkProvider>
                                 { children }
-                            {/* </ThemaDarkProvider> */}
+                            </ThemaDarkProvider>
                         </ItensCartProvider>
                     </IdadePermitidaProvider>
                 </ImagemAvatarProvider>

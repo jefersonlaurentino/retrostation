@@ -5,7 +5,7 @@
 
 @layer components {
     .animaButton{
-        @apply before:content-[''] before:h-full before:absolute before:-z-10 before:bg-principal before:w-full before:top-0 before:-left-full hover:before:left-0 before:duration-300;
+        @apply before:content-[''] before:h-full before:absolute before:-z-10 before:bg-secundaria before:w-full before:top-0 before:-left-full hover:before:left-0 before:duration-300;
     }
 }
 
@@ -29,9 +29,12 @@
 /* .teste {
 } */
 
-.card:hover::before {
-    border-right: 3px solid red;
+@layer components {
+    .card:hover::before {
+        @apply border-r-[3px] border-secundaria
+    }
 }
+
 .card::after {
     content: '';
     z-index: 1;
@@ -45,8 +48,10 @@
     transition-duration: 300ms;
 }
 
-.card:hover::after {
-    border-left: 3px solid red;
+@layer components {
+    .card:hover::after {
+        @apply border-l-[3px] border-secundaria;
+    }
 }
 
 .video {
@@ -75,8 +80,10 @@
     transform: rotate(-180deg);
 }
 
-.button_verificar_idade_true {
-    background-color: #1E40AF;
+@layer components {
+    .button_verificar_idade_true {
+        @apply bg-secundaria text-black;
+    }
 }
 
 .button_verificar_idade {

@@ -12,7 +12,7 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
         <>
             <div className="teste h-24 w-full duration-300 md:hidden"></div>
             <div className="infor bottom-0 max-sm:absolute max-md:w-full md:w-1/4 min-h-20 overflow-hidden duration-300 md:pr-2">
-                <section className="flex flex-col md:gap-4 bg-slate-600 text-white max-sm:absolute top-0 w-full z-10">
+                <section className="flex flex-col md:gap-4 bg-neutral-950 text-white max-sm:absolute top-0 w-full z-10">
                     <button 
                         className="button_infor w-full flex items-center justify-between py-1 border-b cursor-pointer p-2 md:hidden"
                         onClick={verMaisInfor} 
@@ -34,7 +34,7 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                         <p>-R$ {data.valorDesconto}</p>
                     </div>
                 </section>
-                <section className="flex md:flex-col justify-between max-sm:items-center gap-2 p-2 bg-slate-600 text-white max-sm:absolute bottom-0 w-full z-20">
+                <section className="flex md:flex-col justify-between max-sm:items-center gap-2 p-2 bg-neutral-950 text-white max-sm:absolute bottom-0 w-full z-20">
                     <div className="flex gap-2 md:justify-between">
                         <p>Total a pagar:</p>
                         {data.arrayJogos.length === 6 && data.valorTotal === 0 ?
@@ -45,7 +45,7 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                     </div>
                     <button onClick={()=>{
                         submit(data.arrayJogos , setTotalItensCart)
-                    }} className="bg-blue-700 rounded-lg md:my-2 px-2 py-1">
+                    }} className="bg-secundaria text-black rounded-lg md:my-2 px-2 py-1">
                         comprar
                     </button>
                 </section>

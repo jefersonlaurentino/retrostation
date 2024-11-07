@@ -9,7 +9,7 @@ export default function Login() {
     return(
         <>
         <div className="flex flex-col justify-center items-center h-screen bg-black">
-            <section className="flex flex-col w-10/12 md:max-w-[900px] rounded-lg bg-neutral-50 overflow-hidden">
+            <section className="flex flex-col w-10/12 md:max-w-[900px] rounded-lg bg-primaria overflow-hidden text-black">
                 <div className="flex">
                     <Teste/>
                     <div className="w-3/5 max-md:hidden">

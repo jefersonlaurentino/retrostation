@@ -1,0 +1,26 @@
+.nav {
+    max-height:  100dvh;
+}
+
+.nav ul {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-right: 2rem;
+    overflow-x: hidden;
+}
+
+@tailwind components;
+@layer components {
+    .nav a {
+        @apply flex items-center gap-1 w-full rounded-md p-2 font-semibold text-xl border-2 border-secundaria mt-2;
+    }
+
+    .campo_theme {
+        @apply flex justify-between gap-1 w-full rounded-md p-1 font-semibold text-xl border-2 border-secundaria mt-2;
+    }
+
+    .campo_theme button {
+        @apply  before:bg-secundaria;
+    }
+}

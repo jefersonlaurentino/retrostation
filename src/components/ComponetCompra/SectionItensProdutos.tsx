@@ -9,6 +9,7 @@ import { jogos } from '../../components/funcoes/index'
 import { useEffect, useState } from 'react';
 import TelaComprar from "./TelaComprar";
 import { useContextItensCart } from "@/contexts/contextItensCart";
+import ModalErro from "../ModalErro";
 
 export type inforCart = {
         valorDesconto: number,
@@ -107,7 +108,7 @@ export default function SectionItensProdutos() {
                             <article
                                 key={jogo.id} 
                                 id={jogo.id}
-                                className='car flex flex-grow border-2 rounded-md md:max-w-96 overflow-hidden'>
+                                className='car dark:bg-black flex flex-grow border-2 border-secundaria rounded-md md:max-w-96 overflow-hidden'>
                                 <div className="w-28">
                                     <Image
                                         src={jogo.banner}
@@ -153,7 +154,7 @@ export default function SectionItensProdutos() {
                             </article>
                         ))
                         :
-                        <div>desculpa sem items no carrinho</div>
+                        <ModalErro text="desculpa sem items no carrinho" height="h-[calc(100dvh-60px)]"/>
                     )
                     : 
                     <div>carregando....</div>

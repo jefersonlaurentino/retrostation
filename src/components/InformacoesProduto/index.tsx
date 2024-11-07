@@ -33,7 +33,7 @@ const verImagemProduto =  (evt:EventTarget) => {
     evento.classList.remove("bg-black/50")
     const bordaFocus = evento.parentNode! as HTMLDivElement
     bordaFocus.classList.remove("border-transparent")
-    bordaFocus.classList.add("border-red-800")
+    bordaFocus.classList.add("border-secundaria")
     
 
     mostrar.removeChild(mostrar.firstChild!)
@@ -61,7 +61,7 @@ const proximaImagem = (evt:EventTarget) => {
     const r: boolean[] = []
     arrayElementosGaleria.map((e)=>{
         const t = e as HTMLDivElement
-        r.push(t.classList.contains("border-red-800"))
+        r.push(t.classList.contains("border-secundaria"))
     })
     
     if (seta.classList.contains("setaL")) {
@@ -90,11 +90,11 @@ const limparGaleria = () => {
     
     galeria?.forEach((el)=>{
         const e = el as HTMLDivElement
-        if (e.classList.contains("border-red-800")) {
+        if (e.classList.contains("border-secundaria")) {
             const removeFocus = e.lastChild as HTMLDivElement
             removeFocus.classList.add("bg-black/50")
             
-            e.classList.remove("border-red-800")
+            e.classList.remove("border-secundaria")
             e.classList.add("border-transparent")
         }
     })   
@@ -177,13 +177,13 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
         focus.classList.remove("bg-black/50")
         const primeiroElementoGaleria = galeria as HTMLDivElement
         primeiroElementoGaleria.classList.remove("border-transparent")
-        primeiroElementoGaleria.classList.add("border-red-800")
+        primeiroElementoGaleria.classList.add("border-secundaria")
     },[])
     
     return(
         <>
         <Header/>
-        <main className="flex flex-col text-black dark:text-white max-w-6xl m-auto">
+        <main className="flex flex-col max-w-6xl m-auto">
             <h1 className={`p-5 text-3xl md:text-5xl ${designer.className} underline`}>{titulo}</h1>
             <div className="relative">
                 <div className="flex flex-col w-full md:w-2/3">
@@ -238,7 +238,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                         </div>
                     </div>
 
-                    <aside className="w-full md:right-0 md:top-0 md:w-1/3 p-3 bg-black text-white md:absolute">
+                    <aside className="w-full md:right-0 md:top-0 md:w-1/3 p-3 bg-black dark:bg-neutral-900 text-white md:absolute">
                         <Image
                             src={bannerName}
                             width={90}
@@ -255,19 +255,19 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                         </div>
                         <div className="flex flex-col gap-4 my-4">
                             {(naBiblioteca)?
-                                <Link href={'/biblioteca'} className="bg-blue-800 hover:bg-blue-700 text-center rounded-lg py-1 text-xl font-semibold">
+                                <Link href={'/biblioteca'} className="bg-secundaria text-black hover:bg-blue-700 text-center rounded-lg py-1 text-xl font-semibold">
                                     na bliblioteca
                                 </Link>
                                 :
                                 <>
                                     <button
                                     onClick={(e)=>comprar(e , id)}
-                                    className="bg-blue-800 text-center rounded-lg py-1 font-semibold text-xl  hover:bg-blue-700">
+                                    className="bg-secundaria text-black text-center rounded-lg py-1 font-semibold text-xl  hover:bg-blue-700">
                                         Comprar
                                     </button>
                                     <button 
                                     onClick={(e)=>comprar(e , id)}
-                                    className="bg-neutral-600 text-center rounded-lg py-1 font-semibold text-xl  hover:bg-neutral-500">
+                                    className="bg-terciaria text-center rounded-lg py-1 font-semibold text-xl  hover:bg-neutral-500">
                                         Adicionar ao Carrinho
                                     </button>
                                 </>

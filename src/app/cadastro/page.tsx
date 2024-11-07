@@ -142,7 +142,8 @@ export default function Cadastro() {
             <form onSubmit={handleSubmit(handleRegisterUser)} className="flex flex-col min-h-[calc(100vh-100px)] justify-center md:gap-5 md:mt-9 max-w-screen-lg">
                 <div className="md:flex md:gap-4">
                     <div className="div_campo_input md:w-2/5">
-                        <CampoInput
+                        <CampoInput 
+                            style="dark:bg-dark dark:border-primaria dark:placeholder-primaria dark:text-primaria"
                             register={register('dataUser.name')}
                             type="text"
                             name="nome"
@@ -152,7 +153,8 @@ export default function Cadastro() {
                         {errors.dataUser?.name && <p>{errors.dataUser.name.message}</p>}
                     </div>
                     <div className="div_campo_input">
-                        <CampoInput
+                        <CampoInput 
+                            style="dark:bg-dark dark:border-primaria dark:placeholder-primaria dark:text-primaria"
                             register={register('dataUser.nickName')}
                             type="text"
                             name="nickName"
@@ -164,7 +166,8 @@ export default function Cadastro() {
                         {errors.dataUser?.nickName && <p>{errors.dataUser.nickName.message}</p>}
                     </div>
                     <div className="div_campo_input md:w-2/5">
-                        <CampoInput
+                        <CampoInput 
+                            style="dark:bg-dark dark:border-primaria dark:placeholder-primaria dark:text-primaria"
                             register={register('dataUser.mail')}
                             type="text"
                             name="e-mail"
@@ -180,7 +183,8 @@ export default function Cadastro() {
                 <div className="md:flex md:gap-4 overflow-hidden">
 
                     <div className="div_campo_input md:w-1/4">
-                        <CampoInput
+                        <CampoInput 
+                            style="dark:bg-dark dark:border-primaria dark:placeholder-primaria dark:text-primaria"
                             register={register('dataUser.cpf')}
                             type="text"
                             name="cpf"
@@ -193,7 +197,8 @@ export default function Cadastro() {
                     </div>
 
                     <div className="div_campo_input md:w-1/4">
-                        <CampoInput
+                        <CampoInput 
+                            style="dark:bg-dark dark:border-primaria dark:placeholder-primaria dark:text-primaria"
                             register={register('dataUser.cel')}
                             type="text"
                             name="cel"
@@ -206,7 +211,8 @@ export default function Cadastro() {
                     </div>
 
                     <div className="div_campo_input md:w-1/4">
-                        <CampoInput
+                        <CampoInput 
+                            style="dark:bg-dark dark:border-primaria dark:placeholder-primaria dark:text-primaria"
                             register={register('dataUser.age')}
                             type="text"
                             name="age"
@@ -219,7 +225,8 @@ export default function Cadastro() {
                     </div>
 
                     <div className="div_campo_input md:w-1/5">
-                        <CampoInput
+                        <CampoInput 
+                            style="dark:bg-dark dark:border-primaria dark:placeholder-primaria dark:text-primaria"
                             register={register('dataUser.zipCode')}
                             type="text"
                             name="cep"
@@ -233,30 +240,31 @@ export default function Cadastro() {
                 </div>
                 <div className="md:flex md:gap-4">
                     <div className="div_campo_input md:w-1/4">
-                        <CampoInput
+                        <CampoInput 
                             register={register('dataUser.city')}
                             type="text"
                             name="cidade"
                             placeholder="Cidade"
-                            style="disabled"
+                            style="disabled dark:bg-dark dark:border-primaria/40 dark:placeholder-primaria/40 dark:text-primaria"
                             disabled={true}
                         />
                         {errors.dataUser?.city && <p>{errors.dataUser.city.message}</p>}
                     </div>
                     <div className="div_campo_input md:w-1/5">
-                        <CampoInput
+                        <CampoInput 
                             register={register('dataUser.state')}
                             type="text"
                             name="estado"
                             placeholder="Estado"
-                            style="disabled"
+                            style="disabled dark:bg-dark dark:border-primaria/40 dark:placeholder-primaria/40 dark:text-primaria"
                             disabled={true}
                         />
                         {errors.dataUser?.state && <p>{errors.dataUser.state.message}</p>}
                     </div>
 
                     <div className="div_campo_input md:w-1/3">
-                        <CampoInput
+                        <CampoInput 
+                            style="dark:bg-dark dark:border-primaria dark:placeholder-primaria dark:text-primaria"
                             register={register('dataUser.address')}
                             type="text"
                             name="endereco"
@@ -266,7 +274,8 @@ export default function Cadastro() {
                     </div>
 
                     <div className="div_campo_input md:w-1/6">
-                        <CampoInput
+                        <CampoInput 
+                            style="dark:bg-dark dark:border-primaria dark:placeholder-primaria dark:text-primaria"
                             register={register('dataUser.number')}
                             type="text"
                             name="num_casa"
@@ -280,7 +289,8 @@ export default function Cadastro() {
                 </div>
                 <div className="md:flex md:gap-4">
                     <div className="div_campo_input md:w-1/2">
-                        <CampoInput
+                        <CampoInput 
+                            style="dark:bg-dark dark:border-primaria dark:placeholder-primaria dark:text-primaria"
                             register={register('dataUser.password')}
                             type={stateOlho}
                             name="cdt_senha"
@@ -293,12 +303,12 @@ export default function Cadastro() {
                     </div>
 
                     <div className="div_campo_input md:w-1/2">
-                        <CampoInput
+                        <CampoInput 
                             register={register('dataUser.confPassword')}
                             type={stateOlho}
                             name="cdt_conf_senha"
                             placeholder="Digite novamente sua senha"
-                            style="pr-9"
+                            style="pr-9 dark:bg-dark dark:border-primaria dark:placeholder-primaria dark:text-primaria"
                             functionChange={(value)=>{
                                 setValue('dataUser.confPassword', regexPassword(value))
                             }}
@@ -318,8 +328,8 @@ export default function Cadastro() {
                     </div>
                 </div>
                 <div className="flex max-md:flex-col justify-center gap-4 my-5">
-                    <Button type="submit" style="bg-blue-700">Cadastra-se</Button>
-                    <Button style="bg-neutral-400">Cancelar</Button>
+                    <Button type="submit" style="bg-secundaria text-black">Cadastra-se</Button>
+                    <Button style="bg-terciaria">Cancelar</Button>
                 </div>
             </form>
         </main>

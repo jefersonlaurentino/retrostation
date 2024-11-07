@@ -23,7 +23,7 @@ export default function Card(props:cardProps) {
 
     return(
         <>
-        <div className="card relative bg-white min-w-40 w-40 md:min-w-48 hover:border-red-600 hover:scale-105 border-[3px] border-[#0E0A18] duration-300 rounded-xl before:bg-white after:bg-white dark:after:bg-[#0E0A18] dark:before:bg-[#0E0A18] before:border-black before:border-r-[3px] after:border-black after:border-l-[3px]
+        <div className="card relative bg-white min-w-40 w-40 md:min-w-48 hover:border-secundaria hover:scale-105 border-[3px] border-[#0E0A18] duration-300 rounded-xl before:bg-primaria after:bg-primaria dark:after:bg-dark dark:before:bg-dark before:border-black before:border-r-[3px] after:border-black after:border-l-[3px]
         ">
             <div className="flex flex-col relative overflow-hidden">
                 <div className="img relative after:absolute after:content-['PS2'] after:bg-black after:text-white after:-right-7 after:top-1 after:px-8 after:text-sm after:rotate-45 after:shadow-sm after:shadow-neutral-400 rounded-t-lg overflow-hidden">

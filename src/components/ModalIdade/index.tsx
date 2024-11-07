@@ -22,7 +22,7 @@ export default function ModalIdade({ tituloJogo } : { tituloJogo: string }) {
                 <p className="text-lg my-9 text-red-700 msg_recusado hidden text-center">Desculpe, mas você não pode acessar este conteúdo.</p>
                 <div className="div_idades flex gap-3 my-5 max-w-[1000px] m-auto justify-between">
                     <div className="dia campos_idade w-1/3 relative">
-                        <button className="relative border-2 border-black w-full rounded-md p-1" onClick={(e)=>tes(e.target)}>
+                        <button className="relative border-2 border-black dark:border-primaria w-full rounded-md p-1" onClick={(e)=>tes(e.target)}>
                             <div className="flex items-center justify-between">
                                 <p className="text-left">
                                     DD
@@ -38,7 +38,7 @@ export default function ModalIdade({ tituloJogo } : { tituloJogo: string }) {
                     </div>
 
                     <div className="mes campos_idade w-1/3 relative">
-                        <button className="relative border-2 border-black w-full rounded-md p-1" onClick={(e)=>tes(e.target)}>
+                        <button className="relative border-2 border-black dark:border-primaria w-full rounded-md p-1" onClick={(e)=>tes(e.target)}>
                             <div className="flex items-center justify-between">
                                 <p className="text-left">
                                     MM
@@ -54,7 +54,7 @@ export default function ModalIdade({ tituloJogo } : { tituloJogo: string }) {
                     </div>
 
                     <div className="ano campos_idade w-1/3 relative">
-                        <button className="relative border-2 border-black w-full rounded-md p-1" onClick={(e)=>tes(e.target)}>
+                        <button className="relative border-2 border-black dark:border-primaria w-full rounded-md p-1" onClick={(e)=>tes(e.target)}>
                             <div className="flex items-center justify-between">
                                 <p className="text-left">
                                     AAAA

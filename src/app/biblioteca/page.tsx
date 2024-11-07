@@ -68,12 +68,12 @@ export default function BibliotecaJogos() {
     return(
         <>
             <Header/>
-            <main className="max-w-screen-lg m-auto p-6">
+            <main className="max-w-screen-lg m-auto px-6">
                 <h1 className={`text-center my-4 text-2xl md:text-4xl ${designer.className}`}>SUA BIBLIOTECA</h1>
                 <section className="flex flex-wrap gap-3 md:gap-6 px-2">
                     {jogosNaBiblioteca ? 
                         jogosNaBiblioteca.map((jogo)=>
-                            <article key={jogo.id} className="border-2 border-black rounded-lg w-28 h-48 md:w-36 md:h-52">
+                            <article key={jogo.id} className="border-2 border-secundaria rounded-lg w-28 h-48 md:w-36 md:h-52 mb-7">
                                 <div className="w-full h-[70%]">
                                     <Image
                                         src={jogo.banner}
