@@ -9,38 +9,28 @@ import { VscColorMode } from "react-icons/vsc";
 import { useContextTheme } from "@/contexts/contextThemaDark";
 import { useEffect } from "react";
 
-
 export default function Menu() {
-    const { setThemeDark } = useContextTheme()
+    const { DarkMode , setDarkMode , setThemeDark } = useContextTheme() 
 
     useEffect(()=>{
-        const themeDark = document.querySelector('html')!.classList
-        if (themeDark.contains('dark')) {
-            document.querySelector('.button_theme')!.nextSibling!.textContent = 'Escuro';
-            document.querySelector('.button_theme')?.classList.remove('before:left-1');
-            document.querySelector('.button_theme')?.classList.add('before:left-6');
-            document.querySelector('.button_theme')?.setAttribute('aria-checked','true');
+        if (DarkMode) {
+            const buttonClick = document.querySelector('.button_theme');
+            
+            if (DarkMode === 'false') {
+                buttonClick?.classList.remove('before:left-1')
+                buttonClick?.classList.add('before:left-6')
+                buttonClick?.setAttribute('aria-checked','true')
+                buttonClick!.nextSibling!.textContent = 'Escuro'
+                setThemeDark('dark')
+            } else {
+                buttonClick?.classList.remove('before:left-6')
+                buttonClick?.classList.add('before:left-1')
+                buttonClick?.setAttribute('aria-checked','false')
+                buttonClick!.nextSibling!.textContent = 'Claro'
+                setThemeDark('light')
+            }
         }
-    },[])
-
-    const darkMode = () => {
-        const buttonClick = document.querySelector('.button_theme');
-        const currentState = buttonClick?.getAttribute('aria-checked');
-        
-        if (currentState === 'false') {
-            buttonClick?.classList.remove('before:left-1')
-            buttonClick?.classList.add('before:left-6')
-            buttonClick?.setAttribute('aria-checked','true')
-            buttonClick!.nextSibling!.textContent = 'Escuro'
-            setThemeDark('dark')
-        } else {
-            buttonClick?.classList.remove('before:left-6')
-            buttonClick?.classList.add('before:left-1')
-            buttonClick?.setAttribute('aria-checked','false')
-            buttonClick!.nextSibling!.textContent = 'Claro'
-            setThemeDark('light')
-        }
-    }
+    },[DarkMode])
 
     return(
         <>
@@ -70,8 +60,8 @@ export default function Menu() {
                                 role="switch"
                                 aria-checked={false}
                                 aria-label="seleciona o tema do site"
-                                onClick={darkMode}
-                                className="button_theme border-black dark:border-primaria border-2 rounded-xl w-12 h-6 relative before:content-[''] before:h-4 before:w-4 before:absolute before:bg-white before:rounded-full before:top-1/2 before:-translate-y-1/2 before:left-1 before:duration-300"
+                                onClick={(evt)=>setDarkMode(evt.currentTarget.getAttribute('aria-checked')!)}
+                                className="button_theme border-black dark:border-primaria border-2 rounded-xl w-12 h-6 relative before:content-[''] before:h-4 before:w-4 before:absolute before:bg-white before:rounded-full before:top-1/2 before:-translate-y-1/2 before:left-1 before:duration-500"
                                 >
                             </button>
                             <p>Claro</p>

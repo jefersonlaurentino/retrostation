@@ -82,18 +82,18 @@ const verMaisInfor = () => {
     }
 }
 
-const tamanhoCard = () =>{
-    const irmao = document.querySelectorAll('.car')
-    if (irmao.length > 1) {
-        const tamanhoIrmao = irmao[0].scrollWidth
-        const ultimoIrmao = irmao.length
-        irmao[ultimoIrmao-1].setAttribute('style', `max-width:${tamanhoIrmao+4}px;`)
-        irmao[ultimoIrmao-2].setAttribute('style', `max-width:${tamanhoIrmao+4}px;`)
-    } 
-}
+// const tamanhoCard = () =>{
+//     const irmao = document.querySelectorAll('.car')
+//     if (irmao.length > 1) {
+//         const tamanhoIrmao = irmao[0].scrollWidth
+//         const ultimoIrmao = irmao.length
+//         irmao[ultimoIrmao-1].setAttribute('style', `max-width:${tamanhoIrmao+4}px;`)
+//         irmao[ultimoIrmao-2].setAttribute('style', `max-width:${tamanhoIrmao+4}px;`)
+//     } 
+// }
 
 export {
     submit,
     verMaisInfor,
-    tamanhoCard,
+    // tamanhoCard,
 }

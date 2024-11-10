@@ -3,12 +3,15 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 type themaDarkProps = {
     themeDark: string;
     setThemeDark: (vle: string) => void;
+    DarkMode: string;
+    setDarkMode: (value: string) => void;
 }
 
 const ThemaDark = createContext<themaDarkProps | null>(null)
 
 const ThemaDarkProvider = ({children}: {children:ReactNode}) => {
     const [ themeDark , setThemeDark ] = useState('')
+    const [ DarkMode , setDarkMode ] = useState<string>('')
 
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
@@ -25,13 +28,14 @@ const ThemaDarkProvider = ({children}: {children:ReactNode}) => {
         }
     },[]);
 
-        const applyTheme = (theme: string) => {
-            if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-            } else if (theme === 'light') {
-                document.documentElement.classList.remove('dark');
-            }
-        };
+    const applyTheme = (theme: string) => {
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            setDarkMode('false')
+        } else if (theme === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+    };
 
     useEffect(()=>{
         if (themeDark != '') {
@@ -43,7 +47,7 @@ const ThemaDarkProvider = ({children}: {children:ReactNode}) => {
 
     return (
         <>
-            <ThemaDark.Provider value={{ themeDark , setThemeDark }}>
+            <ThemaDark.Provider value={{ themeDark , setThemeDark , DarkMode , setDarkMode}}>
                 {children}
             </ThemaDark.Provider>
         </>

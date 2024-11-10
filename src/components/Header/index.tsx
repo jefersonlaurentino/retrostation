@@ -89,7 +89,6 @@ export default function Header(){
         const arrayPesquisaJogos=[];
         if (value != '') {
             arrayPesquisaJogos.push(jogos.filter(jogo=>jogo.titulo.includes(value)))
-            console.log(arrayPesquisaJogos);
             setJogosEncontrados(arrayPesquisaJogos[0].slice(0,5));
         }
     }
@@ -184,9 +183,8 @@ export default function Header(){
                             key={jogo.id}
                             aria-label={`jogo ${jogo.titulo}`}
                             onClick={()=>Router.push(`/produto/${jogo.titulo}`
-
                             )}>
-                            <article className="flex gap-2 items-center p-2 rounded-md">
+                            <article className="flex gap-2 items-center p-2 rounded-md hover:bg-neutral-700">
                                 <div className="h-10 min-w-8">
                                     <Image
                                         src={jogo.banner}

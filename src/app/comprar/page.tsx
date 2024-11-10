@@ -8,7 +8,7 @@ export default function Comprar() {
     return(
         <>
         <main className='max-w-screen-xl m-auto'>
-            <h1 className={`text-center my-2 text-2xl ${designer.className}`}>carrinho de compras</h1>
+            <h1 className={`text-center my-2 mt-5 text-3xl ${designer.className}`}>carrinho de compras</h1>
             <SectionItensProdutos />
         </main>
         </>

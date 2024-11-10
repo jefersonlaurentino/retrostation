@@ -4,7 +4,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { calculoDesconto } from "../funcoes";
 import Image from "next/image";
 import React from "react";
-import { dataJogoProps, tamanhoCard } from "./funcoesPageComprar";
+import { dataJogoProps } from "./funcoesPageComprar";
 import { jogos } from '../../components/funcoes/index'
 import { useEffect, useState } from 'react';
 import TelaComprar from "./TelaComprar";
@@ -32,8 +32,8 @@ export default function SectionItensProdutos() {
             setArrayCartJogos(jogos.filter(jogo => getListJogos.includes(jogo.id)))
         }
         
-        window.addEventListener('resize', tamanhoCard)
-        setTimeout(tamanhoCard,220)
+        // window.addEventListener('resize', tamanhoCard)
+        // setTimeout(tamanhoCard,220)
         setReloudCart(true)
     },[])
 
@@ -72,7 +72,7 @@ export default function SectionItensProdutos() {
 
             setArrayCartJogos(arrayCartJogos?.filter(j=>j.id != cardJogo.id))
             
-            tamanhoCard()
+            // tamanhoCard()
             setTotalItensCart(totalItensCart-1)
         }
 
@@ -99,16 +99,16 @@ export default function SectionItensProdutos() {
 
     return(
         <>
-        <section className='flex gap-2 max-md:flex-col max-h-[calc(100vh-48px)]'>
+        <section className='flex gap-2 max-md:flex-col max-h-[calc(100vh-48px)] max-w-screen-xl m-auto'>
             <div className="max-sm:h-3/5 md:w-3/4 pb-2 overflow-x-hidden">
-            <div className="flex max-sm:flex-col sm:flex-wrap gap-3 px-4 w-full">
+            <div className="columns-3xs gap-3 mx-3">
                 { reloudCart ?
                     (arrayCartJogos ?
                         (arrayCartJogos!.map((jogo)=>
                             <article
                                 key={jogo.id} 
                                 id={jogo.id}
-                                className='car dark:bg-black flex flex-grow border-2 border-secundaria rounded-md md:max-w-96 overflow-hidden'>
+                                className='car dark:bg-black flex flex-grow border-2 border-secundaria h-36 mb-3 rounded-md overflow-hidden'>
                                 <div className="w-28">
                                     <Image
                                         src={jogo.banner}
@@ -154,7 +154,7 @@ export default function SectionItensProdutos() {
                             </article>
                         ))
                         :
-                        <ModalErro text="desculpa sem items no carrinho" height="h-[calc(100dvh-60px)]"/>
+                        <ModalErro text="desculpa sem items no carrinho" height="absolute w-[calc(100%-20px)] h-[calc(100dvh-65px)]"/>
                     )
                     : 
                     <div>carregando....</div>
