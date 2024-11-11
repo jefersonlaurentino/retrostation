@@ -7,6 +7,7 @@ import { DataUserProvider } from "@/contexts/contexUserLogin"
 import { IdadePermitidaProvider } from "@/contexts/contextIdade"
 import { ItensCartProvider } from "@/contexts/contextItensCart"
 import { ThemaDarkProvider } from "@/contexts/contextThemaDark"
+import { PopUpProvider } from "@/contexts/contextNotificacao"
 
 export default function Providers({ children }: { children :React.ReactNode}) {
     return(
@@ -17,7 +18,9 @@ export default function Providers({ children }: { children :React.ReactNode}) {
                     <IdadePermitidaProvider>
                         <ItensCartProvider>
                             <ThemaDarkProvider>
-                                { children }
+                                <PopUpProvider>
+                                    { children }
+                                </PopUpProvider>
                             </ThemaDarkProvider>
                         </ItensCartProvider>
                     </IdadePermitidaProvider>

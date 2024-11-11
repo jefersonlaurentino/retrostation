@@ -3,7 +3,7 @@
 import Button from "@/components/Button";
 import CampoInput from "@/components/CampoInput";
 import Header from "@/components/Header";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { VscEdit } from "react-icons/vsc";
 import { HiMiniArrowRightOnRectangle } from "react-icons/hi2";
 import { useForm } from "react-hook-form"
@@ -17,6 +17,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { regexAge, regexCel, regexNickName_Email, regexZipCode } from "@/components/funcoes/funcoesForm";
 import { useIdadeContext } from "@/contexts/contextIdade";
+import { UsePopUp } from "@/contexts/contextNotificacao";
 const designer = localFont({src:"../fonts/designer.otf"})
 
 const schamaForm = z.object({
@@ -46,7 +47,9 @@ type formProps = z.infer<typeof schamaForm>
 export default function Perfil() {
     const { imagemAvatar } = useImagemContext()
     const { dataLoginUser , setReloud } = useDataLogin()
+    const [ reloudPerfil  , setReloudPerfil ] = useState(0)
     const { setPermicaoReloud } = useIdadeContext()
+    const { setMsgPopUp } = UsePopUp()
 
     const { handleSubmit , register, setValue , formState: { errors } } = useForm<formProps>({
         criteriaMode: "all",
@@ -82,7 +85,7 @@ export default function Perfil() {
             setValue('dataUser.address', dataLoginUser.dataUser.address)
             setValue('dataUser.number', dataLoginUser.dataUser.number)
         }
-    },[dataLoginUser])
+    },[dataLoginUser , reloudPerfil ])
     
     const handleSubmitData = (data: formProps) => {
         const avatar = window.sessionStorage.getItem('avt')
@@ -199,6 +202,7 @@ export default function Perfil() {
                                 window.sessionStorage.removeItem("login")
                                 window.sessionStorage.removeItem("avt")
                                 window.sessionStorage.removeItem("idade")
+                                window.sessionStorage.removeItem("comprasCarrinho")
                                 setPermicaoReloud(Math.random() * 10)
                             }} className="flex items-center gap-2  border-2 p-2 rounded-lg bg-terciaria">
                             <HiMiniArrowRightOnRectangle className="text-2xl"/>
@@ -339,8 +343,8 @@ export default function Perfil() {
                             </div>
                         </div>
                         <div className="flex flex-col md:flex-row-reverse justify-center gap-4 pt-7 pb-2">
-                            <Button type="submit" style="bg-secundaria text-black">Salvar</Button>
-                            <Button style="bg-terciaria text-white">Cancelar</Button>
+                            <Button f_function={()=>setMsgPopUp({checked: true , msg: 'Perfil atualizado!'})} type="submit" style="bg-secundaria text-black">Salvar</Button>
+                            <Button f_function={()=>setReloudPerfil(Math.random() * 10)} style="bg-terciaria text-white">Cancelar</Button>
                         </div>
                     </form>
                 </section>

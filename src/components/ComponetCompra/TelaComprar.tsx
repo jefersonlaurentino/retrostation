@@ -2,9 +2,13 @@ import { IoIosArrowDown } from "react-icons/io"
 import { submit, verMaisInfor } from "./funcoesPageComprar"
 import { inforCart } from "./SectionItensProdutos"
 import { useContextItensCart } from "@/contexts/contextItensCart"
+import { UsePopUp } from "@/contexts/contextNotificacao"
+import { useRouter } from "next/navigation"
 
 export default function TelaComprar({data}:{data:inforCart | undefined}) {
     const { setTotalItensCart } = useContextItensCart()
+    const { setMsgPopUp } = UsePopUp()
+    const router = useRouter()
     
     return(
         <>
@@ -44,7 +48,11 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                         }
                     </div>
                     <button onClick={()=>{
+                        setMsgPopUp({checked: true , msg: 'Compra comcluída!'})
                         submit(data.arrayJogos , setTotalItensCart)
+                        setTimeout(()=>{
+                            router.push('/')
+                        },2000)
                     }} className="bg-secundaria text-black rounded-lg md:my-2 px-2 py-1">
                         comprar
                     </button>

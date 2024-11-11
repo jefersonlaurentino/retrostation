@@ -10,6 +10,7 @@ import localFont from "next/font/local";
 import { useRouter , usePathname} from "next/navigation";
 import { useContextItensCart } from "@/contexts/contextItensCart";
 import Link from "next/link";
+import { UsePopUp } from "@/contexts/contextNotificacao";
 
 const designer = localFont({src:"../../app/fonts/designer.otf"})
 
@@ -125,6 +126,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
     const Router = useRouter()
     const pathName = usePathname()
     const { totalItensCart , setTotalItensCart } = useContextItensCart()
+    const { setMsgPopUp } = UsePopUp()
 
     const comprar = (evt: React.MouseEvent<HTMLButtonElement> , id: string) => {
         if (evt.currentTarget.textContent == "Comprar") {
@@ -151,6 +153,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
     
         if (getCarrinhoCompras) {
             if (getCarrinhoCompras.includes(id)) {
+                setMsgPopUp({checked: false , msg: 'Produto Já adicionado!'})
                 return
             }
         }
@@ -169,6 +172,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
             window.sessionStorage.setItem('comprasCarrinho' , JSON.stringify(arrayCarrinhoCompras) )
             setTotalItensCart(totalItensCart+1)
         }
+        setMsgPopUp({checked: true , msg: 'Produto adicionado!'})
     }
 
     useEffect(()=>{
