@@ -8,6 +8,7 @@ import { IdadePermitidaProvider } from "@/contexts/contextIdade"
 import { ItensCartProvider } from "@/contexts/contextItensCart"
 import { ThemaDarkProvider } from "@/contexts/contextThemaDark"
 import { PopUpProvider } from "@/contexts/contextNotificacao"
+import { PopUpInteractiveProvider } from "@/contexts/contextPopUpInteractive"
 
 export default function Providers({ children }: { children :React.ReactNode}) {
     return(
@@ -19,7 +20,9 @@ export default function Providers({ children }: { children :React.ReactNode}) {
                         <ItensCartProvider>
                             <ThemaDarkProvider>
                                 <PopUpProvider>
-                                    { children }
+                                    <PopUpInteractiveProvider>
+                                        { children }
+                                    </PopUpInteractiveProvider>
                                 </PopUpProvider>
                             </ThemaDarkProvider>
                         </ItensCartProvider>

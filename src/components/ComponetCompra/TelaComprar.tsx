@@ -2,12 +2,12 @@ import { IoIosArrowDown } from "react-icons/io"
 import { submit, verMaisInfor } from "./funcoesPageComprar"
 import { inforCart } from "./SectionItensProdutos"
 import { useContextItensCart } from "@/contexts/contextItensCart"
-import { UsePopUp } from "@/contexts/contextNotificacao"
 import { useRouter } from "next/navigation"
+import { abrirPopUpInterativo, fecharPopUpInterativo, UsePopUpInteractive } from "@/contexts/contextPopUpInteractive"
 
 export default function TelaComprar({data}:{data:inforCart | undefined}) {
     const { setTotalItensCart } = useContextItensCart()
-    const { setMsgPopUp } = UsePopUp()
+    const { setPopUpMsg } = UsePopUpInteractive()
     const router = useRouter()
     
     return(
@@ -48,11 +48,25 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                         }
                     </div>
                     <button onClick={()=>{
-                        setMsgPopUp({checked: true , msg: 'Compra comcluída!'})
                         submit(data.arrayJogos , setTotalItensCart)
-                        setTimeout(()=>{
-                            router.push('/')
-                        },2000)
+                        setPopUpMsg({
+                            msg: <p>Compra Concluida com sucesso!</p>,
+                            buttonLeft: {
+                                onClick: () => {
+                                    router.push('/')
+                                    fecharPopUpInterativo()
+                                },
+                                text: 'Voltar a Home',
+                            },
+                            buttonRight: {
+                                onClick:() => {
+                                    router.push('/biblioteca')
+                                    fecharPopUpInterativo()
+                                },
+                                text: 'Ver na Biblioteca',
+                            }
+                        })
+                        abrirPopUpInterativo()
                     }} className="bg-secundaria text-black rounded-lg md:my-2 px-2 py-1">
                         comprar
                     </button>

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "@/providers/providers";
 import Notificacao from "@/components/Notificacao";
+import PopUpInteractive from "@/components/PopUpInteractive";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Providers>
           {children}
           <Notificacao/>
+          <PopUpInteractive/>
         </Providers>
       </body>
     </html>
