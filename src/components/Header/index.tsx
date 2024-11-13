@@ -14,14 +14,18 @@ import { jogos } from "../funcoes";
 import { IoMenu, IoSearchSharp } from "react-icons/io5";
 import { typeJogos } from "@/app/biblioteca/page";
 import Menu from "../Menu";
+import { UsePopUp } from "@/contexts/contextNotificacao";
 
 export default function Header(){
     const { dataLoginUser } = useDataLogin()
     const { totalItensCart } = useContextItensCart()
     const Router = useRouter()
+    const { setMsgPopUp } = UsePopUp()
     const [ nickName , setNickName ] = useState<string>('******')
     const [ valueInput , setValueInput ] = useState('')
     const [ jogosEncontrados , setJogosEncontrados ] = useState<typeJogos[] | null>(null)
+
+
     useEffect(()=>{
         const getLogin = window.sessionStorage.getItem("login")
         SetLogado(getLogin);
@@ -119,10 +123,12 @@ export default function Header(){
             </div>
             <div className="flex gap-2 items-center">
                 <button aria-label="ir ao carrinho" onClick={()=>{
-                    const teste = window.sessionStorage.getItem('comprasCarrinho')
-                    if (teste) {
-                        window.sessionStorage.setItem('cart',teste)
+                    const itensCarrinho = window.sessionStorage.getItem('comprasCarrinho')
+                    if (itensCarrinho) {
+                        window.sessionStorage.setItem('cart',itensCarrinho)
                         Router.push('/comprar')
+                    } else {
+                        setMsgPopUp({checked: false , msg: 'Sem itens no carrinho'})
                     }
                 }} className="text-white p-1 pr-2 mr-2 rounded-md border-2 border-secundaria text-xl relative">
                     <HiOutlineShoppingCart />

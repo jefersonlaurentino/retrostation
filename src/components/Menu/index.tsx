@@ -8,8 +8,12 @@ import { FcAbout } from "react-icons/fc";
 import { VscColorMode } from "react-icons/vsc";
 import { useContextTheme } from "@/contexts/contextThemaDark";
 import { useEffect } from "react";
+import { UsePopUp } from "@/contexts/contextNotificacao";
+import { abrirPopUpInterativo, fecharPopUpInterativo, UsePopUpInteractive } from "@/contexts/contextPopUpInteractive";
 
 export default function Menu() {
+    const { setMsgPopUp } = UsePopUp();
+    const { setPopUpMsg } = UsePopUpInteractive();
     const { DarkMode , setDarkMode , setThemeDark } = useContextTheme() 
 
     useEffect(()=>{
@@ -32,6 +36,29 @@ export default function Menu() {
         }
     },[DarkMode])
 
+    const deixarFeedback = () =>{
+        const text = <p>
+            Por onde você quer deixar o sem feedback?
+        </p>
+
+        setPopUpMsg({msg: text , 
+            buttonLeft: {
+                onClick: () => {
+                    fecharPopUpInterativo()
+                    location.href = 'mailto:jefersonlaurentino@outlook.com.br'
+                },
+                text: "E-mail"
+            },
+            buttonRight: {
+                onClick: () => {
+                    fecharPopUpInterativo()
+                    window.open("https://www.linkedin.com/in/jeferson-laurentino-dev", "_blank")
+                },
+                text: "Linkedin",
+            },
+        })
+    }
+
     return(
         <>
             <nav className={`menu w-full fixed h-full top-0 z-50 ${style.nav} -left-full duration-500 md:duration-700`}>
@@ -51,11 +78,11 @@ export default function Menu() {
                         </Link>
                     </li>
                     <li className={style.campo_theme}>
-                        <div className="flex items-center gap-1 text-lg font-semibold p-2">
+                        <div className="flex items-center gap-1 text-lg font-semibold">
                             <VscColorMode />
                             <p>Dark-Mode</p>
                         </div>
-                        <div className="flex flex-row-reverse gap-2 leading-4 pr-3 items-center">
+                        <div className="flex flex-row-reverse gap-2 leading-4 items-center">
                             <button
                                 role="switch"
                                 aria-checked={false}
@@ -75,24 +102,47 @@ export default function Menu() {
                         </Link>
                     </li>
                     <li>
-                        <Link href={'/carrinho'} 
+                        <Link href={'/comprar'} 
                             aria-label="Ver produtos no carrinho">
                             <IoCartSharp />
                             Carrinho
                         </Link>
                     </li>
                     <li>
-                        <Link href={'/'} 
-                            aria-label="Sair da sua conta">
-                            <ImExit />
-                            Sair
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href={'/'} 
+                        <Link href={'#'} 
+                            onClick={()=>setMsgPopUp({checked: false , msg: 'função não adicionada'})} 
                             aria-label="informações da RetroStation">
                             <FcAbout />
                             Sobre Nós
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={'#'} 
+                            onClick={()=>{
+                                abrirPopUpInterativo()
+                                setPopUpMsg({msg: <p>No momento o feedback ainda não estar pronto. Mas você pode deixar o seu Recado diretamente no meu Linkedin ou no E-mail, gostaria de deixa o seu feedback?</p> , buttonLeft: {
+                                onClick: () =>
+                                    fecharPopUpInterativo(),
+                                text: "Não"
+                                },
+                                buttonRight: {
+                                    onClick:() =>
+                                    deixarFeedback(),
+                                    text: "Sim"
+                                }
+                            })}
+                            }
+                            aria-label="informações da RetroStation">
+                            <FcAbout />
+                            deixe o seu Feedback
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={'#'}
+                            onClick={()=>setMsgPopUp({checked: false , msg: 'função não adicionada'})} 
+                            aria-label="Sair da sua conta">
+                            <ImExit />
+                            Sair da conta
                         </Link>
                     </li>
                     <button
