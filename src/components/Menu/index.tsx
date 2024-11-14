@@ -45,7 +45,9 @@ export default function Menu() {
             buttonLeft: {
                 onClick: () => {
                     fecharPopUpInterativo()
-                    location.href = 'mailto:jefersonlaurentino@outlook.com.br'
+                    const assunto = 'Vi o RetroStation: Vamos conversar sobre o seu projeto?'
+                    const mensagem = 'Gostei do seu projeto'
+                    location.href = `mailto:jefersonlaurentino@outlook.com.br?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(mensagem)}`
                 },
                 text: "E-mail"
             },

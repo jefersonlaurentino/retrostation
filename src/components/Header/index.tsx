@@ -1,8 +1,9 @@
 'use client'
 
-import logoWhite from "../../../public/image/logo_white.png";
+import logoMaior from "../../../public/image/logo_maior.png";
+import logoMenor from "../../../public/image/logo_menor.png";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaUserLarge } from "react-icons/fa6";
 import { useImagemContext } from "@/contexts/contextFotoPerfil";
@@ -23,6 +24,7 @@ export default function Header(){
     const { setMsgPopUp } = UsePopUp()
     const [ nickName , setNickName ] = useState<string>('******')
     const [ valueInput , setValueInput ] = useState('')
+    const [ logo , setLogo ] = useState<string>()
     const [ jogosEncontrados , setJogosEncontrados ] = useState<typeJogos[] | null>(null)
 
 
@@ -62,6 +64,20 @@ export default function Header(){
                 setJogosEncontrados(null)
             },400)
         })
+
+        if (window.innerWidth <= 640) {
+            setLogo("logoMenor")
+        } else {
+            setLogo("logoMaior")
+        }
+        window.addEventListener('resize', ()=>{
+            if (window.innerWidth <=640) {
+                setLogo("logoMenor")
+            } else {
+                setLogo("logoMaior")
+            }
+        })
+        
     },[])
 
     const pesquisaJogo = (e: React.FormEvent<HTMLFormElement>) =>{
@@ -101,9 +117,9 @@ export default function Header(){
         <>
         <header className="p-2 flex justify-between items-center bg-black shadow-secundaria shadow-lg sticky top-0 w-full z-50">
             <Menu />
-            <div className="flex items-center text-white">
+            <div className="flex items-center gap-2 text-white">
                 <button 
-                    className="text-xl"
+                    className="text-3xl"
                     aria-label="Entrar no menu"
                     onClick={()=>{
                         document.querySelector('.menu')?.classList.add('left-0')
@@ -113,12 +129,22 @@ export default function Header(){
                     <IoMenu />
                 </button>
                 <Link href={"/"} aria-label="voltar para a tela inicial">
+                { 
+                    logo === "logoMaior" ?
                     <Image
-                        src={logoWhite}
+                        src={logoMaior}
                         width={100}
                         alt="Logo do site"
                         className="w-32 md:w-48"
                     />
+                    :
+                    <Image
+                        src={logoMenor}
+                        width={100}
+                        alt="Logo do site"
+                        className="w-10"
+                    />
+                }
                 </Link>
             </div>
             <div className="flex gap-2 items-center">

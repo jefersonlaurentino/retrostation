@@ -183,7 +183,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
     const textSaldacao8 = () => {
         const text = 
             <>
-                <h4 className="mb-3 text-center text-2xl leading-none">Navegação E busca de jogos</h4>
+                <h4 className="mb-3 text-center text-2xl leading-none">Navegação e busca de jogos</h4>
                 <p>
                     Explore nossa biblioteca com jogos em promoções e em destaque. Use a brra de busca para encontrar títulos específicos.
                 </p>
@@ -229,7 +229,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Bugs</h4>
                 <p>
-                    Como o projeto ainda está em desenvolvimento, é possível que alguns bugs apareçam. Agradecemos seu feedback, seja para sugerir melhorias ou informar sobre qualquer erro que encontrar!
+                    Como o projeto ainda está em desenvolvimento, é possível que alguns bugs apareçam. Aguardamos o seu feedback, seja para sugerir melhorias ou informar sobre qualquer erro que encontrar!
                 </p>
             </>
 
@@ -248,7 +248,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
     useEffect(()=>{
         const msgBemVindo = sessionStorage.getItem('bemVindo')
         if (msgBemVindo === null) {
-            // sessionStorage.setItem('bemVindo' , '')
+            sessionStorage.setItem('bemVindo' , '')
             abrirPopUpInterativo()
             textSaldacao()
         }
