@@ -2,10 +2,8 @@
 
 .footer a {
     position: relative;
-}
-
-.footer ul {
     overflow: hidden;
+    display: inline-flex;
 }
 
 @layer components {
