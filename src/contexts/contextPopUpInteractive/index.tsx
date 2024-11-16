@@ -94,7 +94,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Cadastro e Login</h4>
                 <p>
-                    Cadastre-se para criar um perfil exclusivo. No cadastro, você formecerá dados como nome, e-mail, CFP , CEP e senha. Você támbem pode continuar sem cadastro, mas nesse caso não terá acesso à Experiência completa.
+                    Cadastre-se para criar um perfil exclusivo. No cadastro, você formecerá dados como nome, e-mail, CPF , CEP e senha. Você támbem pode continuar sem cadastro, mas nesse caso não terá acesso à Experiência completa.
                 </p>
             </>
 
@@ -160,7 +160,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Biblioteca</h4>
                 <p>
-                    Não se preocupe em comprar o mesmo jogo duas verezes! Quando o jogo estar na sua biblioteca o botão de compra muda para &quot;Na Biblioteca&quot;. Assim te mostrando que você já possui este jogo. 
+                    Não se preocupe em comprar o mesmo jogo duas vezes! Quando o jogo estar na sua biblioteca o botão de compra muda para &quot;Na Biblioteca&quot;. Assim te mostrando que você já possui este jogo. 
                 </p>
             </>
 
@@ -182,7 +182,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Navegação e busca de jogos</h4>
                 <p>
-                    Explore nossa biblioteca com jogos em promoções e em destaque. Use a brra de busca para encontrar títulos específicos.
+                    Explore nossa biblioteca com jogos em promoções e em destaque. Use a barra de busca para encontrar títulos específicos.
                 </p>
             </>
 
