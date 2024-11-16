@@ -50,7 +50,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 max-sm:mb-2 text-center text-2xl leading-none">O que é o RetroStation?</h4>
                 <p>
-                    O RetroStaion é um projeto de e-commerce para estudo. Focado em vendas de jogos clássicos de PS2 para PC. Aqui, você pode revirer a nostalgia de explorar e redescoblir os grandes títulos da época!
+                    O RetroStation é um projeto de e-commerce para estudo. Focado em vendas de jogos clássicos de PS2 para PC. Aqui, você pode revirer a nostalgia de explorar e redescobrir os grandes títulos da época!
                 </p>
             </>
 
@@ -94,7 +94,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Cadastro e Login</h4>
                 <p>
-                    Cadastre-se para criar um perfil exclusivo. No cadastro, você formecerá dados como nome, e-mail, CPF , CEP e senha. Você támbem pode continuar sem cadastro, mas nesse caso não terá acesso à Experiência completa.
+                    Cadastre-se para criar um perfil exclusivo. No cadastro, você formecerá dados como nome, E-mail, CPF , CEP e senha. Você também pode continuar sem cadastro, mas nesse caso não terá acesso à Experiência completa.
                 </p>
             </>
 
@@ -116,7 +116,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Prefil e Avatar</h4>
                 <p>
-                    Personalize seu perfil e escolha um avatar que combine com você, é possivel alterar seus dados a qualquer nomento.
+                    Personalize seu perfil e escolha um avatar que combine com você, é possível alterar seus dados a qualquer momento.
                 </p>
             </>
 
@@ -138,7 +138,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Carrinho de compra</h4>
                 <p>
-                    Você pode adicionar jogos ao seu carrinho para compra-los depois. Apóis a compra, o jogo sera adicionado automaticamente à sua Biblioteca, onde você poderá ver todos os jogos adquiridos.  
+                    Você pode adicionar jogos ao seu carrinho para compra-los depois. Após a compra, o jogo será adicionado automaticamente à sua Biblioteca, onde você poderá ver todos os jogos adquiridos.  
                 </p>
             </>
 
@@ -160,7 +160,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Biblioteca</h4>
                 <p>
-                    Não se preocupe em comprar o mesmo jogo duas vezes! Quando o jogo estar na sua biblioteca o botão de compra muda para &quot;Na Biblioteca&quot;. Assim te mostrando que você já possui este jogo. 
+                    Não se preocupe em comprar o mesmo jogo duas vezes! Quando o jogo estiver na sua biblioteca o botão de compra muda para &quot;Na Biblioteca&quot;. Assim te mostrando que você já possui este jogo. 
                 </p>
             </>
 
