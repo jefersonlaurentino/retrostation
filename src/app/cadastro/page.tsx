@@ -12,6 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { calcCpfValido, regexAge, regexCel, regexCpf, regexNickName_Email, regexPassword, regexZipCode } from "@/components/funcoes/funcoesForm";
+import { fetchCurrentDate } from "@/services/dateZipCodeService";
 
 const schamaForm = z.object({
     dataUser: z.object({
@@ -106,15 +107,15 @@ export default function Cadastro() {
 
 
     const handleFetchSubit = useCallback( async(zipCode:string)=>{
-        const data  = await fetch(`https://viacep.com.br/ws/${zipCode}/json/`).then(res => res.json())
+        const getZipCode = await fetchCurrentDate(zipCode) 
         
-        if (data.erro) {
+        if (getZipCode) {
+            setError('dataUser.zipCode', { type: 'custom' , message: '' })
+            setValueDataUser(getZipCode)
+            setZip(true)
+        } else {
             setError('dataUser.zipCode', { type: 'custom' , message: 'cep invalido' })
             setZip(false)
-        } else {
-            setError('dataUser.zipCode', { type: 'custom' , message: '' })
-            setZip(true)
-            setValueDataUser(data)
         }
     },[]) 
 

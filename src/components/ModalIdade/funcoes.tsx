@@ -1,3 +1,5 @@
+import { fetchdate } from "@/services/dateService"
+
 let dia = 0
 const Mes = 12
 let anoBix = true
@@ -117,13 +119,14 @@ const anoBissexto = (ano :EventTarget) => {
     }
 }
 
-const ano = () => {
+const ano = async() => {
+    const anoAtual = await fetchdate()
     const campodia = document.querySelector(".ano .list")! as HTMLDivElement
 
     campodia.innerHTML = ""
     const arrayDias:string[] = []
     arrayDias.push("AAAA")
-    for (let i = 2024; i >= 1900; i--) {
+    for (let i = anoAtual; i >= anoAtual-110 ; i--) {
         arrayDias.push(String( i ))
     }
 

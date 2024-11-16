@@ -18,6 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { regexAge, regexCel, regexNickName_Email, regexZipCode } from "@/components/funcoes/funcoesForm";
 import { useIdadeContext } from "@/contexts/contextIdade";
 import { UsePopUp } from "@/contexts/contextNotificacao";
+import { FetchApiZipCode, fetchCurrentDate } from "@/services/dateZipCodeService";
 const designer = localFont({src:"../fonts/designer.otf"})
 
 const schamaForm = z.object({
@@ -50,8 +51,9 @@ export default function Perfil() {
     const [ reloudPerfil  , setReloudPerfil ] = useState(0)
     const { setPermicaoReloud } = useIdadeContext()
     const { setMsgPopUp } = UsePopUp()
+    const [ zip ,setZip ] = useState(true)
 
-    const { handleSubmit , register, setValue , formState: { errors } } = useForm<formProps>({
+    const { handleSubmit , register, watch , setError , setValue , formState: { errors } } = useForm<formProps>({
         criteriaMode: "all",
         mode: "all",
         resolver: zodResolver(schamaForm),
@@ -68,7 +70,7 @@ export default function Perfil() {
                 address: '',
                 number: '',
             }
-        }
+        },
     })
 
     useEffect(()=>{
@@ -86,11 +88,39 @@ export default function Perfil() {
             setValue('dataUser.number', dataLoginUser.dataUser.number)
         }
     },[dataLoginUser , reloudPerfil ])
+
+    useEffect(()=>{
+        if (watch('dataUser.zipCode').length != 9) return;
+            handleFetch(watch('dataUser.zipCode'))
+        },[ watch('dataUser.zipCode') ])
+        
+    const handleFetch = async(zipCode: string) => {        
+        const getZipCode = await fetchCurrentDate(zipCode)
+        if (getZipCode) {
+            setError('dataUser.zipCode', { type: 'custom' , message: '' })
+            setValueDataUser(getZipCode)
+            setZip(true)
+        } else {
+            setError('dataUser.zipCode', { type: 'custom' , message: 'cep invalido' })
+            setZip(false)
+        }
+    }
+
+    const setValueDataUser = (data:FetchApiZipCode) => {
+        setValue('dataUser.city', data.localidade)
+        setValue('dataUser.state', data.estado)
+    }
     
     const handleSubmitData = (data: formProps) => {
         const avatar = window.sessionStorage.getItem('avt')
         const jogosCompradosUser = window.sessionStorage.getItem('login')
         let setDataUser;
+
+        if (!zip) {
+            setError('dataUser.zipCode', { type: 'custom' , message: 'cep invalido' })
+            setMsgPopUp({checked: false , msg: 'Perfil não atualizado!'})
+            return
+        }
         
         //verifica se o usuário trocou o E-mail
         if (data.dataUser.mail != dataLoginUser?.dataUser.mail) {
@@ -152,6 +182,7 @@ export default function Perfil() {
         window.sessionStorage.setItem(`login`, JSON.stringify(setDataUser))
         setReloud(Math.random() * 10)
         setPermicaoReloud(Math.random() * 10)
+        setMsgPopUp({checked: true , msg: 'Perfil atualizado!'})
     }
 
     const modal = () =>{
@@ -343,7 +374,7 @@ export default function Perfil() {
                             </div>
                         </div>
                         <div className="flex flex-col md:flex-row-reverse justify-center gap-4 pt-7 pb-2">
-                            <Button f_function={()=>setMsgPopUp({checked: true , msg: 'Perfil atualizado!'})} type="submit" style="bg-secundaria text-black">Salvar</Button>
+                            <Button type="submit" style="bg-secundaria text-black">Salvar</Button>
                             <Button f_function={()=>setReloudPerfil(Math.random() * 10)} style="bg-terciaria text-white">Cancelar</Button>
                         </div>
                     </form>

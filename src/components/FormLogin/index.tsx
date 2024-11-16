@@ -11,6 +11,7 @@ import { useDataLogin } from "@/contexts/contexUserLogin"
 import { useEffect, useState } from "react"
 import { PiEye, PiEyeClosed } from "react-icons/pi"
 import { useIdadeContext } from "@/contexts/contextIdade"
+import { UsePopUp } from "@/contexts/contextNotificacao"
 
 const schamaForm = z.object({
     userLogin: z.object({
@@ -23,10 +24,11 @@ type formProps = z.infer<typeof schamaForm>
 
 
 
-export default function Teste() {
+export default function FormLogin() {
     const { setReloud } = useDataLogin()
     const { setPermicaoReloud } = useIdadeContext()
     const router = useRouter()
+    const { setMsgPopUp } = UsePopUp()
 
     useEffect(()=>{
         if (window.sessionStorage.getItem('login')) router.push('/')
@@ -149,7 +151,10 @@ const [ stateOlho , setStateOlho] = useState('password')
                     <div className="w-2/3 bg-gray-600 h-16 m-auto"></div>
                 </div>
                 <div className="flex justify-end my-2">
-                    <Link href={"/cadastro"} className="">Esqueceu a senha?</Link>
+                    <button onClick={()=>{
+                        setMsgPopUp({checked: false , msg: 'função ainda não adicionada'})
+                    }}
+                    className="">Esqueceu a senha?</button>
                 </div>
                 <div className="flex flex-col gap-3">
                     <Button type="submit" style="bg-secundaria text-black">Entrar</Button>
