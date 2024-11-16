@@ -4,6 +4,7 @@ import "./globals.css";
 import Providers from "@/providers/providers";
 import Notificacao from "@/components/Notificacao";
 import PopUpInteractive from "@/components/PopUpInteractive";
+import { Analytics } from "@vercel/analytics/react"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,6 +37,7 @@ export default function RootLayout({
           <Notificacao/>
           <PopUpInteractive/>
         </Providers>
+        <Analytics/>
       </body>
     </html>
   );
