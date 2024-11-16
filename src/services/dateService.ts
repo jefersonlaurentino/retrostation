@@ -4,7 +4,7 @@ interface dateProps {
 
 export const fetchdate = async() => {
     try {
-        const date:dateProps = await fetch('http://worldtimeapi.org/api/timezone/etc/UTC').then(res => res.json())
+        const date:dateProps = await fetch('https://worldtimeapi.org/api/timezone/etc/UTC').then(res => res.json())
         
         return Number(date.datetime.slice(0,4))
     } catch (error) {
