@@ -12,6 +12,7 @@ import { useEffect, useState } from "react"
 import { PiEye, PiEyeClosed } from "react-icons/pi"
 import { useIdadeContext } from "@/contexts/contextIdade"
 import { UsePopUp } from "@/contexts/contextNotificacao"
+import handler from "@/app/login/action"
 
 const schamaForm = z.object({
     userLogin: z.object({
@@ -80,7 +81,8 @@ const handleUserSubmit = (data:formProps) => {
                     return
                 }
             } else {
-                router.push('/')
+                window.location.href = '/';
+                handler()
                 return
             }
         }

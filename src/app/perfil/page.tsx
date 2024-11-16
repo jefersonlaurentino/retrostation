@@ -9,7 +9,6 @@ import { HiMiniArrowRightOnRectangle } from "react-icons/hi2";
 import { useForm } from "react-hook-form"
 import Modal from "@/components/Modal";
 import Image from "next/image";
-import Link from "next/link";
 import { useImagemContext } from "@/contexts/contextFotoPerfil";
 import localFont from "next/font/local";
 import { useDataLogin } from "@/contexts/contexUserLogin";
@@ -19,6 +18,7 @@ import { regexAge, regexCel, regexNickName_Email, regexZipCode } from "@/compone
 import { useIdadeContext } from "@/contexts/contextIdade";
 import { UsePopUp } from "@/contexts/contextNotificacao";
 import { FetchApiZipCode, fetchCurrentDate } from "@/services/dateZipCodeService";
+import { logout } from "../login/action";
 const designer = localFont({src:"../fonts/designer.otf"})
 
 const schamaForm = z.object({
@@ -229,16 +229,18 @@ export default function Perfil() {
                     </div>
 
                     <div className="flex justify-center my-4">
-                        <Link href="/" onClick={()=>{
-                                window.sessionStorage.removeItem("login")
-                                window.sessionStorage.removeItem("avt")
-                                window.sessionStorage.removeItem("idade")
-                                window.sessionStorage.removeItem("comprasCarrinho")
-                                setPermicaoReloud(Math.random() * 10)
-                            }} className="flex items-center gap-2  border-2 p-2 rounded-lg bg-terciaria">
+                        <button onClick={()=>{
+                            logout()
+                            window.location.href = '/'
+                            window.sessionStorage.removeItem("login")
+                            window.sessionStorage.removeItem("avt")
+                            window.sessionStorage.removeItem("idade")
+                            window.sessionStorage.removeItem("comprasCarrinho")
+                            setPermicaoReloud(Math.random() * 10)
+                        }} className="flex items-center gap-2  border-2 p-2 rounded-lg bg-terciaria">
                             <HiMiniArrowRightOnRectangle className="text-2xl"/>
                             <p>Sair da Conta</p>
-                        </Link>
+                        </button>
                     </div>
                     <p className="max-md:hidden">Este site não armazena nenhum dado pessoal. Insira informações válidas para uma melhor experiência.</p>
                 </aside>
