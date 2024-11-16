@@ -31,9 +31,6 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <p>Olá, Seja muito bem-vindo! Eu sou a <strong>Joy Stick</strong>, sua assistente virtual. Gostaria de saber mais sobre como a RetroStation funciona e tudo o que você pode explorar por aqui?</p>
         </>
         
-
-        // Aqui, você encontra desde jogos icônicos até relíquias raras da Era de Ouro dos videogames. Que tal conhecer mais sobre o RetroStation?
-        
         setPopUpMsg({
             msg: text, 
             buttonLeft: { 
@@ -73,9 +70,9 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
     const textSaldacao3 = () => {
         const text = 
             <>
-                <h4 className="mb-3 max-sm:mb-2 text-center text-2xl leading-none">Experiêcia e Privacidade</h4>
+                <h4 className="mb-3 max-sm:mb-2 text-center text-2xl leading-none">Experiência e Privacidade</h4>
                 <p>
-                    Para uma melhor experiêcia, forneça informações válidas. O Site não armazena seus dados, eles são salvos temporariamente no SessionStorage. Portanto, será necessário realizar um novo cadastro sempre que retornar.
+                    Para uma melhor experiência, forneça informações válidas. O Site não armazena seus dados, eles são salvos temporariamente no SessionStorage. Portanto, será necessário realizar um novo cadastro sempre que retornar.
                 </p>
             </>
 
