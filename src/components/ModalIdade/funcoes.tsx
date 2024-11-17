@@ -70,13 +70,6 @@ const escolheMes = (mes:EventTarget) => {
             document.querySelector(".dia p")!.textContent = "DD"
         }
     } else {
-        console.log(parseFloat(campoDia!.firstChild!.firstChild!.firstChild!.textContent!) >= 29 && anoBix && mesSelect == 2);
-
-        console.log(parseFloat(campoDia!.firstChild!.firstChild!.firstChild!.textContent!) >= 29);
-        console.log(anoBix);
-        console.log(mesSelect == 2);
-        
-        
         if (parseFloat(campoDia!.firstChild!.firstChild!.firstChild!.textContent!) >= 29 && anoBix && mesSelect == 2) {
             dia = 29
             if (parseFloat(campoDia!.firstChild!.firstChild!.firstChild!.textContent!) >= 30) {
@@ -196,11 +189,9 @@ const camposPreenchidos = () => {
     const Ano = document.querySelectorAll('.campos_idade p')[2] as HTMLDivElement
     
     if (Dia.getAttribute("data-preenchido") && Mes.getAttribute("data-preenchido") && Ano.getAttribute("data-preenchido")) {
-        console.log(true);
         return true
         
     } else {
-        console.log(false);
         return false   
     }
 }

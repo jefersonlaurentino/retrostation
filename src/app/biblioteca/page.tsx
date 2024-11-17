@@ -10,26 +10,6 @@ import Rodape from "@/components/Rodape";
 
 const designer = localFont({src: "../fonts/designer.otf"})
 
-// type typeJogos = {
-//     id: string;
-//     titulo: string;
-//     descricao: string[];
-//     desenvolvedor: string;
-//     editora: string;
-//     dataLançamento: string;
-//     generos: string[];
-//     recursos: string[];
-//     promocao: boolean;
-//     faixaEtaria: string;
-//     banner: string;
-//     bannerName: string;
-//     imagens: string[];
-//     video: string[]
-//     destaques: string[]
-//     valorAnterior: string;
-//     valorAtual: string;
-// }
-
 export type typeJogos = {
     id: string;
     titulo: string;
@@ -52,15 +32,18 @@ export type typeJogos = {
 export default function BibliotecaJogos() {
     const [ jogosNaBiblioteca , setJogosNaBiblioteca ] = useState<typeJogos[] | null>(null)
     useEffect(()=>{
+        // verifica se tem login
         const usuario = window.sessionStorage.getItem('login');
         if (usuario) {
-            const test:datauserProps = JSON.parse(usuario)
-            if (test.dataUser.jogosComprados) {
-                setJogosNaBiblioteca(jogosEncontrado(test.dataUser.jogosComprados));
+            const jogoUsuario:datauserProps = JSON.parse(usuario)
+            // verifica se tem jogos comprados
+            if (jogoUsuario.dataUser.jogosComprados) {
+                setJogosNaBiblioteca(jogosEncontrado(jogoUsuario.dataUser.jogosComprados));
             }
         }
     },[])
     
+    // jogos encontrados na biblioteca
     const jogosEncontrado = (jogosUsuario: string[]) =>{
         return jogos.filter(jogo=>jogosUsuario.includes(jogo.id))
     }
@@ -91,7 +74,7 @@ export default function BibliotecaJogos() {
                             </article>
                         )
                         :
-                        <ModalErro text="Nenhum jogo encontrado na biblioteca." height="h-[calc(100dvh-125px)]" linkHidden="hidden"/>
+                        <ModalErro text="Nenhum jogo encontrado na biblioteca." height="h-[calc(100vh-120px)]" linkHidden="hidden"/>
                     }
                 </section>
             </main>

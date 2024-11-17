@@ -11,9 +11,11 @@ import { useRouter , usePathname} from "next/navigation";
 import { useContextItensCart } from "@/contexts/contextItensCart";
 import Link from "next/link";
 import { UsePopUp } from "@/contexts/contextNotificacao";
+import StaticText from "./StaticText";
 
 const designer = localFont({src:"../../app/fonts/designer.otf"})
 
+// mostra a imagem ou video da galeria selecionado na tela maior em destaque para o usuário conseguir ver melhor
 const verImagemProduto =  (evt:EventTarget) => {
     const mostrar = document.querySelector(".ver")!
     const seta = mostrar.lastChild!.previousSibling
@@ -41,16 +43,19 @@ const verImagemProduto =  (evt:EventTarget) => {
     mostrar.insertBefore(imagem, seta)
 }
 
+// animação de mostra as setas
 const mostraSetas = () => {
     document.querySelector(".setaL")?.classList.add("translate-x-10")
     document.querySelector(".setaR")?.classList.add("-translate-x-10")
 }
 
+// animação de ocultar as setas
 const ocutarSetas = () => {
     document.querySelector(".setaL")?.classList.remove("translate-x-10")
     document.querySelector(".setaR")?.classList.remove("-translate-x-10")
 }
 
+// função das setas que seleciona a próxima item da galeria
 const proximaImagem = (evt:EventTarget) => {
     const seta = evt as HTMLDivElement
     const galeria = document.querySelector(".galeria")?.childNodes
@@ -86,6 +91,7 @@ const proximaImagem = (evt:EventTarget) => {
     
 }
 
+// tira o foco de todos os elemento da galeria
 const limparGaleria = () => {
     const galeria = document.querySelector(".galeria")?.childNodes
     
@@ -128,29 +134,35 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
     const { totalItensCart , setTotalItensCart } = useContextItensCart()
     const { setMsgPopUp } = UsePopUp()
 
+    //function compra o jogo
     const comprar = (evt: React.MouseEvent<HTMLButtonElement> , id: string) => {
         if (evt.currentTarget.textContent == "Comprar") {
-            
+            // verifica se tem login se não leva ao login
             if (!window.sessionStorage.getItem('login')) {
+                // set 'pageProduto' para voltar a página de compra para o usuário efetuar a compra
                 window.sessionStorage.setItem('pageProduto', `/comprar-${id}`)
                 Router.push('/login');
                 return
             }
+
             Router.push('/comprar')
-            console.log('inter els');
             window.sessionStorage.setItem('cart' , JSON.stringify([id]))
             
             return
         }
 
+        // funcion para adicionar ao carrinho
+        const getCarrinhoCompras = window.sessionStorage.getItem('comprasCarrinho')
+
+        // verifica se tem login
         if (!window.sessionStorage.getItem('login')) {
+            // set 'pageProduto' para voltar a página do jogo que ele estava
             window.sessionStorage.setItem('pageProduto', pathName)
             Router.push('/login');
             return
         }
-        
-        const getCarrinhoCompras = window.sessionStorage.getItem('comprasCarrinho')
     
+        // verifica se está no carrinho
         if (getCarrinhoCompras) {
             if (getCarrinhoCompras.includes(id)) {
                 setMsgPopUp({checked: false , msg: 'Produto Já adicionado!'})
@@ -158,6 +170,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
             }
         }
     
+        // adiciona no carrinho
         if (getCarrinhoCompras) {
             let setCarrinho = JSON.parse(getCarrinhoCompras)
             setCarrinho = setCarrinho = [
@@ -176,6 +189,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
     }
 
     useEffect(()=>{
+        // foca no primeiro item da galeria de imagens e video do jogo
         const galeria = document.querySelector(".galeria")?.firstChild
         const focus = galeria!.lastChild as HTMLDivElement
         focus.classList.remove("bg-black/50")
@@ -212,7 +226,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                     <div className="relative w-10/12 max-w-[500px] m-auto">
                         <SlArrowLeft className="absolute p-1 rounded-full text-3xl bg-neutral-800 text-white -translate-y-1/2 left-0 top-1/2 max-sm:hidden"/>
                         <SlArrowRight className="absolute p-1 rounded-full text-3xl bg-neutral-800 text-white -translate-y-1/2 right-0 top-1/2 max-sm:hidden"/>
-                        <div className="galeria flex gap-1 py-2 m-auto w-10/12 min-w-[250px] max-w-[450px] overflow-y-hidden">
+                        <div className="galeria flex gap-1 py-2 m-auto mb-3 w-10/12 min-w-[250px] max-w-[450px] overflow-y-hidden">
                             {video.map((video , index)=>
                                 <div key={index} className="border-4 md:border-2 border-transparent rounded-lg cursor-pointer relative">
                                     <div className="video w-[93px] h-[67px] overflow-hidden rounded-lg">
@@ -248,7 +262,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                             width={90}
                             height={90}
                             alt="Nome do jogo"
-                            className="w-3/4 m-auto py-20 max-md:hidden"
+                            className="w-3/4 max-h-80 m-auto py-20 max-md:hidden"
                         />
                         <div className="flex gap-3 items-center justify-center mb-3">
                             {promocao && valorAtual != 'Grátis' &&
@@ -327,82 +341,8 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                                 </div>
                             </div>
                         </div>
-
-                        <section className="bg-neutral-900 text-white p-4">
-                            <h3>Requisitos de sistema de {titulo}</h3>
-                            <h4 className="mt-6 underline">Windows</h4>
-                            <div className="requesitos flex gap-4">
-                                <div className="w-1/2">
-                                    <div>
-                                        <h5>Versão do SO</h5>
-                                        <p>Windows 10 64-bit</p>
-                                    </div>
-                                    <div>
-                                        <h5>Processador</h5>
-                                        <p>Intel i5-4670k or AMD Ryzen 3 1200</p>
-                                    </div>
-                                    <div>
-                                        <h5>Memória</h5>
-                                        <p>8 GB</p>
-                                    </div>
-                                    <div>
-                                        <h5>Placa de vídeo</h5>
-                                        <p>NVIDIA GTX 1060 (6GB) or AMD RX 5500 XT (8GB) or Intel Arc A750</p>
-                                    </div>
-                                    <div>
-                                        <h5>DirectX</h5>
-                                        <p>DirectX 12</p>
-                                    </div>
-                                    <div>
-                                        <h5>Armazenamento</h5>
-                                        <p>190 GB</p>
-                                    </div>
-                                    <div>
-                                        <h5>Observações adicionais</h5>
-                                        <p>Windows version 2004 2020-05-27 19041</p>
-                                    </div>
-                                    <div>
-                                        <h5>Contas para login obrigatórias</h5>
-                                        <p>PlayStation Network</p>
-                                    </div>
-                                    <div>
-                                        <h5>Idiomas suportados</h5>
-                                        <p>Áudio: Italiano, Japonês, Alemão, Grego, Inglês, Francês, Árabe, Espanhol (América Latina), Russo, Espanhol (Espanha), Português (Brasil), Polonês, Português
-                                        Texto: Húngaro, Coreano, Tcheco, Holandês, Turco, Tailandês, Árabe, Francês, Inglês, Português (Brasil), Russo, Espanhol (América Latina), Polonês, Português, Italiano, Chinês (tradicional), Japonês, Croata, Alemão, Espanhol (Espanha), Grego, Chinês (simplificado)</p>
-                                    </div>
-                                
-                                </div>
-
-                                <div className="w-1/2">
-                                    <div>
-                                        <h5>Versão do SO</h5>
-                                        <p>Windows 10 64-bit</p>
-                                    </div>
-                                    <div>
-                                        <h5>Processador</h5>
-                                        <p>Intel i5-4670k or AMD Ryzen 3 1200</p>
-                                    </div>
-                                    <div>
-                                        <h5>Memória</h5>
-                                        <p>8 GB</p>
-                                    </div>
-                                    <div>
-                                        <h5>Placa de vídeo</h5>
-                                        <p>NVIDIA GTX 1060 (6GB) or AMD RX 5500 XT (8GB) or Intel Arc A750</p>
-                                    </div>
-                                    <div>
-                                        <h5>DirectX</h5>
-                                        <p>DirectX 12</p>
-                                    </div>
-                                    <div>
-                                        <h5>Armazenamento</h5>
-                                        <p>190 GB</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                        <StaticText titulo={titulo} />
                     </article>
-
                 </div>
             </div>
         </main>

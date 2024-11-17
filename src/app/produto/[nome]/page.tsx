@@ -25,13 +25,14 @@ export default function Produto() {
     })
 
     useEffect(()=>{
-
+        // verifica se o usuário pode ver o conteúdo do jogo
         const faixaEtariaRecomendada = jogos.find((j) => j.titulo.toLocaleLowerCase() === tituloJogo.toLocaleLowerCase())
 
         if (faixaEtariaRecomendada) {
             setIdadePermitida(Number(faixaEtariaRecomendada.faixaEtaria))
         }
 
+        //verifica se está logado
         const getuserLogin = window.sessionStorage.getItem('login')
         if (getuserLogin) {
             const userLogin = JSON.parse(getuserLogin)

@@ -73,11 +73,13 @@ const handleUserSubmit = (data:formProps) => {
                 if (id > 0) {
                     window.sessionStorage.setItem('cart', JSON.stringify([produto!.slice( id + 1, produto!.length)]))
                     window.sessionStorage.removeItem('pageProduto')
+                    handler()
                     router.push(produto!.slice(0 , id))
                     return
                 } else {
-                    window.sessionStorage.removeItem('pageProduto')
                     router.push(window.sessionStorage.getItem('pageProduto')!)
+                    handler()
+                    window.sessionStorage.removeItem('pageProduto')
                     return
                 }
             } else {

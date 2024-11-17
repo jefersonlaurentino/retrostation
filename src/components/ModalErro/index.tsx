@@ -16,7 +16,7 @@ export default function ModalErro({text , height , linkHidden }: {text:string , 
                         priority
                         sizes="(max-width: 450px) 150px"
                         alt="imagem da joy stick argumentando."
-                        className="max-sm:w-54 max"
+                        className="max-sm:w-54"
                     />
                 </div>
             </section>

@@ -15,6 +15,14 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'upload.wikimedia.org',
             },
+            {
+                protocol: 'https',
+                hostname: 'en.wikipedia.org',
+            },
+            {
+                protocol: 'https',
+                hostname: 'i.pinimg.com',
+            },
         ],
     },
     reactStrictMode: true,

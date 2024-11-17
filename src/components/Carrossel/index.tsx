@@ -7,7 +7,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
 
 export default function Carrossel() {
-    const jogosDestaques = jogos.filter((jogo)=>jogo.destaques.includes('destaques'))
+    const jogosDestaques = jogos.filter((jogo)=>jogo.destaques.includes('carrossel'))
 
     let index = 0
 
@@ -17,9 +17,9 @@ export default function Carrossel() {
     },[])
 
     useEffect(()=>{
+        const count = document.querySelectorAll(".slide")
+        const inputs = document.querySelectorAll("input[type='radio']")
         const efeitoCarrossel = setInterval(()=>{
-            const count = document.querySelectorAll(".slide")
-            const inputs = document.querySelectorAll("input[type='radio']")
             const arraySlide = []
             count.forEach((el)=>arraySlide.push(el))
             
@@ -27,7 +27,7 @@ export default function Carrossel() {
                 index = -1
             }
             index++
-            efeitoAnimado(inputs[index], Number(inputs[index].id.slice(-1)))
+            efeitoAnimado(inputs[index], Number(inputs[index].id.slice(5)))
         },5000)
 
         return () => clearInterval(efeitoCarrossel)
@@ -71,17 +71,20 @@ export default function Carrossel() {
         const arrows = document.querySelector(".div_arrow")!.children
         if (Element == arrows[0]) {
             if (index == 0) {
-                
-                index = 3
+                index = arraySlide.length-1
             } else {
                 index--
             }
         } else {
-            if (index == 3) {
+            if (index == arraySlide.length) {
                 index = 0
             } else {
                 index++
             }
+        }
+
+        if (inputs.length == arraySlide.length && index == inputs.length) {
+            index = 0
         }
         efeitoAnimado(inputs[index], Number(inputs[index].id.slice(-1)))
     }
@@ -116,7 +119,8 @@ export default function Carrossel() {
                             href={`/produto/${jogo.titulo.toLocaleLowerCase()}`}
                             className="slide flex w-[25%] relative max-md:h-44 h-72 duration-1000" 
                             key={jogo.id}
-                            >                                <div className="w-1/2">
+                            >
+                            <div className="w-1/2">
                                 <Image
                                     width={150}
                                     height={150}

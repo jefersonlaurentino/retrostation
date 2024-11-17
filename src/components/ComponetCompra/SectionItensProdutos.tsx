@@ -99,7 +99,7 @@ export default function SectionItensProdutos() {
 
     return(
         <>
-        <section className='flex gap-2 max-md:flex-col max-h-[calc(100vh-48px)] max-w-screen-xl m-auto'>
+        <section className='flex gap-2 max-md:flex-col max-h-[calc(100dvh-48px)] max-w-screen-xl m-auto'>
             <div className="max-sm:h-3/5 md:w-3/4 pb-2 overflow-x-hidden">
             <div className="columns-3xs gap-3 mx-3">
                 { reloudCart ?
