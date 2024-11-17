@@ -17,6 +17,9 @@ const config: Config = {
         secundaria: "#00B7F2",
         terciaria: "#F42E76",
       },
+      boxShadow: {
+        banner: '0px 0 35px 20px black',
+      },
       width: {
         tamanhoCarrossel: "38rem",
       },

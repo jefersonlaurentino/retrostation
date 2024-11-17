@@ -1,5 +1,5 @@
 
-// import Carrossel from "../components/Carrossel";
+import Carrossel from "../components/Carrossel";
 import Header from "../components/Header";
 import Card from "../components/Card";
 import localFont from "next/font/local";
@@ -17,7 +17,7 @@ const secao = [
   return (
     <>
     <Header/>
-    {/* <Carrossel/> */}
+    <Carrossel/>
     <main>
       {secao.map((secao)=>secao && 
         <section className="w-11/12 m-auto my-6" key={secao}>
