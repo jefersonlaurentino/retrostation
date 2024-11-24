@@ -31,9 +31,6 @@ export default function SectionItensProdutos() {
         if (getCart) {
             setArrayCartJogos(jogos.filter(jogo => getListJogos.includes(jogo.id)))
         }
-        
-        // window.addEventListener('resize', tamanhoCard)
-        // setTimeout(tamanhoCard,220)
         setReloudCart(true)
     },[])
 
@@ -71,8 +68,6 @@ export default function SectionItensProdutos() {
             }
 
             setArrayCartJogos(arrayCartJogos?.filter(j=>j.id != cardJogo.id))
-            
-            // tamanhoCard()
             setTotalItensCart(totalItensCart-1)
         }
 
@@ -99,8 +94,8 @@ export default function SectionItensProdutos() {
 
     return(
         <>
-        <section className='flex gap-2 max-md:flex-col max-h-[calc(100dvh-48px)] max-w-screen-xl m-auto'>
-            <div className="max-sm:h-3/5 md:w-3/4 pb-2 overflow-x-hidden">
+        <section className='flex gap-2 max-md:flex-col max-h-[calc(100vh-70px)] max-w-screen-xl m-auto'>
+            <div className="max-sm:h-3/5 md:w-3/4 md:max-h-[calc(100%-30px)] pb-2 overflow-x-hidden">
             <div className="columns-3xs gap-3 mx-3">
                 { reloudCart ?
                     (arrayCartJogos ?
@@ -154,7 +149,7 @@ export default function SectionItensProdutos() {
                             </article>
                         ))
                         :
-                        <ModalErro text="desculpa sem items no carrinho" height="absolute w-[calc(100%-20px)] h-[calc(100dvh-65px)]"/>
+                        <ModalErro text="desculpa sem items no carrinho" height="absolute w-[calc(100%-25px)] h-[calc(100dvh-65px)]"/>
                     )
                     : 
                     <div>carregando....</div>

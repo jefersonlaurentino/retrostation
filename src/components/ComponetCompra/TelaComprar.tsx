@@ -31,11 +31,11 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                     </div>
                     <div className="flex justify-between border-b px-2">
                         <p>Preço:</p>
-                        <p>R$ {data.valorTotal}</p>
+                        <p>R$ {data.valorTotal.toFixed(2)}</p>
                     </div>
                     <div className="flex justify-between px-2 border-b">
                         <p>Desconto:</p>
-                        <p>-R$ {data.valorDesconto}</p>
+                        <p>-R$ {data.valorDesconto.toFixed(2)}</p>
                     </div>
                 </section>
                 <section className="flex md:flex-col justify-between max-sm:items-center gap-2 p-2 bg-neutral-950 text-white max-sm:absolute bottom-0 w-full z-20">

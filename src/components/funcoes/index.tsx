@@ -41,7 +41,7 @@ const jogos = [
     banner: "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/e8ae1f733bc7d3b05c506de67f4b4f7f.jpg?im=Resize=640",
     bannerName: "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/a4863c27d856c6ce47b49aed738df14a.png",
     imagens: [ "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/9a12941047f5ff6b6e244a08cdc762da.jpg", "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/40c5a67e7ac7061dd9d76ead5b0e9555.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/2b68a28ff744321feca3a1cd814536f0.jpg" , "https://media-rockstargames-com.akamaized.net/mfe6/prod/__common/img/749ace7c507d0c8b25d34d0deeb37001.jpg" ],
-    video: [ "axe9aGcTTWg" , "FPhyhAM41K8" ],
+    video: [ "p4lcBHED9hE" , "FPhyhAM41K8" ],
     destaques: [ "corrida"],
     valorAnterior: "128,00",
     valorAtual: "28,00"

@@ -12,12 +12,14 @@ import { useEffect, useState } from "react"
 import { PiEye, PiEyeClosed } from "react-icons/pi"
 import { useIdadeContext } from "@/contexts/contextIdade"
 import { UsePopUp } from "@/contexts/contextNotificacao"
-import handler from "@/app/login/action"
+import handler from "@/app/login/action";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const schamaForm = z.object({
     userLogin: z.object({
         mail: z.string().email('E-mail invalido'),
-        password: z.string().min( 1,'senha obrigatório').trim().transform(value=>value.replace(/\s+/g,''))
+        password: z.string().min( 1,'senha obrigatório').trim().transform(value=>value.replace(/\s+/g,'')),
+        recaptcha: z.boolean({required_error: 'Preencha o reCAPTCHA'})
     })
 })
 
@@ -51,12 +53,13 @@ export default function FormLogin() {
         defaultValues: {
             userLogin: {
                 mail: '',
-                password: ''
+                password: '',
             }
         }
     })
     
 const handleUserSubmit = (data:formProps) => {
+    
     const getUser = window.sessionStorage.getItem(`user${data.userLogin.mail}`)
     if (getUser) {
         const usuario = JSON.parse(getUser)
@@ -105,6 +108,8 @@ const [ stateOlho , setStateOlho] = useState('password')
             olhoFechado?.classList.add("hidden")
         }
     }
+
+    const keyReCaptcha = '6Ld604gqAAAAAKBSGewbmbsSiFSsog4Sz7LLrCMK';
     
     return(
         <>
@@ -151,8 +156,19 @@ const [ stateOlho , setStateOlho] = useState('password')
                 </div>
             </div>
             <div>
-                <div className="w-full mt-3">
-                    <div className="w-2/3 bg-gray-600 h-16 m-auto"></div>
+                <div className="w-full my-3 h-24 flex flex-col items-center">
+                    <ReCAPTCHA 
+                        {...register('userLogin.recaptcha')}
+                        sitekey={keyReCaptcha}
+                        onChange={(e)=>{
+                            if (e) {
+                                setValue('userLogin.recaptcha',true)
+                            } else {
+                                setValue('userLogin.recaptcha',false)
+                            }
+                        }}
+                    />
+                    {errors.userLogin?.recaptcha?.message && <p className="w-full text-red-600">{errors.userLogin.recaptcha.message}</p>}
                 </div>
                 <div className="flex justify-end my-2">
                     <button onClick={()=>{

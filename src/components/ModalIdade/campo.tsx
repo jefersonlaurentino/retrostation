@@ -119,7 +119,7 @@ const verificaPermissao = ()=>{
         }
 
         verificaPermissao()
-    },[permicaoReloud])
+    },[permicaoReloud , idadePermitida , idadeUsuario])
 
     return (
         <>
