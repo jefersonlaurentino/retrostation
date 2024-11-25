@@ -8,7 +8,7 @@ import FormLogin from "@/components/FormLogin";
 export default function Login() {
     return(
         <>
-        <div className="flex flex-col justify-center items-center h-screen bg-black">
+        <div className="flex flex-col justify-center items-center h-dvh bg-black">
             <section className="flex flex-col w-10/12 md:max-w-[900px] rounded-lg bg-primaria overflow-hidden text-black">
                 <div className="flex">
                     <FormLogin/>

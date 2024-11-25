@@ -11,7 +11,7 @@ const designer = localFont({src:"./fonts/designer.otf"})
 export default function Home() {
 
 const secao = [
-  "Destaques", "Corrida" , "aventura" , "Gta"
+  "Destaques", "Corrida" , "aventura"
 ]
 
   return (

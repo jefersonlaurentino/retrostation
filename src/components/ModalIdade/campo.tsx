@@ -19,27 +19,9 @@ export default function Campo(){
             const Dia = document.querySelectorAll('.campos_idade p')[0] as HTMLDivElement
             const Mes = document.querySelectorAll('.campos_idade p')[1] as HTMLDivElement
             const Ano = document.querySelectorAll('.campos_idade p')[2] as HTMLDivElement
-            
-            // const dataNascimento = new Date(`${Number(Ano.textContent)},${Number(Mes.textContent)},${Number(Dia.textContent)}`)
-            // const dataHoje = new Date()
-
-            // const anoNascimento = dataHoje.getFullYear() - dataNascimento.getFullYear();
-            // const mesNascimento = dataHoje.getMonth() - dataNascimento.getMonth();
-            // const diaNascimento = dataHoje.getDate() - dataNascimento.getDate();
 
             window.sessionStorage.setItem("idade", `${Dia.textContent}/${Mes.textContent}/${Ano.textContent}`)
 
-
-            // Verifica se já tem a idade recomendade
-            // if (anoNascimento > idadePermitida || (anoNascimento === idadePermitida && (mesNascimento > 0 || (mesNascimento === 0 && diaNascimento >= 0)))) {
-            //     // router.push(`/produto/${idJogo}`)
-            // } else {
-            //     window.sessionStorage.setItem("idade", (anoNascimento -1).toString())
-            //     document.querySelector(".msg_recusado")?.classList.remove("hidden")
-            //     document.querySelector(".msg_padrao")?.classList.add("hidden")
-            //     document.querySelector(".div_idades")?.classList.add("hidden")
-            //     document.querySelector(".entrar")?.classList.add("hidden")
-            // }
             setPermicaoReloud(Math.random() * 10)
         }
     }
@@ -103,13 +85,8 @@ const verificaPermissao = ()=>{
     useEffect(()=>{
         
         const getIdade = window.sessionStorage.getItem('idade')
-        console.log(getIdade);
-        console.log(window.sessionStorage.getItem('login'));
-        console.log(idadeUsuario);
-        console.log((getIdade && Number(getIdade) < idadePermitida) || idadeUsuario==false);
         if (window.sessionStorage.getItem('login') || window.sessionStorage.getItem('idade')) {
             if ((getIdade && Number(getIdade) < idadePermitida) || !idadeUsuario ) {
-                console.log("entrou if");
                 document.querySelector(".msg_recusado")?.classList.remove("hidden")
                 document.querySelector(".msg_padrao")?.classList.add("hidden")
                 document.querySelector(".div_idades")?.classList.add("hidden")

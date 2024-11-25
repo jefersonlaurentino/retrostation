@@ -51,7 +51,7 @@ export default function Produto() {
     return(
         <>
             { (jogo) ? 
-                (idadeUsuario)?
+                (idadeUsuario || jogo.faixaEtaria === "livre")?
                     <>
                         <InformacoesProduto 
                             id={jogo.id}

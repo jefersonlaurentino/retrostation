@@ -31,7 +31,6 @@ const FaixaEtariaProvider = ({ children }: { children: ReactNode }) => {
   useEffect(()=>{
     if (idadePermitida != 0) {
       window.sessionStorage.setItem('idadePermitida', idadePermitida.toString())
-
     }
   },[idadePermitida])
 

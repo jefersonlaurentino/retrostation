@@ -208,7 +208,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                     <div className="ver relative w-10/12 h-[186px] md:h-[300px] max-w-[500px] rounded-lg m-auto overflow-hidden" onMouseMove={mostraSetas} onMouseOut={ocutarSetas}>
                         <div className="video">
                             {video[0] ? 
-                            <iframe width="560" src={`https://www.youtube.com/embed/${video[0]}`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen>
+                            <iframe width="560" src={`https://www.youtube.com/embed/${video[0]}?autoplay=1`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen>
                             </iframe> : <div className="img">
                                 <Image
                                     src={imagens[0]}
@@ -224,8 +224,6 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                     </div>
 
                     <div className="relative w-10/12 max-w-[500px] m-auto">
-                        <SlArrowLeft className="absolute p-1 rounded-full text-3xl bg-neutral-800 text-white -translate-y-1/2 left-0 top-1/2 max-sm:hidden"/>
-                        <SlArrowRight className="absolute p-1 rounded-full text-3xl bg-neutral-800 text-white -translate-y-1/2 right-0 top-1/2 max-sm:hidden"/>
                         <div className="galeria flex gap-1 py-2 m-auto mb-3 w-10/12 min-w-[250px] max-w-[450px] overflow-y-hidden">
                             {video.map((video , index)=>
                                 <div key={index} className="border-4 md:border-2 border-transparent rounded-lg cursor-pointer relative">
@@ -261,7 +259,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                             src={bannerName}
                             width={90}
                             height={90}
-                            alt="Nome do jogo"
+                            alt={`Logo do jogo ${titulo}`}
                             className="w-3/4 max-h-80 m-auto py-20 max-md:hidden"
                         />
                         <div className="flex gap-3 items-center justify-center mb-3">
@@ -319,7 +317,8 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                                 <IoLogoWindows className="mr-2"/>
                             </div>
                         </div>
-                        <button className="flex items-center gap-3 bg-neutral-700 px-2 py-1 rounded-lg">
+                        <button
+                            className="flex items-center gap-3 bg-neutral-700 px-2 py-1 rounded-lg">
                             <BsShare />
                             Compartilhar
                         </button>
