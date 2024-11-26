@@ -3,7 +3,7 @@ import { verificaFaixaEtaria } from "@/contexts/FaixaEtariaJogo";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { calculoDesconto } from "../funcoes";
 import Image from "next/image";
-import React from "react";
+import React, { useCallback } from "react";
 import { dataJogoProps } from "./funcoesPageComprar";
 import { jogos } from '../../components/funcoes/index'
 import { useEffect, useState } from 'react';
@@ -23,74 +23,73 @@ export default function SectionItensProdutos() {
     const [ arrayCartJogos , setArrayCartJogos] = useState<Array<dataJogoProps>>();
     const [ inforValueCart , setInforValueCart ] = useState<inforCart | undefined>()
     const [ reloudCart , setReloudCart ] = useState<boolean>(false)
-    let getListJogos: string[];
-    const arrayIdJogos:string[]=[]
     useEffect(()=>{
         const getCart = window.sessionStorage.getItem('cart')
-        getListJogos = JSON.parse(getCart!)
+        const getListJogos = JSON.parse(getCart!)
         if (getCart) {
             setArrayCartJogos(jogos.filter(jogo => getListJogos.includes(jogo.id)))
         }
         setReloudCart(true)
-    },[])
-
-    const valorApagar = () =>{
-            const jogoPromo = arrayCartJogos!.filter((j)=>j.promocao===true)
-            
-            let valorDesconto: number=0;
-            const arrayIdJogos:string[]=[];
-            let valueJogos = 0
-            if (jogoPromo) {
-                jogoPromo.map((j)=>{
-                    if (j.valorAtual != 'Grátis') {
-                        valorDesconto+=(parseFloat(j.valorAnterior.replace(/,/g,'.'))-parseFloat(j.valorAtual.replace(/,/g,'.')))
-                    }
-                })
-            } 
-            
-            arrayCartJogos?.forEach(j=>{
+    },[ ])
+    
+    const valorApagar = useCallback(() =>{
+        const jogoPromo = arrayCartJogos!.filter((j)=>j.promocao===true)
+        
+        let valorDesconto: number=0;
+        const arrayIdJogos:string[]=[];
+        let valueJogos = 0
+        if (jogoPromo) {
+            jogoPromo.map((j)=>{
                 if (j.valorAtual != 'Grátis') {
-                    valueJogos += parseFloat(j.valorAnterior.replace(/,/g,'.'))
+                    valorDesconto+=(parseFloat(j.valorAnterior.replace(/,/g,'.'))-parseFloat(j.valorAtual.replace(/,/g,'.')))
                 }
-            });
-            arrayCartJogos?.forEach((jogo)=>arrayIdJogos.push(jogo.id))
-            const re:inforCart = { valorDesconto , totalItems: arrayCartJogos!.length , valorTotal: valueJogos , arrayJogos: JSON.stringify(arrayIdJogos)}
-            
-            setInforValueCart(re)
+            })
         }
-
-        const removeJogo = (evt: React.MouseEvent<HTMLButtonElement>) =>{
-            const buttonClick = evt.currentTarget.parentNode?.parentNode?.parentNode
-            const cardJogo =  buttonClick as HTMLDivElement
-            
-            if (window.sessionStorage.getItem('cart')?.length === window.sessionStorage.getItem('comprasCarrinho')?.length && window.sessionStorage.getItem('cart')?.length === 6) {
-                window.sessionStorage.removeItem('comprasCarrinho')
+        
+        arrayCartJogos?.forEach(j=>{
+            if (j.valorAtual != 'Grátis') {
+                valueJogos += parseFloat(j.valorAnterior.replace(/,/g,'.'))
             }
-
-            setArrayCartJogos(arrayCartJogos?.filter(j=>j.id != cardJogo.id))
-            setTotalItensCart(totalItensCart-1)
+        });
+        arrayCartJogos?.forEach((jogo)=>arrayIdJogos.push(jogo.id))
+        const re:inforCart = { valorDesconto , totalItems: arrayCartJogos!.length , valorTotal: valueJogos , arrayJogos: JSON.stringify(arrayIdJogos)}
+        
+        setInforValueCart(re)
+    },[ setInforValueCart , arrayCartJogos ])
+    
+    const removeJogo = (evt: React.MouseEvent<HTMLButtonElement>) =>{
+        const buttonClick = evt.currentTarget.parentNode?.parentNode?.parentNode
+        const cardJogo =  buttonClick as HTMLDivElement
+        
+        if (window.sessionStorage.getItem('cart')?.length === window.sessionStorage.getItem('comprasCarrinho')?.length && window.sessionStorage.getItem('cart')?.length === 6) {
+            window.sessionStorage.removeItem('comprasCarrinho')
         }
-
-        useEffect(()=>{
-            if (arrayCartJogos){
-                if (arrayCartJogos.length <= 0) {
-                    window.sessionStorage.removeItem('cart')
-                    setArrayCartJogos(undefined)
-                    return
-                }
-
-                if (window.sessionStorage.getItem('cart')?.includes(window.sessionStorage.getItem('comprasCarrinho')!)) {
-                    arrayCartJogos?.filter((jogo)=>arrayIdJogos?.push(jogo.id))
-                    window.sessionStorage.setItem('cart', JSON.stringify(arrayIdJogos))
-                    window.sessionStorage.setItem('comprasCarrinho', JSON.stringify(arrayIdJogos))
-                    valorApagar() 
+        
+        setArrayCartJogos(arrayCartJogos?.filter(j=>j.id != cardJogo.id))
+        setTotalItensCart(totalItensCart-1)
+    }
+    
+    useEffect(()=>{
+        const arrayIdJogos:string[]=[]
+        if (arrayCartJogos){
+            if (arrayCartJogos.length <= 0) {
+                window.sessionStorage.removeItem('cart')
+                setArrayCartJogos(undefined)
+                return
+            }
+            
+            if (window.sessionStorage.getItem('cart')?.includes(window.sessionStorage.getItem('comprasCarrinho')!)) {
+                arrayCartJogos?.filter((jogo)=>arrayIdJogos?.push(jogo.id))
+                window.sessionStorage.setItem('cart', JSON.stringify(arrayIdJogos))
+                window.sessionStorage.setItem('comprasCarrinho', JSON.stringify(arrayIdJogos))
+                valorApagar() 
                 } else {
                     arrayCartJogos?.filter((jogo)=>arrayIdJogos?.push(jogo.id))
                     window.sessionStorage.setItem('cart', JSON.stringify(arrayIdJogos))
                     valorApagar() 
                 }
             }
-        },[arrayCartJogos])
+        },[arrayCartJogos , valorApagar ])
 
     return(
         <>

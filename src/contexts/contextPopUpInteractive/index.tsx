@@ -249,7 +249,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             abrirPopUpInterativo()
             textSaldacao()
         }
-    },[])
+    },[ textSaldacao ])
 
     return (
         <>

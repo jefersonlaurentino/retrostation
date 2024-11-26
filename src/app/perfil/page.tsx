@@ -3,7 +3,7 @@
 import Button from "@/components/Button";
 import CampoInput from "@/components/CampoInput";
 import Header from "@/components/Header";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { VscEdit } from "react-icons/vsc";
 import { HiMiniArrowRightOnRectangle } from "react-icons/hi2";
 import { useForm } from "react-hook-form"
@@ -87,14 +87,15 @@ export default function Perfil() {
             setValue('dataUser.address', dataLoginUser.dataUser.address)
             setValue('dataUser.number', dataLoginUser.dataUser.number)
         }
-    },[dataLoginUser , reloudPerfil ])
+    },[dataLoginUser , reloudPerfil , setValue ])
 
-    useEffect(()=>{
-        if (watch('dataUser.zipCode').length != 9) return;
-            handleFetch(watch('dataUser.zipCode'))
-        },[ watch('dataUser.zipCode') ])
-        
-    const handleFetch = async(zipCode: string) => {        
+     const setValueDataUser = useCallback((data:FetchApiZipCode) => {
+        setValue('dataUser.city', data.localidade)
+        setValue('dataUser.state', data.estado)
+    },[ setValue ])
+
+    const handleFetch = useCallback(
+        async(zipCode: string) => {        
         const getZipCode = await fetchCurrentDate(zipCode)
         if (getZipCode) {
             setError('dataUser.zipCode', { type: 'custom' , message: '' })
@@ -104,12 +105,12 @@ export default function Perfil() {
             setError('dataUser.zipCode', { type: 'custom' , message: 'cep invalido' })
             setZip(false)
         }
-    }
+    },[ setError , setZip , setValueDataUser ])
 
-    const setValueDataUser = (data:FetchApiZipCode) => {
-        setValue('dataUser.city', data.localidade)
-        setValue('dataUser.state', data.estado)
-    }
+    useEffect(()=>{
+        if (watch('dataUser.zipCode').length != 9) return;
+            handleFetch(watch('dataUser.zipCode'))
+    },[ watch , handleFetch ])
     
     const handleSubmitData = (data: formProps) => {
         const avatar = window.sessionStorage.getItem('avt')

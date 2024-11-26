@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { calculoDesconto, jogos } from "../funcoes" 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
@@ -8,8 +8,7 @@ import Link from "next/link";
 
 export default function Carrossel() {
     const jogosDestaques = jogos.filter((jogo)=>jogo.destaques.includes('carrossel'))
-
-    let index = 0
+    const index = useRef(0)
 
     useEffect(()=>{
         document.querySelectorAll(".slide")[0].classList.add("first")
@@ -23,11 +22,11 @@ export default function Carrossel() {
             const arraySlide = []
             count.forEach((el)=>arraySlide.push(el))
             
-            if (index > arraySlide.length -2) {
-                index = -1
+            if (index.current > arraySlide.length -2) {
+                index.current = -1
             }
-            index++
-            efeitoAnimado(inputs[index], Number(inputs[index].id.slice(5)))
+            index.current++
+            efeitoAnimado(inputs[index.current], Number(inputs[index.current].id.slice(5)))
         },5000)
 
         return () => clearInterval(efeitoCarrossel)
@@ -39,7 +38,7 @@ export default function Carrossel() {
         inputs.forEach((ele)=>{
             array.push(ele)
             if (ele == el) {
-                index = Number(array.indexOf(el))
+                index.current = Number(array.indexOf(el))
                 efeitoAnimado(el, id)
             }
         })
@@ -70,23 +69,23 @@ export default function Carrossel() {
         count.forEach((el)=>arraySlide.push(el))
         const arrows = document.querySelector(".div_arrow")!.children
         if (Element == arrows[0]) {
-            if (index == 0) {
-                index = arraySlide.length-1
+            if (index.current == 0) {
+                index.current = arraySlide.length-1
             } else {
-                index--
+                index.current--
             }
         } else {
-            if (index == arraySlide.length) {
-                index = 0
+            if (index.current == arraySlide.length) {
+                index.current = 0
             } else {
-                index++
+                index.current++
             }
         }
 
-        if (inputs.length == arraySlide.length && index == inputs.length) {
-            index = 0
+        if (inputs.length == arraySlide.length && index.current == inputs.length) {
+            index.current = 0
         }
-        efeitoAnimado(inputs[index], Number(inputs[index].id.slice(-1)))
+        efeitoAnimado(inputs[index.current], Number(inputs[index.current].id.slice(-1)))
     }
     
 

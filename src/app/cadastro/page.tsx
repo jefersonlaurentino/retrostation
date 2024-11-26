@@ -100,10 +100,10 @@ export default function Cadastro() {
     }
     
 
-    const setValueDataUser = (data:dataUserProps) => {
+    const setValueDataUser = useCallback((data:dataUserProps) => {
         setValue('dataUser.city', data.localidade)
         setValue('dataUser.state', data.estado)
-    }
+    },[ setValue ])
 
 
     const handleFetchSubit = useCallback( async(zipCode:string)=>{
@@ -117,12 +117,12 @@ export default function Cadastro() {
             setError('dataUser.zipCode', { type: 'custom' , message: 'cep invalido' })
             setZip(false)
         }
-    },[]) 
+    },[setValueDataUser , setError ]) 
 
     useEffect(()=>{
         if(watch('dataUser.zipCode').length != 9) return;
             handleFetchSubit(watch('dataUser.zipCode'))
-    },[ watch('dataUser.zipCode') ])
+    },[ watch , handleFetchSubit ])
 
     useEffect(()=>{
         if(watch('dataUser.cpf').length != 14) return;
@@ -133,7 +133,7 @@ export default function Cadastro() {
             setCpfValido(true)
             setError('dataUser.cpf', { type: 'custom' , message: '' })
         }
-    },[ watch('dataUser.cpf') ])
+    },[ watch , setError ])
 
     return(
         <>

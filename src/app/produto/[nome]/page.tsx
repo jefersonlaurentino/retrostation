@@ -46,7 +46,7 @@ export default function Produto() {
             }
         }
 
-    },[])
+    },[ jogo?.id , setIdadePermitida , tituloJogo ])
 
     return(
         <>

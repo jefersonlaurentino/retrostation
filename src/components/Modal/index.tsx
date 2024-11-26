@@ -1,7 +1,7 @@
 'use client'
 
 import Image, { StaticImageData } from "next/image"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import sem from "../../../public/image/avatares/sem.jpg"
 import Button from "../Button"
 import { imagensAvatares, useImagemContext } from "@/contexts/contextFotoPerfil"
@@ -15,9 +15,11 @@ const  childClickLock = (e: React.MouseEvent<HTMLDivElement>) => {
 export default function Modal() {
     const { dataLoginUser } = useDataLogin()
     const { setImagemAvatar } = useImagemContext()
+    const [ avatarSelect , setAvatarselect ] = useState(sem)
+    const [ avatarAnterios , setAvatarAnterios ] = useState<string>("")
     const arrayImagensAvatares = imagensAvatares
     
-    const setavt = (avt:string | null) =>{
+    const setavt = useCallback((avt:string | null) =>{
         const avtSelect = avt
         if (avtSelect) {
             arrayImagensAvatares.forEach((avt)=>{
@@ -28,16 +30,14 @@ export default function Modal() {
         } else {
             setAvatarselect(sem)
         }
-    }
+    },[ setAvatarselect , arrayImagensAvatares ])
         
     useEffect(()=>{
         if (dataLoginUser) {
             setavt(dataLoginUser!.dataUser.avatar!)
         }
-    },[dataLoginUser])
+    },[dataLoginUser , setavt ])
     
-    const [ avatarSelect , setAvatarselect ] = useState(sem)
-    const [ avatarAnterios , setAvatarAnterios ] = useState<string>("")
     
     
 const fecharmodal = () =>{

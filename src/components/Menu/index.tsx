@@ -34,7 +34,7 @@ export default function Menu() {
                 setThemeDark('light')
             }
         }
-    },[DarkMode])
+    },[DarkMode , setThemeDark ])
 
     const deixarFeedback = () =>{
         const text = <p>
@@ -54,7 +54,7 @@ export default function Menu() {
             buttonRight: {
                 onClick: () => {
                     fecharPopUpInterativo()
-                    window.open("https://www.linkedin.com/in/jeferson-laurentino-dev", "_blank")
+                    window.open("https://www.linkedin.com/in/jefersonlaurentino", "_blank")
                 },
                 text: "Linkedin",
             },

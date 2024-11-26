@@ -35,7 +35,7 @@ export default function FormLogin() {
 
     useEffect(()=>{
         if (window.sessionStorage.getItem('login')) router.push('/')
-    },[])
+    },[ router ])
 
     const {
         handleSubmit,
