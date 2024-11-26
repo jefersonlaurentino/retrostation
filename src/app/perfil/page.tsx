@@ -107,10 +107,11 @@ export default function Perfil() {
         }
     },[ setError , setZip , setValueDataUser ])
 
+    const zipCode = watch('dataUser.zipCode')
     useEffect(()=>{
-        if (watch('dataUser.zipCode').length != 9) return;
-            handleFetch(watch('dataUser.zipCode'))
-    },[ watch , handleFetch ])
+        if (zipCode.length != 9) return;
+            handleFetch(zipCode)
+    },[ zipCode , handleFetch ])
     
     const handleSubmitData = (data: formProps) => {
         const avatar = window.sessionStorage.getItem('avt')

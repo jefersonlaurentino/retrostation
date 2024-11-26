@@ -140,16 +140,18 @@ const [ stateOlho , setStateOlho] = useState('password')
                         setValue('userLogin.password', valuePassword)
                     }}
                     >
-                    <div className="absolute top-1/2 -translate-y-1/2 right-1 text-2xl cursor-pointer">
-                        <PiEye className="olho_aberto" onClick={()=>{
-                            verSenha()
-                            setStateOlho("text")
-                        }}/>
-                        <PiEyeClosed className="olho_fechado hidden" onClick={()=>{
-                            verSenha()
-                            setStateOlho("password")
-                        }}/>
-                    </div>
+                    <button 
+                        aria-label="botão ver senha"
+                        className="absolute top-1/2 -translate-y-1/2 right-1 text-2xl cursor-pointer">
+                            <PiEye className="olho_aberto" onClick={()=>{
+                                verSenha()
+                                setStateOlho("text")
+                            }}/>
+                            <PiEyeClosed className="olho_fechado hidden" onClick={()=>{
+                                verSenha()
+                                setStateOlho("password")
+                            }}/>
+                    </button>
                     </CampoInput>
                     {errors.userLogin?.password?.message&& <p>{errors.userLogin.password.message}
                     </p>}

@@ -17,6 +17,7 @@ export default function Login() {
                             src={BannerLoja}
                             alt="Banner da Loja"
                             width={550}
+                            priority
                             className="h-full rounded-s-xl"
                         />
                     </div>

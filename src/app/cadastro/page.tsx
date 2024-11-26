@@ -119,21 +119,24 @@ export default function Cadastro() {
         }
     },[setValueDataUser , setError ]) 
 
-    useEffect(()=>{
-        if(watch('dataUser.zipCode').length != 9) return;
-            handleFetchSubit(watch('dataUser.zipCode'))
-    },[ watch , handleFetchSubit ])
 
+    const zipCode = watch('dataUser.zipCode')
     useEffect(()=>{
-        if(watch('dataUser.cpf').length != 14) return;
-        if(!calcCpfValido(watch('dataUser.cpf'))) {
+        if(zipCode?.length != 9) return;
+            handleFetchSubit(zipCode)
+    },[ zipCode , handleFetchSubit ])
+
+    const cpf = watch('dataUser.cpf')
+    useEffect(()=>{
+        if(cpf.length != 14) return;
+        if(!calcCpfValido(cpf)) {
             setCpfValido(false)
             setError('dataUser.cpf', { type: 'custom' , message: 'cpf invalido' })
         } else {
             setCpfValido(true)
             setError('dataUser.cpf', { type: 'custom' , message: '' })
         }
-    },[ watch , setError ])
+    },[ cpf , setError ])
 
     return(
         <>
@@ -314,16 +317,18 @@ export default function Cadastro() {
                                 setValue('dataUser.confPassword', regexPassword(value))
                             }}
                             >
-                            <div className="absolute top-1/2 -translate-y-1/2 right-1 text-2xl cursor-pointer">
-                                <PiEye className="olho_aberto" onClick={()=>{
-                                    verSenha()
-                                    setStateOlho("text")
-                                }}/>
-                                <PiEyeClosed className="olho_fechado hidden" onClick={()=>{
-                                    verSenha()
-                                    setStateOlho("password")
-                                }}/>
-                            </div>
+                            <button 
+                                aria-label="botão ver senha" 
+                                className="absolute top-1/2 -translate-y-1/2 right-1 text-2xl cursor-pointer">
+                                    <PiEye className="olho_aberto" onClick={()=>{
+                                        verSenha()
+                                        setStateOlho("text")
+                                    }}/>
+                                    <PiEyeClosed className="olho_fechado hidden" onClick={()=>{
+                                        verSenha()
+                                        setStateOlho("password")
+                                    }}/>
+                            </button>
                         </CampoInput>
                         {errors.dataUser?.confPassword && <p>{errors.dataUser.confPassword.message}</p>}
                     </div>
