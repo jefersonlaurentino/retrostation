@@ -15,7 +15,9 @@ const config: Config = {
         primaria: "#f4f4f4",
         dark: "#080f1f",
         secundaria: "#00B7F2",
+        secundariaHove: "#008DC2",
         terciaria: "#F42E76",
+        terciariaHove: "#D12765",
       },
       boxShadow: {
         banner: '0px 0 35px 20px black',

@@ -283,8 +283,7 @@ export default function Cadastro() {
                             register={register('dataUser.number')}
                             type="text"
                             name="num_casa"
-                            placeholder="Número da
-                            casa"
+                            placeholder="N&ordm; casa"
                             maxLength={10}
                         />
                         {errors.dataUser?.number && <p>{errors.dataUser.number.message}</p>}
@@ -334,8 +333,8 @@ export default function Cadastro() {
                     </div>
                 </div>
                 <div className="flex max-md:flex-col justify-center gap-4 my-5">
-                    <Button type="submit" style="bg-secundaria text-black">Cadastra-se</Button>
-                    <Button style="bg-terciaria">Cancelar</Button>
+                    <Button type="submit" style="bg-secundaria hover:bg-secundariaHove text-black">Cadastra-se</Button>
+                    <Button style="bg-terciaria hover:bg-terciariaHove">Cancelar</Button>
                 </div>
             </form>
         </main>

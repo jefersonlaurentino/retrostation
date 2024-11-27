@@ -78,7 +78,7 @@
 
 @layer components {
     .button_verificar_idade_true {
-        @apply bg-secundaria text-black;
+        @apply bg-secundaria hover:bg-secundariaHove  text-black;
     }
 }
 

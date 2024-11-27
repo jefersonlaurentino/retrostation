@@ -7,7 +7,7 @@ export default function ModalErro({text , height , linkHidden }: {text:string , 
         <>
             <section className={`alert_erro flex flex-col items-center justify-center gap-3 w-full ${height} text-2xl`}>
                 <h2 className="px-2 text-center">{text}</h2>
-                <Link href={'/'} className={`bg-blue-700 px-2 py-1 rounded-lg text-white ${linkHidden}`}>voltar a home</Link>
+                <Link href={'/'} className={`bg-secundaria hover:bg-secundariaHove px-2 py-1 rounded-lg text-white ${linkHidden}`}>voltar a home</Link>
                 <div className="alert absolute bottom-0 right-0 -z-10">
                     <Image
                         src={joy}

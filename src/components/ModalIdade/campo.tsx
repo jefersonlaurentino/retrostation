@@ -102,7 +102,7 @@ const verificaPermissao = ()=>{
         <>
         <div className="flex flex-col w-10/12 md:w-1/2 m-auto gap-3">
             <Button style="entrar button_verificar_idade" f_function={calcularIdade}>Continuar</Button>
-            <Link href={"/"} className="bg-terciaria text-center font-semibold text-lg rounded-lg py-1">Voltar para a página da store</Link>
+            <Link href={"/"} className="bg-terciaria hover:bg-terciariaHove text-center font-semibold text-lg rounded-lg py-1">Voltar para a página da store</Link>
         </div>
         </>
     )

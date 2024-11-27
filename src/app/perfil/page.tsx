@@ -109,7 +109,7 @@ export default function Perfil() {
 
     const zipCode = watch('dataUser.zipCode')
     useEffect(()=>{
-        if (zipCode.length != 9) return;
+        if (zipCode?.length != 9) return;
             handleFetch(zipCode)
     },[ zipCode , handleFetch ])
     
@@ -217,7 +217,7 @@ export default function Perfil() {
             <div className="flex max-md:flex-col w-full gap-2">
                 <aside className="flex flex-col md:w-1/4 mt-8 pl-2">
                     <div className="foto_perfil relative flex justify-center max-h-52 mb-7">
-                        <div className="w-44 h-44 rounded-full drop-shadow-xl overflow-hidden shadow-green-500">
+                        <div className="w-44 h-44 rounded-full drop-shadow-xl overflow-hidden border-4 border-secundaria">
                             <Image
                                 src={imagemAvatar}
                                 alt="imagen do seu avatar"
@@ -239,7 +239,7 @@ export default function Perfil() {
                             window.sessionStorage.removeItem("idade")
                             window.sessionStorage.removeItem("comprasCarrinho")
                             setPermicaoReloud(Math.random() * 10)
-                        }} className="flex items-center gap-2  border-2 p-2 rounded-lg bg-terciaria">
+                        }} className="flex items-center gap-2  border-2 p-2 rounded-lg bg-terciaria hover:bg-terciariaHove">
                             <HiMiniArrowRightOnRectangle className="text-2xl"/>
                             <p>Sair da Conta</p>
                         </button>
@@ -371,15 +371,15 @@ export default function Perfil() {
                                         register={register('dataUser.number')} 
                                         name="numero_casa" 
                                         type="text"
-                                        placeholder="Numero"
+                                        placeholder="N&ordm; casa"
                                     />
                                     {errors.dataUser?.number?.message && <p>{errors.dataUser.number.message}</p>}
                                 </div> 
                             </div>
                         </div>
                         <div className="flex flex-col md:flex-row-reverse justify-center gap-4 pt-7 pb-2">
-                            <Button type="submit" style="bg-secundaria text-black">Salvar</Button>
-                            <Button f_function={()=>setReloudPerfil(Math.random() * 10)} style="bg-terciaria text-white">Cancelar</Button>
+                            <Button type="submit" style="bg-secundaria hover:bg-secundariaHove text-black">Salvar</Button>
+                            <Button f_function={()=>setReloudPerfil(Math.random() * 10)} style="bg-terciaria hover:bg-terciariaHove text-black">Cancelar</Button>
                         </div>
                     </form>
                 </section>

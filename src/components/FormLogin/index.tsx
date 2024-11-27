@@ -179,8 +179,8 @@ const [ stateOlho , setStateOlho] = useState('password')
                     className="">Esqueceu a senha?</button>
                 </div>
                 <div className="flex flex-col gap-3">
-                    <Button type="submit" style="bg-secundaria text-black">Entrar</Button>
-                    <Link href={"/cadastro"} className="bg-terciaria text-center text-lg text-white font-bold py-1 rounded-lg">Criar conta</Link>
+                    <Button type="submit" style="bg-secundaria hover:bg-secundariaHove text-black">Entrar</Button>
+                    <Link href={"/cadastro"} className="bg-terciaria hover:bg-terciariaHove text-center text-lg text-black font-bold py-1 rounded-lg">Criar conta</Link>
                 </div>
             </div>
         </form>

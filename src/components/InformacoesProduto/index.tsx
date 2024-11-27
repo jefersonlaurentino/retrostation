@@ -271,19 +271,19 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                         </div>
                         <div className="flex flex-col gap-4 my-4">
                             {(naBiblioteca)?
-                                <Link href={'/biblioteca'} className="bg-secundaria text-black hover:bg-blue-700 text-center rounded-lg py-1 text-xl font-semibold">
+                                <Link href={'/biblioteca'} className="bg-secundaria text-black hover:bg-secundariaHove text-center rounded-lg py-1 text-xl font-semibold">
                                     na bliblioteca
                                 </Link>
                                 :
                                 <>
                                     <button
                                     onClick={(e)=>comprar(e , id)}
-                                    className="bg-secundaria text-black text-center rounded-lg py-1 font-semibold text-xl  hover:bg-blue-700">
+                                    className="bg-secundaria text-black text-center rounded-lg py-1 font-semibold text-xl  hover:bg-secundariaHove">
                                         Comprar
                                     </button>
                                     <button 
                                     onClick={(e)=>comprar(e , id)}
-                                    className="bg-terciaria text-center rounded-lg py-1 font-semibold text-xl  hover:bg-neutral-500">
+                                    className="bg-terciaria text-center rounded-lg py-1 font-semibold text-xl  hover:bg-terciariaHove">
                                         Adicionar ao Carrinho
                                     </button>
                                 </>

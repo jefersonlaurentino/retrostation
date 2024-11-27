@@ -149,10 +149,10 @@ const buttonTes = (evt:EventTarget) =>{
     
     document.querySelector(`.${valueP.classList[0]} p`)!.textContent = button.textContent
 
-    tes(valueP.firstChild as EventTarget)   
+    campoSelection(valueP.firstChild as EventTarget)   
 }
 
-const tes = (evt:EventTarget) => {
+const campoSelection = (evt:EventTarget) => {
     let e = evt as HTMLDivElement
     e = e.parentNode as HTMLDivElement
 
@@ -203,6 +203,6 @@ export {
     ano,
     anoBissexto,
     buttonTes,
-    tes,
+    campoSelection,
     camposPreenchidos,
 }

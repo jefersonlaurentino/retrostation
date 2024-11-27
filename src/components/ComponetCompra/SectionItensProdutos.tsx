@@ -148,7 +148,7 @@ export default function SectionItensProdutos() {
                             </article>
                         ))
                         :
-                        <ModalErro text="desculpa sem items no carrinho" height="absolute w-[calc(100%-25px)] h-[calc(100dvh-65px)]"/>
+                        <ModalErro text="desculpa sem items no carrinho" height="absolute w-[calc(100%-30px)] h-[calc(100dvh-70px)]"/>
                     )
                     : 
                     <div>carregando....</div>

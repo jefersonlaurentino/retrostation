@@ -15,8 +15,8 @@ export default function PopUpInteractive() {
                 <div className="indent-3">
                     {popUpMsg?.msg}
                     <div className="flex justify-around mt-4">
-                        <button onClick={popUpMsg?.buttonLeft?.onClick} className="bg-terciaria rounded-md text-white w-2/5 p-1">{popUpMsg?.buttonLeft?.text}</button>
-                        <button onClick={popUpMsg?.buttonRight?.onClick} className="bg-secundaria rounded-md text-black w-2/5 p-1">{popUpMsg?.buttonRight?.text}</button>
+                        <button onClick={popUpMsg?.buttonLeft?.onClick} className="bg-terciaria hover:bg-terciariaHove rounded-md text-black w-2/5 p-1">{popUpMsg?.buttonLeft?.text}</button>
+                        <button onClick={popUpMsg?.buttonRight?.onClick} className="bg-secundaria hover:bg-secundariaHove rounded-md text-black w-2/5 p-1">{popUpMsg?.buttonRight?.text}</button>
                     </div>
                 </div>
                 <svg className="absolute bottom-[-34px] left-2/3 lg:left-[95%] max-sm:left-1/3" width={32} height={33} xmlns="http://www.w3.org/2000/svg">

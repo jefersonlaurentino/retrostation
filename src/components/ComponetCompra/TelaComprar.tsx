@@ -67,7 +67,7 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                             }
                         })
                         abrirPopUpInterativo()
-                    }} className="bg-secundaria text-black rounded-lg md:my-2 px-2 py-1">
+                    }} className="bg-secundaria hover:bg-secundariaHove text-black rounded-lg md:my-2 px-2 py-1">
                         comprar
                     </button>
                 </section>
