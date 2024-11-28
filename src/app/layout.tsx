@@ -19,7 +19,20 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "RetroStation",
-  description: "Loja de Jogos para PlayStation",
+  description: "Loja de Jogos para PlayStation",  
+  icons: {
+    icon: [
+      { url: '/favicon/favicon-96x96.png', sizes: '96x96' , type: 'image/png' },
+      { url: '/favicon/favicon.svg' , type: 'image/svg+xml'}
+    ],
+    apple: '/favicon/apple-touch-icon.png',
+    shortcut: '/favicon/favicon.ico',
+  },
+  manifest: '/favicon/site.webmanifest', 
+  appleWebApp: {
+    title: 'RetroStation', 
+  },
+  
 };
 
 export default function RootLayout({
