@@ -126,6 +126,13 @@ export default function Perfil() {
         
         //verifica se o usuário trocou o E-mail
         if (data.dataUser.mail != dataLoginUser?.dataUser.mail) {
+
+            // verifica se ja tem a conta criada com o novo E-mail adicinado pelo usuário 
+            if (sessionStorage.getItem(`user${data?.dataUser.mail}`)) {
+                setMsgPopUp({checked: false , msg: 'Perfil não atualizado'})
+                setError('dataUser.mail', {type: 'manual' , message: 'E-Mail já utilizado'})
+                return
+            }
             window.sessionStorage.removeItem(`user${dataLoginUser?.dataUser.mail}`)
         }
         
@@ -191,20 +198,6 @@ export default function Perfil() {
         document.querySelector('.modal')?.classList.remove("hidden")
         document.querySelector('body')!.setAttribute("style","overflow: hidden;")
     }
-
-    // function getSessionStorageSize() {
-    //     // let sessionStorage = window.sessionStorage
-    //     let total = 0;
-    //     for (let item in sessionStorage) {
-    //       if (sessionStorage.hasOwnProperty(item)) {
-    //         total += sessionStorage.getItem(item)!.length;
-    //       }
-    //     }
-    //     // O tamanho é calculado em caracteres, vamos converter para KB
-    //     return (total / 1024).toFixed(2); // Retorna em KB
-    //   }
-      
-    //   console.log("Tamanho do sessionStorage usado: " + getSessionStorageSize() + " KB");
 
     return(
         <>
