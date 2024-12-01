@@ -13,6 +13,8 @@ O RetroStation é uma plataforma de compra de jogos do playStation 2, projetada 
 - Carrinho de compras.
 - Perfil para editar dados da conta do usuário logado, adição de uma imagem de um avatar ao seu perfil.
 
+[**Ver o projeto**](jefersonlaurentino.vercel.app)
+
 ## Tecnologias usadas
 O projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
 
