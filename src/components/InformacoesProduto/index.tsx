@@ -272,7 +272,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                         <div className="flex flex-col gap-4 my-4">
                             {(naBiblioteca)?
                                 <Link href={'/biblioteca'} className="bg-secundaria text-black hover:bg-secundariaHove text-center rounded-lg py-1 text-xl font-semibold">
-                                    na bliblioteca
+                                    Na bliblioteca
                                 </Link>
                                 :
                                 <>
@@ -297,7 +297,7 @@ export default function InformacoesProduto({ id , titulo , descricao , desenvolv
                                 alt="classificação da fixa etária"
                                 className="rounded-xl w-12 md:w-14 border"
                             />
-                            <p>Violençia, linguagem imprópria</p>
+                            <p>Violência, linguagem imprópria</p>
                         </div>
                         <div>
                             <div className="flex justify-between gap-3 my-3 border-b">

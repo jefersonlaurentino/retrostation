@@ -192,7 +192,7 @@ export default function Header(){
                     <IoSearchSharp/>
                 </button>
             </div>
-            <div className="campo_animacao_input absolute top-14 right-2 flex flex-col gap-1 w-64 text-white hidden">
+            <div className="campo_animacao_input absolute top-14 right-2 flex flex-col gap-1 w-64 text-white ">
                 <form onSubmit={(e)=>pesquisaJogo(e)} className="flex bg-white rounded-md border-black overflow-hidden">
                     <input 
                         type="text" 
@@ -226,7 +226,7 @@ export default function Header(){
                                         className="w-full h-full"
                                     />
                                 </div>
-                                <h4 className="line-clamp-1">{jogo.titulo}</h4>
+                                <h4 className="text-start line-clamp-1">{jogo.titulo}</h4>
                             </article>
                         </button>
                         )}

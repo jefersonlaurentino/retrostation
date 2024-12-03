@@ -10,7 +10,7 @@ const calculoDesconto = (valorAnterio:string , valorAtual:string) => {
 const jogos = [
     {
         id: "01",
-        titulo: "gta san andreas",
+        titulo: "grand theft auto san andreas",
         descricao: [ "Há 5 anos, Carl Johnson fugiu das pressões da vida em Los Santos, San Andreas... uma cidade que se destruía com gangues, drogas e corrupção, onde estrelas de cinema e milionários fazem o melhor que podem para evitar traficantes e bandidos." , "É o começo dos anos 90. Carl volta para casa. A sua mãe foi assassinada, a sua família ruiu e seus amigos de infância estão todos indo em direção ao desastre." , "Para piorar tudo, dois policiais corruptos armaram para que ele fosse acusado de homicídio. CJ é forçado a embarcar numa jornada que o levará por todo o estado de San Andreas para salvar sua família e assumir o controle das ruas."],
         desenvolvedor: "Rockstar North",
         editora: "Rockstar Games",
@@ -86,7 +86,7 @@ const jogos = [
     },
     {
     id: "05",
-    titulo: "gta vice city",
+    titulo: "grand theft auto vice city",
     descricao: ["Bem-vindo aos anos 80. Da década de penteados glam, dos excessos e dos ternos pastel, vem a história de um homem que sobe ao topo da cadeia criminal no retorno de Grand Theft Auto." , "Vice City é uma grande área urbana que engloba de praias até pântanos e do glamour até o gueto, e é a mais variada, completa e animada cidade digital já criada. Combinando uma jogabilidade não linear com uma narrativa centrada nos personagens, você chega a uma cidade cheia de prazeres e degradação, e tem a oportunidade de dominá-la como quiser."],
     desenvolvedor: "Rockstar North",
     editora: "Rockstar Games",
@@ -105,7 +105,7 @@ const jogos = [
     },
     {
     id: "06",
-    titulo: "nfs underground 2",
+    titulo: "need for speed underground 2",
     descricao: ["A história começa quando o protagonista conduz um Nissan Skyline GTR R-34 modificado azul, o mesmo que foi usado para derrotar Eddie em Need for Speed Underground.", "Reverenciado como o melhor corredor de rua em Olympic City, o jogador vence uma corrida enquanto dirige um Nissan Skyline GT-R azul e imediatamente recebe uma ligação de um indivíduo não identificado com um 'convite' para se juntar à sua equipe, seguido por uma ameaça explicitamente negando que ele não está 'aceitando um não como resposta'. Irritado, o jogador imediatamente desliga a ligação e dirige para uma festa comemorativa; enquanto fala com Samantha ao telefone, eles são cegados e emboscados por um Hummer H2 de um beco escuro, que bate e destrói seu Skyline. Um homem com uma tatuagem de foice na mão liga para confirmar que ele 'resolveu um problema'." ,"Seis meses depois do que aconteceu, o jogador voa para Bayview para derrotar Caleb e recuperar a cidade."],
     desenvolvedor: "EA Black Box",
     editora: "EA Games",
@@ -124,7 +124,7 @@ const jogos = [
     },
     {
     id: "07",
-    titulo: "nfs most wanted",
+    titulo: "need for speed most wanted",
     descricao: ["O jogo começa com o jogador, um corredor anônimo, chegando à cidade de Rockport e competindo contra um dos principais corredores da cidade, Razor Callahan. Durante uma corrida decisiva, Razor sabota o carro do jogador — um BMW M3 GTR —, causando sua derrota. Com a vitória, Razor rouba o carro e o utiliza para subir ao topo da Blacklist, uma lista dos corredores mais procurados e respeitados de Rockport." , "Sem carro e preso pela polícia, o jogador é libertado graças a Mia Townsend, uma corredora e aliada que ajuda o protagonista a recomeçar. A partir daí, o objetivo é derrotar os 15 membros da Blacklist, recuperar o BMW M3 GTR e desbancar Razor. O jogador também precisa evitar a polícia, liderada pelo obstinado Sargento Cross, que faz de tudo para prender corredores de rua." ],
     desenvolvedor: "EA Black Box",
     editora: "EA Games",
@@ -242,9 +242,9 @@ const jogos = [
     descricao: ["Bomba Patch: O jogo que mudou o seu jeito de jogar futebol!" ],
     desenvolvedor: "Allan Jefferson",
     editora: "Allan Jefferson",
-    dataLançamento: "06/04/2006",
+    dataLançamento: "01/02/2007",
     generos: [ "Futebol" ],
-    recursos: [ "Compativel com Controle" , "Jogo para até 4 pessoa" ],
+    recursos: [ "Compativel com Controle" , "Jogo para até 4 pessoas" ],
     promocao: true,
     faixaEtaria: "livre",
     banner: "https://i.pinimg.com/736x/6f/77/cf/6f77cf8600698b6a15bbbccf6f8d3031.jpg",
@@ -254,6 +254,25 @@ const jogos = [
     destaques: [ "destaques" ],
     valorAnterior: "60,90",
     valorAtual: "45,90"
+    },
+    {
+    id: "14",
+    titulo: "crash nitro kart",
+    descricao: ["Os Bandicoots, Crash, Coco, Crunch e Aku Aku estavam cuidando de seus afazeres quando são abduzidos por uma luz branca. O mesmo acontece com o Dr. Neo Cortex e seus capangas. Eles então veem que foram abduzidos pelo rei alienígena Velo, que deseja vê-los correrem, senão a Terra será destruída. Cabe aos terráqueos salvarem seu planeta." ],
+    desenvolvedor: "Vicarious Visions",
+    editora: "Vivendi Games",
+    dataLançamento: "11/11/2003",
+    generos: [ "corrida" , "combate de veículos" ],
+    recursos: [ "Compativel com Controle" , "Jogo para até 4 pessoas" ],
+    promocao: true,
+    faixaEtaria: "livre",
+    banner: "https://upload.wikimedia.org/wikipedia/pt/1/11/CNKConsoleFree.jpg",
+    bannerName: "https://i.ytimg.com/vi/IJdlAZOyojY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDuL8fXdHGsr_xg1bXMH3rLefGcLg",
+    imagens: [ "https://upload.wikimedia.org/wikipedia/en/c/c8/CNKGameplay.jpg" , "https://upload.wikimedia.org/wikipedia/en/0/0a/VeloAndFriends.PNG"],
+    video: [ "hXrd8dN0O5E" , "sf9e2nAoRWQ" ],
+    destaques: [ "corrida" ],
+    valorAnterior: "58,90",
+    valorAtual: "22,50"
     },
 ]
 

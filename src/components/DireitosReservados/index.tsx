@@ -16,7 +16,7 @@ export default function DireitosReservados() {
 
     return(
         <>
-        <p className="text-center">&copy; {ano} Dereitos reservados a RetroStation</p>
+        <p className="text-center">&copy; {ano} Todos os direitos reservados a RetroStation</p>
         </>
     )
 }

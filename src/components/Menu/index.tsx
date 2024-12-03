@@ -82,7 +82,7 @@ export default function Menu() {
                     <li className={style.campo_theme}>
                         <div className="flex items-center gap-1 text-lg font-semibold">
                             <VscColorMode />
-                            <p>Dark-Mode</p>
+                            <p>Dark Mode</p>
                         </div>
                         <div className="flex flex-row-reverse gap-2 leading-4 items-center">
                             <button
@@ -115,14 +115,14 @@ export default function Menu() {
                             onClick={()=>setMsgPopUp({checked: false , msg: 'função não adicionada'})} 
                             aria-label="informações da RetroStation">
                             <FcAbout />
-                            Sobre Nós
+                            Sobre nós
                         </Link>
                     </li>
                     <li>
                         <Link href={'#'} 
                             onClick={()=>{
                                 abrirPopUpInterativo()
-                                setPopUpMsg({msg: <p>No momento o feedback ainda não estar pronto. Mas você pode deixar o seu Recado diretamente no meu Linkedin ou no E-mail, gostaria de deixa o seu feedback?</p> , buttonLeft: {
+                                setPopUpMsg({msg: <p>No momento, o feedback ainda não está pronto. Mas você pode deixar o seu Recado diretamente no meu LinkedIn ou no e-mail, gostaria de deixa o seu feedback?</p> , buttonLeft: {
                                 onClick: () =>
                                     fecharPopUpInterativo(),
                                 text: "Não"
@@ -136,7 +136,7 @@ export default function Menu() {
                             }
                             aria-label="informações da RetroStation">
                             <FcAbout />
-                            deixe o seu Feedback
+                            Deixe o seu feedback
                         </Link>
                     </li>
                     <li>

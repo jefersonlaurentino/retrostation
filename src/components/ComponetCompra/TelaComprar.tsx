@@ -21,13 +21,13 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                         className="button_infor w-full flex items-center justify-between py-1 border-b cursor-pointer p-2 md:hidden"
                         onClick={verMaisInfor} 
                     >
-                        <p>Ver mais Informações</p>
+                        <p>Ver mais informações</p>
                         <p><IoIosArrowDown className="arrow_verInfor -rotate-180 duration-300"/></p>
                     </button>
                     <h3 className="text-center text-2xl max-md:hidden">Informação da comprar</h3>
                     <div className="flex justify-between border-b px-2 md:pt-4">
-                        <p>Total de items:</p>
-                        <p>{data!.totalItems}</p>
+                        <p>Total de itens:</p>
+                        <p>{data!.totalItens}</p>
                     </div>
                     <div className="flex justify-between border-b px-2">
                         <p>Preço:</p>
@@ -42,7 +42,7 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                     <div className="flex gap-2 md:justify-between">
                         <p>Total a pagar:</p>
                         {data.arrayJogos.length === 6 && data.valorTotal === 0 ?
-                            <p>R$ Grátis</p>
+                            <p>Grátis</p>
                             :
                             <p>R$ {(data.valorTotal-data.valorDesconto).toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</p>
                         }
@@ -50,13 +50,13 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                     <button onClick={()=>{
                         submit(data.arrayJogos , setTotalItensCart)
                         setPopUpMsg({
-                            msg: <p>Compra Concluida com sucesso!</p>,
+                            msg: <p>Compra Concluída com sucesso!</p>,
                             buttonLeft: {
                                 onClick: () => {
                                     router.push('/')
                                     fecharPopUpInterativo()
                                 },
-                                text: 'Voltar a Home',
+                                text: 'Voltar à Home',
                             },
                             buttonRight: {
                                 onClick:() => {

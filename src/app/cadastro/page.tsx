@@ -16,21 +16,21 @@ import { fetchCurrentDate } from "@/services/dateZipCodeService";
 
 const schamaForm = z.object({
     dataUser: z.object({
-        name: z.string().trim().min( 1 ,'nome obg'),
-        nickName: z.string().trim().min(3 , 'nimino 3 caracteres').max( 10, 'limite maximo'),
-        mail: z.string().trim().email("E-mail invalido"),
-        cpf: z.string().trim().min(14 , 'informe um CPF válido'),
-        cel: z.string().trim().min(15 , 'informe um CELULAR válido'),
-        age: z.string().trim().min(10 , 'informe sua idade'),
-        zipCode: z.string().trim().min(9 , 'informe seu CEP'),
-        city: z.string().trim().min(1 , 'informe seu cidade'),
-        state: z.string().trim().min(1 , 'informe seu estado'),
-        address: z.string().trim().min(1 , 'informe seu endereço'),
-        number: z.string().trim().min(1 , 'obg'),
-        password: z.string().min(6 , 'deve conter no minimo 6 caracteres'),
-        confPassword: z.string().min(6 , 'deve conter no minimo 6 caracteres'),
+        name: z.string().trim().min( 1 ,'Nome obrigatório'),
+        nickName: z.string().trim().min(3 , 'Mímino 3 caracteres').max( 10, 'limite máximo'),
+        mail: z.string().trim().email("E-mail inválido"),
+        cpf: z.string().trim().min(14 , 'Informe um CPF válido'),
+        cel: z.string().trim().min(15 , 'Informe um celular válido'),
+        age: z.string().trim().min(10 , 'Informe sua idade'),
+        zipCode: z.string().trim().min(9 , 'Informe seu CEP'),
+        city: z.string().trim().min(1 , 'Informe sua cidade'),
+        state: z.string().trim().min(1 , 'Informe seu estado'),
+        address: z.string().trim().min(1 , 'Informe seu endereço'),
+        number: z.string().trim().min(1 , 'Obrigatóírio'),
+        password: z.string().min(6 , 'Deve conter no mínimo 6 caracteres'),
+        confPassword: z.string().min(6 , 'Deve conter no mínimo 6 caracteres'),
     }).refine((data)=> data.password === data.confPassword, {
-        message: 'senha destintas',
+        message: 'Senha destintas',
         path: ['confPassword']        
     })
 })
@@ -84,15 +84,15 @@ export default function Cadastro() {
 
     const handleRegisterUser = (data: formProps) =>{
         if(!zip){
-            setError('dataUser.zipCode', { type: 'custom' , message: 'cep invalido' })
+            setError('dataUser.zipCode', { type: 'custom' , message: 'CEP inválido' })
             return
         }
         if (!cpfValido) {
-            setError('dataUser.cpf', { type: 'custom' , message: 'cpf invalido' })
+            setError('dataUser.cpf', { type: 'custom' , message: 'CPF inválido' })
             return
         }
         if (window.sessionStorage.getItem(`user${data.dataUser.mail}`)) {
-            setError('dataUser.mail', { type: 'custom' , message: 'Erro adicione outro E-mail' })
+            setError('dataUser.mail', { type: 'custom' , message: 'Erro e-mail já cadastrado' })
             return
         }
         window.sessionStorage.setItem(`user${data.dataUser.mail}`, JSON.stringify(data))
@@ -114,7 +114,7 @@ export default function Cadastro() {
             setValueDataUser(getZipCode)
             setZip(true)
         } else {
-            setError('dataUser.zipCode', { type: 'custom' , message: 'cep invalido' })
+            setError('dataUser.zipCode', { type: 'custom' , message: 'CEP inválido' })
             setZip(false)
         }
     },[setValueDataUser , setError ]) 
@@ -131,7 +131,7 @@ export default function Cadastro() {
         if(cpf.length != 14) return;
         if(!calcCpfValido(cpf)) {
             setCpfValido(false)
-            setError('dataUser.cpf', { type: 'custom' , message: 'cpf invalido' })
+            setError('dataUser.cpf', { type: 'custom' , message: 'CFP inválido' })
         } else {
             setCpfValido(true)
             setError('dataUser.cpf', { type: 'custom' , message: '' })
@@ -162,7 +162,7 @@ export default function Cadastro() {
                             register={register('dataUser.nickName')}
                             type="text"
                             name="nickName"
-                            placeholder="Nick"
+                            placeholder="NickName"
                             functionChange={value=>{
                                 setValue('dataUser.nickName' , regexNickName_Email(value))
                             }}
@@ -234,7 +234,7 @@ export default function Cadastro() {
                             register={register('dataUser.zipCode')}
                             type="text"
                             name="cep"
-                            placeholder="Cep"
+                            placeholder="CEP"
                             functionChange={value=>{
                                 setValue('dataUser.zipCode', regexZipCode(value))
                             }}
@@ -283,7 +283,7 @@ export default function Cadastro() {
                             register={register('dataUser.number')}
                             type="text"
                             name="num_casa"
-                            placeholder="N&ordm; casa"
+                            placeholder="N&ordm; da casa"
                             maxLength={10}
                         />
                         {errors.dataUser?.number && <p>{errors.dataUser.number.message}</p>}
@@ -317,7 +317,8 @@ export default function Cadastro() {
                             }}
                             >
                             <button 
-                                aria-label="botão ver senha" 
+                                aria-label="botão ver senha"
+                                type="button" 
                                 className="absolute top-1/2 -translate-y-1/2 right-1 text-2xl cursor-pointer">
                                     <PiEye className="olho_aberto" onClick={()=>{
                                         verSenha()
@@ -333,8 +334,8 @@ export default function Cadastro() {
                     </div>
                 </div>
                 <div className="flex max-md:flex-col justify-center gap-4 my-5">
-                    <Button type="submit" style="bg-secundaria hover:bg-secundariaHove text-black">Cadastra-se</Button>
-                    <Button style="bg-terciaria hover:bg-terciariaHove">Cancelar</Button>
+                    <Button type="submit" style="bg-secundaria hover:bg-secundariaHove text-black">Cadastrar-se</Button>
+                    <Button type="button" f_function={()=>router.push('/')} style="bg-terciaria hover:bg-terciariaHove">Cancelar</Button>
                 </div>
             </form>
         </main>

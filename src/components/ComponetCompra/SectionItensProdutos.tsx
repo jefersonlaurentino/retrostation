@@ -13,7 +13,7 @@ import ModalErro from "../ModalErro";
 
 export type inforCart = {
         valorDesconto: number,
-        totalItems: number,
+        totalItens: number,
         valorTotal: number,
         arrayJogos: string,
     }
@@ -52,7 +52,7 @@ export default function SectionItensProdutos() {
             }
         });
         arrayCartJogos?.forEach((jogo)=>arrayIdJogos.push(jogo.id))
-        const re:inforCart = { valorDesconto , totalItems: arrayCartJogos!.length , valorTotal: valueJogos , arrayJogos: JSON.stringify(arrayIdJogos)}
+        const re:inforCart = { valorDesconto , totalItens: arrayCartJogos!.length , valorTotal: valueJogos , arrayJogos: JSON.stringify(arrayIdJogos)}
         
         setInforValueCart(re)
     },[ setInforValueCart , arrayCartJogos ])
@@ -134,7 +134,7 @@ export default function SectionItensProdutos() {
                                         <div className='inline-flex border-2 rounded-md overflow-hidden'>
                                             <Image 
                                                 src={verificaFaixaEtaria(jogo.faixaEtaria)}
-                                                alt='faixa etaria'
+                                                alt='faixa etária'
                                                 width={50}
                                                 height={50}
                                                 style={{ objectFit: 'cover' }}
@@ -142,7 +142,7 @@ export default function SectionItensProdutos() {
                                         </div>
                                         <button
                                             onClick={(e)=>removeJogo(e)} 
-                                            className='flex gap-1 items-center'><FaRegTrashAlt /> remover</button>
+                                            className='flex gap-1 items-center'><FaRegTrashAlt />Remover</button>
                                     </div>
                                 </section>
                             </article>

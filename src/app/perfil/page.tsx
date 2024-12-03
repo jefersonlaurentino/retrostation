@@ -23,24 +23,18 @@ const designer = localFont({src:"../fonts/designer.otf"})
 
 const schamaForm = z.object({
     dataUser: z.object({
-        name: z.string().trim().min( 1 ,'nome obg'),
-        nickName: z.string().trim().min(3 , 'nimino 3 caracteres').max( 10, 'limite maximo'),
-        mail: z.string().trim().email("E-mail invalido"),
-        cpf: z.string().trim().min(14 , 'informe um CPF válido'),
-        cel: z.string().trim().min(15 , 'informe um CELULAR válido'),
-        age: z.string().trim().min(10 , 'informe sua idade'),
-        zipCode: z.string().trim().min(9 , 'informe seu CEP'),
-        city: z.string().trim().min(1 , 'informe seu cidade'),
-        state: z.string().trim().min(1 , 'informe seu estado'),
-        address: z.string().trim().min(1 , 'informe seu endereço'),
-        number: z.string().trim().min(1 , 'obg'),
-        // password: z.string().min(6 , 'deve conter no minimo 6 caracteres').transform(value =>value.replace(/\s+/g,'')),
-        // confPassword: z.string().min(6 , 'deve conter no minimo 6 caracteres').transform(value =>value.replace(/\s+/g,'')),
+        name: z.string().trim().min( 1 ,'nome obrigatório'),
+        nickName: z.string().trim().min(3 , 'mímino 3 caracteres').max( 10, 'limite máximo'),
+        mail: z.string().trim().email("E-mail inválido"),
+        cpf: z.string().trim().min(14 , 'Informe um CPF válido'),
+        cel: z.string().trim().min(15 , 'Informe um celular válido'),
+        age: z.string().trim().min(10 , 'Informe sua idade'),
+        zipCode: z.string().trim().min(9 , 'Informe seu CEP'),
+        city: z.string().trim().min(1 , 'Informe sua cidade'),
+        state: z.string().trim().min(1 , 'Informe seu estado'),
+        address: z.string().trim().min(1 , 'Informe seu endereço'),
+        number: z.string().trim().min(1 , 'Obrigatório'),
     })
-    // .refine((data)=> data.password === data.confPassword, {
-    //     message: 'senha destintas',
-    //     path: ['confPassword']        
-    // })
 })
 
 type formProps = z.infer<typeof schamaForm>
@@ -102,7 +96,7 @@ export default function Perfil() {
             setValueDataUser(getZipCode)
             setZip(true)
         } else {
-            setError('dataUser.zipCode', { type: 'custom' , message: 'cep invalido' })
+            setError('dataUser.zipCode', { type: 'custom' , message: 'Cep inválido' })
             setZip(false)
         }
     },[ setError , setZip , setValueDataUser ])
@@ -205,7 +199,7 @@ export default function Perfil() {
         <main className="flex flex-col items-center max-w-5xl m-auto">
             <Modal/>
             <div>
-                <h1 className={`${designer.className} text-center mt-5 text-3xl`}>SEU PERFIL</h1>
+                <h1 className={`${designer.className} text-center mt-5 text-3xl`}>MEU PERFIL</h1>
             </div>
             <div className="flex max-md:flex-col w-full gap-2">
                 <aside className="flex flex-col md:w-1/4 mt-8 pl-2">
@@ -237,7 +231,7 @@ export default function Perfil() {
                             <p>Sair da Conta</p>
                         </button>
                     </div>
-                    <p className="max-md:hidden">Este site não armazena nenhum dado pessoal. Insira informações válidas para uma melhor experiência.</p>
+                    <p className="max-md:hidden">Este site não armazena nenhum dos seus dados pessoais. Insira informações válidas para melhorar sua experiência.</p>
                 </aside>
 
                 <section className=" flex flex-col justify-center w-full md:items-center md:w-3/4 md:min-h-[calc(100vh-130px)] p-2">
@@ -260,7 +254,7 @@ export default function Perfil() {
                                         register={register('dataUser.nickName')} 
                                         name="nickName" 
                                         type="text"
-                                        placeholder="Apelhido"
+                                        placeholder="NickName"
                                         functionChange={value=>setValue('dataUser.nickName' , regexNickName_Email(value))}
                                     />
                                     {errors.dataUser?.nickName?.message && <p>{errors.dataUser.nickName.message}</p>}
@@ -364,7 +358,7 @@ export default function Perfil() {
                                         register={register('dataUser.number')} 
                                         name="numero_casa" 
                                         type="text"
-                                        placeholder="N&ordm; casa"
+                                        placeholder="N&ordm; da casa"
                                     />
                                     {errors.dataUser?.number?.message && <p>{errors.dataUser.number.message}</p>}
                                 </div> 

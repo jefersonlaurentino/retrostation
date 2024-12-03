@@ -21,7 +21,7 @@ export default function Rodape() {
                         <li><a href="mailto:jefersonlaurentino@outlook.com.br" target="_blank">E-mail</a></li>
                         <li><a href="https://jefersonlaurentino.github.io/Portfolio/"
                          target="_blank">Portfólio</a></li>
-                        <li><a href="https://www.linkedin.com/in/jefersonlaurentino" target="_blank" rel="noopener noreferrer">Linkedin</a></li>
+                        <li><a href="https://www.linkedin.com/in/jefersonlaurentino" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                         <li><a href="https://github.com/jefersonlaurentino" target="_blank" rel="noopener noreferrer">GitHub</a></li>
                     </ul>
                 </article>

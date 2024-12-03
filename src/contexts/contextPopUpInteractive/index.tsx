@@ -28,7 +28,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
     const textSaldacao = () => {
         const text = <>
             <h4 className="mb-3 text-center text-2xl leading-none">Bem-vindo ao RetroStation</h4>
-            <p>Olá, Seja muito bem-vindo! Eu sou a <strong>Joy Stick</strong>, sua assistente virtual. Gostaria de saber mais sobre como a RetroStation funciona e tudo o que você pode explorar por aqui?</p>
+            <p>Olá, seja muito bem-vindo! Eu sou a <strong>Joy Stick</strong>, sua assistente virtual. Gostaria de saber mais sobre como a RetroStation funciona e tudo o que você pode explorar por aqui?</p>
         </>
         
         setPopUpMsg({
@@ -39,7 +39,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             }, 
             buttonRight: { 
                 onClick: () => textSaldacao2(),
-                text: 'Saiba Mais',
+                text: 'Saiba mais',
             },
             joyStickBemVindo: true,
         });
@@ -50,7 +50,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 max-sm:mb-2 text-center text-2xl leading-none">O que é o RetroStation?</h4>
                 <p>
-                    O RetroStation é um projeto de e-commerce para estudo. Focado em vendas de jogos clássicos de PS2 para PC. Aqui, você pode revirer a nostalgia de explorar e redescobrir os grandes títulos da época!
+                    O RetroStation é um projeto de e-commerce para estudo, focado em vendas de jogos clássicos de PS2 para PC. Aqui, você pode reviver a nostalgia de explorar e redescobrir os grandes títulos da época!
                 </p>
             </>
 
@@ -72,7 +72,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 max-sm:mb-2 text-center text-2xl leading-none">Experiência e Privacidade</h4>
                 <p>
-                    Para uma melhor experiência, forneça informações válidas. O Site não armazena seus dados, eles são salvos temporariamente no SessionStorage. Portanto, será necessário realizar um novo cadastro sempre que retornar.
+                    Para uma melhor experiência, forneça informações válidas. O Site não armazena seus dados; eles são salvos temporariamente no sessionStorage. Portanto, será necessário realizar um novo cadastro sempre que retornar.
                 </p>
             </>
 
@@ -94,7 +94,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Cadastro e Login</h4>
                 <p>
-                    Cadastre-se para criar um perfil exclusivo. No cadastro, você formecerá dados como nome, E-mail, CPF , CEP e senha. Você também pode continuar sem cadastro, mas nesse caso não terá acesso à Experiência completa.
+                    Cadastre-se para criar um perfil exclusivo. No cadastro, você fornecerá dados como nome, e-mail, CPF , CEP e senha. Você também pode continuar sem cadastro, mas, nesse caso, não terá acesso à experiência completa.
                 </p>
             </>
 
@@ -114,9 +114,9 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
     const textSaldacao5 = () => {
         const text = 
             <>
-                <h4 className="mb-3 text-center text-2xl leading-none">Prefil e Avatar</h4>
+                <h4 className="mb-3 text-center text-2xl leading-none">Perfil e Avatar</h4>
                 <p>
-                    Personalize seu perfil e escolha um avatar que combine com você, é possível alterar seus dados a qualquer momento.
+                    Personalize seu perfil e escolha um avatar que combine com você. É possível alterar seus dados a qualquer momento.
                 </p>
             </>
 
@@ -138,7 +138,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Carrinho de compra</h4>
                 <p>
-                    Você pode adicionar jogos ao seu carrinho para compra-los depois. Após a compra, o jogo será adicionado automaticamente à sua Biblioteca, onde você poderá ver todos os jogos adquiridos.  
+                    Você pode adicionar jogos ao seu carrinho para comprá-los depois. Após a compra, o jogo será adicionado automaticamente à sua Biblioteca, onde você poderá ver todos os jogos adquiridos.  
                 </p>
             </>
 
@@ -160,7 +160,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Biblioteca</h4>
                 <p>
-                    Não se preocupe em comprar o mesmo jogo duas vezes! Quando o jogo estiver na sua biblioteca o botão de compra muda para &quot;Na Biblioteca&quot;. Assim te mostrando que você já possui este jogo. 
+                    Não se preocupe em comprar o mesmo jogo duas vezes! Quando o jogo estiver na sua biblioteca, o botão de compra mudará para &quot;Na Biblioteca&quot;, mostrando que você já possui este jogo. 
                 </p>
             </>
 
@@ -182,7 +182,7 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
             <>
                 <h4 className="mb-3 text-center text-2xl leading-none">Navegação e busca de jogos</h4>
                 <p>
-                    Explore nossa biblioteca com jogos em promoções e em destaque. Use a barra de busca para encontrar títulos específicos.
+                    Explore nossa biblioteca com jogos em promoção e destaque. Use a barra de busca para encontrar títulos específicos.
                 </p>
             </>
 
@@ -202,9 +202,9 @@ const PopUpInteractiveProvider = ({children}: {children: ReactNode}) =>{
     const textSaldacao9 = () => {
         const text = 
             <>
-                <h4 className="mb-3 text-center text-2xl leading-none">validação de Idade</h4>
+                <h4 className="mb-3 text-center text-2xl leading-none">Validação de Idade</h4>
                 <p>
-                    Para jogos com idade mínima recomendada, solicitarenos sua idade ao acessar pela primeira vez, caso não esteja logado. Se já estiver logado, o conteúdo será exibido, desde que você tenha a idade necessária.
+                    Para jogos com idade mínima recomendada, solicitaremos sua idade ao acessar pela primeira vez, caso não esteja logado. Se já estiver logado, o conteúdo será exibido, desde que você tenha a idade necessária.
                 </p>
             </>
 
