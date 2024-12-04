@@ -41,8 +41,8 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                 <section className="flex md:flex-col justify-between max-sm:items-center gap-2 p-2 bg-neutral-950 text-white max-sm:absolute bottom-0 w-full z-20">
                     <div className="flex gap-2 md:justify-between">
                         <p>Total a pagar:</p>
-                        {data.arrayJogos.length === 6 && data.valorTotal === 0 ?
-                            <p>Grátis</p>
+                        {data.valorTotal === 0 ?
+                            <p>R$ 00,00</p>
                             :
                             <p>R$ {(data.valorTotal-data.valorDesconto).toFixed(2).replace('.',',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')}</p>
                         }

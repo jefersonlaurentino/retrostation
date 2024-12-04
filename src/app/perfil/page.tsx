@@ -366,7 +366,7 @@ export default function Perfil() {
                         </div>
                         <div className="flex flex-col md:flex-row-reverse justify-center gap-4 pt-7 pb-2">
                             <Button type="submit" style="bg-secundaria hover:bg-secundariaHove text-black">Salvar</Button>
-                            <Button f_function={()=>setReloudPerfil(Math.random() * 10)} style="bg-terciaria hover:bg-terciariaHove text-black">Cancelar</Button>
+                            <Button type="button" f_function={()=>setReloudPerfil(Math.random() * 10)} style="bg-terciaria hover:bg-terciariaHove text-black">Cancelar</Button>
                         </div>
                     </form>
                 </section>

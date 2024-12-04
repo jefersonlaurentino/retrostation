@@ -16,6 +16,7 @@ import { IoMenu, IoSearchSharp } from "react-icons/io5";
 import { typeJogos } from "@/app/biblioteca/page";
 import Menu from "../Menu";
 import { UsePopUp } from "@/contexts/contextNotificacao";
+import { formattedtitle } from "@/function/formattedGameTitle";
 
 export default function Header(){
     const { dataLoginUser } = useDataLogin()
@@ -226,7 +227,7 @@ export default function Header(){
                                         className="w-full h-full"
                                     />
                                 </div>
-                                <h4 className="text-start line-clamp-1">{jogo.titulo}</h4>
+                                <h4 className="text-start line-clamp-1">{formattedtitle(jogo.titulo)}</h4>
                             </article>
                         </button>
                         )}

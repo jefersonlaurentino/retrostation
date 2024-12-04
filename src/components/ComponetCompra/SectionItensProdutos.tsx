@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import TelaComprar from "./TelaComprar";
 import { useContextItensCart } from "@/contexts/contextItensCart";
 import ModalErro from "../ModalErro";
+import { formattedtitle } from "@/function/formattedGameTitle";
 
 export type inforCart = {
         valorDesconto: number,
@@ -115,7 +116,7 @@ export default function SectionItensProdutos() {
                                 </div>
                                 <section className='flex flex-col gap-1 justify-between p-2 w-3/4'>
                                     <div className='flex flex-col md:flex-row justify-between w-full'>
-                                        <h2>{jogo.titulo}</h2>
+                                        <h2>{formattedtitle(jogo.titulo)}</h2>
                                     </div>
                                     <div className="text-right">
                                         {jogo.promocao == true && jogo.valorAtual != 'Grátis' ? 

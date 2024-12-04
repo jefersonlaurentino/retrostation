@@ -7,6 +7,7 @@ import { datauserProps } from "@/components/ComponetCompra/funcoesPageComprar";
 import { useEffect, useState } from "react";
 import ModalErro from "@/components/ModalErro";
 import Rodape from "@/components/Rodape";
+import { formattedtitle } from "@/function/formattedGameTitle";
 
 const designer = localFont({src: "../fonts/designer.otf"})
 
@@ -68,13 +69,13 @@ export default function BibliotecaJogos() {
                                 </div>
                                 <section className="px-2 h-[30%] flex items-center justify-center">
                                     <div className="line-clamp-2  leading-5">
-                                        <h2>{jogo.titulo}</h2>
+                                        <h2>{formattedtitle(jogo.titulo)}</h2>
                                     </div>
                                 </section>
                             </article>
                         )
                         :
-                        <ModalErro text="Nenhum jogo encontrado na biblioteca." height="h-[calc(100vh-120px)]" linkHidden="hidden"/>
+                        <ModalErro text="Nenhum jogo encontrado na biblioteca." height="h-[calc(100vh-130px)]" linkHidden="hidden"/>
                     }
                 </section>
             </main>

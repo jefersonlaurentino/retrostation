@@ -9,9 +9,7 @@ import homemToca from "../../../public/image/avatares/homemToca.webp"
 import mulherDeOculos from "../../../public/image/avatares/mulherdeoculos.webp"
 import homemDeOculos from "../../../public/image/avatares/homendeoculos.webp"
 import homemNegro from "../../../public/image/avatares/homem_negro.webp"
-import av from "../../../public/image/avatares/1.webp"
-import av2 from "../../../public/image/avatares/2.webp"
-import h2 from "../../../public/image/avatares/h2.webp"
+import avatarJogando from "../../../public/image/avatares/2.webp"
 import sem from "../../../public/image/avatares/sem.jpg"
 import { createContext, ReactNode, useContext, useEffect, useState } from "react"
 import { StaticImageData } from "next/image"
@@ -29,14 +27,12 @@ const imagensAvatares = [
         [ "mulher Paz", mulherPaz ],
         [ "mulher Negra", mulherNegra ],
         [ "mulher Loira", mulherLoira ],
-        [ "homemNegro", homemNegro ],
-        [ "homemBoner", homemBoner ],
-        [ "homemToca", homemToca ],
-        [ "homemDeOculos", homemDeOculos ],
-        [ "mulherDeOculos", mulherDeOculos ],
-        [ "h2", h2 ],
-        [ "av", av ],
-        [ "av2", av2 ],
+        [ "homem Negro", homemNegro ],
+        [ "homem de Bone", homemBoner ],
+        [ "homem de Toca", homemToca ],
+        [ "homem de Oculos", homemDeOculos ],
+        [ "mulher de Oculos", mulherDeOculos ],
+        [ "avatar jogando", avatarJogando ],
     ]
 
 const ImagemAvatarProvider = ({ children }: { children: ReactNode }) =>{

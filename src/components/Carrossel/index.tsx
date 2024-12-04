@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect, useRef } from "react";
+import { MouseEvent, useEffect, useRef } from "react";
 import Image from "next/image";
 import { calculoDesconto, jogos } from "../funcoes" 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
+import { formattedtitle } from "@/function/formattedGameTitle";
 
 export default function Carrossel() {
     const jogosDestaques = jogos.filter((jogo)=>jogo.destaques.includes('carrossel'))
@@ -21,11 +22,11 @@ export default function Carrossel() {
         const efeitoCarrossel = setInterval(()=>{
             const arraySlide = []
             count.forEach((el)=>arraySlide.push(el))
-            
-            if (index.current > arraySlide.length -2) {
-                index.current = -1
+            if (index.current >= arraySlide.length -1) {
+                index.current = 0
+            } else {
+                index.current++
             }
-            index.current++
             efeitoAnimado(inputs[index.current], Number(inputs[index.current].id.slice(5)))
         },5000)
 
@@ -62,13 +63,14 @@ export default function Carrossel() {
     }
 
     // controle setas
-    const arrowCarrossel = (Element:EventTarget) =>{
+    const arrowCarrossel = (Element: MouseEvent<SVGElement>) =>{
+        const clickArrow = Element.currentTarget
         const count = document.querySelectorAll(".slide")
         const inputs = document.querySelectorAll("input[type='radio']")
         const arraySlide = []
         count.forEach((el)=>arraySlide.push(el))
         const arrows = document.querySelector(".div_arrow")!.children
-        if (Element == arrows[0]) {
+        if (clickArrow == arrows[0]) {
             if (index.current == 0) {
                 index.current = arraySlide.length-1
             } else {
@@ -95,11 +97,11 @@ export default function Carrossel() {
             <div className="div_arrow flex justify-between w-full absolute top-1/2 -translate-y-1/2 text-5xl text-terciaria px-2 max-md:hidden">
                 <IoIosArrowBack 
                     className="cursor-pointer" 
-                    onClick={(element)=>arrowCarrossel(element.target)}
+                    onClick={(element)=>arrowCarrossel(element)}
                 />
                 <IoIosArrowForward 
                     className="cursor-pointer" 
-                    onClick={(element)=>arrowCarrossel(element.target)}
+                    onClick={(element)=>arrowCarrossel(element)}
                 />
             </div>
             <div className="md:w-10/12 w-full m-auto overflow-hidden relative rounded-xl">
@@ -130,7 +132,7 @@ export default function Carrossel() {
                                     />
                             </div>
                             <div className="w-1/2 bg-black text-white flex flex-col justify-between pr-3 pb-4 font-semibold text-xl shadow-banner">
-                                <h3 className="text-center mt-3">{jogo.titulo}</h3>
+                                <h3 className="text-center mt-3">{formattedtitle(jogo.titulo)}</h3>
                                 {jogo.promocao ? 
                                     <>
                                     <div className="flex flex-col items-end">

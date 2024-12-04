@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import ModalErro from "@/components/ModalErro";
 import Header from "@/components/Header";
 import Rodape from "@/components/Rodape";
+import { formattedtitle } from "@/function/formattedGameTitle";
 
 export default function Produto() {
     const { setIdadePermitida } = useAgeContext()
@@ -55,7 +56,7 @@ export default function Produto() {
                     <>
                         <InformacoesProduto 
                             id={jogo.id}
-                            titulo={jogo!.titulo}
+                            titulo={formattedtitle(jogo!.titulo)}
                             banner={jogo.banner}
                             bannerName={jogo.bannerName}
                             dataLançamento={jogo.dataLançamento}
@@ -78,7 +79,7 @@ export default function Produto() {
                     </>
                     : 
                     <ModalIdade 
-                        tituloJogo={nome as string}
+                        tituloJogo={formattedtitle(tituloJogo) }
                     />
                 :
                 <>
