@@ -192,6 +192,7 @@ export default function Cadastro() {
                             register={register('dataUser.cpf')}
                             type="text"
                             name="cpf"
+                            inputmode="numeric"
                             placeholder="CPF"
                             functionChange={value=>{
                                 setValue('dataUser.cpf', regexCpf(value))
@@ -206,6 +207,7 @@ export default function Cadastro() {
                             register={register('dataUser.cel')}
                             type="text"
                             name="cel"
+                            inputmode="numeric"
                             placeholder="Celular"
                             functionChange={value=>{
                                 setValue('dataUser.cel' , regexCel(value))
@@ -220,6 +222,7 @@ export default function Cadastro() {
                             register={register('dataUser.age')}
                             type="text"
                             name="age"
+                            inputmode="numeric"
                             placeholder="Data de nascimento"
                             functionChange={value=>{
                                 setValue('dataUser.age' , regexAge(value))
@@ -234,6 +237,7 @@ export default function Cadastro() {
                             register={register('dataUser.zipCode')}
                             type="text"
                             name="cep"
+                            inputmode="numeric"
                             placeholder="CEP"
                             functionChange={value=>{
                                 setValue('dataUser.zipCode', regexZipCode(value))

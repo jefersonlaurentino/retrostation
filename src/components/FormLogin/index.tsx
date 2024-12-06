@@ -115,9 +115,11 @@ const handleUserSubmit = (data:formProps) => {
     const validReChaptcha = useCallback(() =>{
         const reCaptcha = watch('userLogin.recaptcha')
         if (!reCaptcha) {
-            document.querySelector('.reCaptcha')?.classList.add('border-red-600')
+            document.querySelector('.reCaptcha')?.classList.toggle('border-red-600')
+            document.querySelector('.reCaptcha')?.classList.toggle('border-transparent')
         } else {
-            document.querySelector('.reCaptcha')?.classList.remove('border-red-600')
+            document.querySelector('.reCaptcha')?.classList.toggle('border-transparent')
+            document.querySelector('.reCaptcha')?.classList.toggle('border-red-600')
         }
     },[watch])
     
@@ -173,7 +175,7 @@ const handleUserSubmit = (data:formProps) => {
                     <ReCAPTCHA 
                         {...register('userLogin.recaptcha')}
                         sitekey={keyReCaptcha}
-                        className="reCaptcha border-2 rounded-md"
+                        className="reCaptcha border-2 border-transparent rounded-md"
                         onChange={(e)=>{
                             if (e) {
                                 setValue('userLogin.recaptcha',true)

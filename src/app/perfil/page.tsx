@@ -278,6 +278,7 @@ export default function Perfil() {
                                         register={register('dataUser.age')} 
                                         name="idade" 
                                         type="text"
+                                        inputmode="numeric"
                                         placeholder="Idade"
                                         functionChange={value=>setValue('dataUser.age' , regexAge(value))}
                                     />
@@ -289,6 +290,7 @@ export default function Perfil() {
                                         register={register('dataUser.cpf')} 
                                         name="cpf" 
                                         type="text"
+                                        inputmode="numeric"
                                         placeholder="CPF"
                                         disabled={true}
                                     />
@@ -300,6 +302,7 @@ export default function Perfil() {
                                         register={register('dataUser.cel')} 
                                         name="cel" 
                                         type="text"
+                                        inputmode="numeric"
                                         placeholder="Celular"
                                         functionChange={value=>setValue('dataUser.cel' , regexCel(value))}
                                     />
@@ -314,6 +317,7 @@ export default function Perfil() {
                                         name="cep" 
                                         type="text"
                                         placeholder="CEP"
+                                        inputmode="numeric"
                                         functionChange={value=>setValue('dataUser.zipCode' , regexZipCode(value))}
                                     />
                                     {errors.dataUser?.zipCode?.message && <p>{errors.dataUser.zipCode.message}</p>}
