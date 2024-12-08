@@ -32,6 +32,7 @@ export default function FormLogin() {
     const router = useRouter()
     const { setMsgPopUp } = UsePopUp()
 
+    // se o usuário estiver logado volta a tela inicial
     useEffect(()=>{
         if (window.sessionStorage.getItem('login')) router.push('/')
     },[ router ])
@@ -78,10 +79,10 @@ const handleUserSubmit = (data:formProps) => {
                     window.sessionStorage.setItem('cart', JSON.stringify([produto!.slice( id + 1, produto!.length)]))
                     window.sessionStorage.removeItem('pageProduto')
                     handler()
-                    router.push(produto!.slice(0 , id))
+                    window.location.href = produto!.slice(0 , id)
                     return
                 } else {
-                    router.push(window.sessionStorage.getItem('pageProduto')!)
+                    window.location.href = window.sessionStorage.getItem('pageProduto')!
                     handler()
                     window.sessionStorage.removeItem('pageProduto')
                     return
@@ -99,14 +100,10 @@ const handleUserSubmit = (data:formProps) => {
 
     
     const verSenha = () => {
-        const olhoAberto = document.querySelector(".olho_aberto")
-        const olhoFechado = document.querySelector(".olho_fechado")
         if ( stateOlho == "password") {
-            olhoAberto?.classList.add("hidden")
-            olhoFechado?.classList.remove("hidden")
+            setStateOlho('text')
         } else {
-            olhoAberto?.classList.remove("hidden")
-            olhoFechado?.classList.add("hidden")
+            setStateOlho('password')
         }
     }
 
@@ -153,17 +150,11 @@ const handleUserSubmit = (data:formProps) => {
                         }}
                     >
                     <button 
-                        type="button"
+                        type="button" 
+                        onClick={verSenha}
                         aria-label="botão ver senha"
                         className="absolute top-1/2 -translate-y-1/2 right-1 text-2xl cursor-pointer">
-                            <PiEye className="olho_aberto" onClick={()=>{
-                                verSenha()
-                                setStateOlho("text")
-                            }}/>
-                            <PiEyeClosed className="olho_fechado hidden" onClick={()=>{
-                                verSenha()
-                                setStateOlho("password")
-                            }}/>
+                            { stateOlho != 'text' ? <PiEye/> : <PiEyeClosed/>}
                     </button>
                     </CampoInput>
                     {errors.userLogin?.password?.message&& <p>{errors.userLogin.password.message}

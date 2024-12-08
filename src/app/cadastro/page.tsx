@@ -69,14 +69,10 @@ export default function Cadastro() {
     const [ stateOlho , setStateOlho] = useState('password')
     
     const verSenha = () => {
-        const olhoAberto = document.querySelector(".olho_aberto")
-        const olhoFechado = document.querySelector(".olho_fechado")
         if ( stateOlho == "password") {
-            olhoAberto?.classList.add("hidden")
-            olhoFechado?.classList.remove("hidden")
+            setStateOlho("text")
         } else {
-            olhoAberto?.classList.remove("hidden")
-            olhoFechado?.classList.add("hidden")
+            setStateOlho("password")
         }
     }
     const [ zip ,setZip ] = useState(true)
@@ -323,15 +319,9 @@ export default function Cadastro() {
                             <button 
                                 aria-label="botão ver senha"
                                 type="button" 
-                                className="absolute top-1/2 -translate-y-1/2 right-1 text-2xl cursor-pointer">
-                                    <PiEye className="olho_aberto" onClick={()=>{
-                                        verSenha()
-                                        setStateOlho("text")
-                                    }}/>
-                                    <PiEyeClosed className="olho_fechado hidden" onClick={()=>{
-                                        verSenha()
-                                        setStateOlho("password")
-                                    }}/>
+                                onClick={verSenha}
+                                className="absolute top-1/2 -translate-y-1/2 right-1 text-2xl cursor-pointer olho">
+                                    {stateOlho != 'text' ? <PiEye/> : <PiEyeClosed/>}
                             </button>
                         </CampoInput>
                         {errors.dataUser?.confPassword && <p>{errors.dataUser.confPassword.message}</p>}
