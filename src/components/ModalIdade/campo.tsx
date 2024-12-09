@@ -22,7 +22,7 @@ export default function Campo(){
 
             window.sessionStorage.setItem("idade", `${Dia.textContent}/${Mes.textContent}/${Ano.textContent}`)
 
-            setPermicaoReloud(Math.random() * 10)
+            setPermicaoReloud(true)
         }
     }
     

@@ -183,8 +183,8 @@ export default function Perfil() {
         window.sessionStorage.setItem(`user${data.dataUser.mail}`, JSON.stringify(setDataUser))
             
         window.sessionStorage.setItem(`login`, JSON.stringify(setDataUser))
-        setReloud(Math.random() * 10)
-        setPermicaoReloud(Math.random() * 10)
+        setReloud(true)
+        setPermicaoReloud(true)
         setMsgPopUp({checked: true , msg: 'Perfil atualizado!'})
     }
 
@@ -225,7 +225,7 @@ export default function Perfil() {
                             window.sessionStorage.removeItem("avt")
                             window.sessionStorage.removeItem("idade")
                             window.sessionStorage.removeItem("comprasCarrinho")
-                            setPermicaoReloud(Math.random() * 10)
+                            setPermicaoReloud(true)
                         }} className="flex items-center gap-2  border-2 p-2 rounded-lg bg-terciaria hover:bg-terciariaHove">
                             <HiMiniArrowRightOnRectangle className="text-2xl"/>
                             <p>Sair da Conta</p>

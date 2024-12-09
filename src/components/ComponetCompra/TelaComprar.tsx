@@ -4,9 +4,11 @@ import { inforCart } from "./SectionItensProdutos"
 import { useContextItensCart } from "@/contexts/contextItensCart"
 import { useRouter } from "next/navigation"
 import { abrirPopUpInterativo, fecharPopUpInterativo, UsePopUpInteractive } from "@/contexts/contextPopUpInteractive"
+import { useDataLogin } from "@/contexts/contexUserLogin"
 
 export default function TelaComprar({data}:{data:inforCart | undefined}) {
     const { setTotalItensCart } = useContextItensCart()
+    const { setReloud } = useDataLogin()
     const { setPopUpMsg } = UsePopUpInteractive()
     const router = useRouter()
     
@@ -48,7 +50,7 @@ export default function TelaComprar({data}:{data:inforCart | undefined}) {
                         }
                     </div>
                     <button onClick={()=>{
-                        submit(data.arrayJogos , setTotalItensCart)
+                        submit(data.arrayJogos , setTotalItensCart , setReloud )
                         setPopUpMsg({
                             msg: <p>Compra Concluída com sucesso!</p>,
                             buttonLeft: {

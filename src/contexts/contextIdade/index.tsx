@@ -7,19 +7,19 @@ import { useAgeContext } from "../FaixaEtariaJogo";
 type idadePermitidaProps = {
     idadeUsuario: boolean | null,
     setIdadeUsuario: ( value: boolean ) => void
-    permicaoReloud: number,
-    setPermicaoReloud: ( value: number ) => void
+    permicaoReloud: boolean,
+    setPermicaoReloud: ( value: boolean ) => void
 }
 
 const contextIdade = createContext<idadePermitidaProps | null>(null)
 
 const IdadePermitidaProvider = ({ children }: {children:ReactNode}) => {
     const [ idadeUsuario , setIdadeUsuario ] = useState<boolean | null>(null)
-    const [ permicaoReloud , setPermicaoReloud ] = useState<number>(0)
+    const [ permicaoReloud , setPermicaoReloud ] = useState(true)
     const { idadePermitida  } = useAgeContext()
 
     useEffect(()=>{
-        if (idadePermitida != 0) {
+        if (idadePermitida != 0 || permicaoReloud) {
             const Usuario = window.sessionStorage.getItem('login')
             if(Usuario){
                 const dadosUsuario:userProps = JSON.parse(Usuario)
@@ -32,8 +32,8 @@ const IdadePermitidaProvider = ({ children }: {children:ReactNode}) => {
             } else {
                 setIdadeUsuario(false)
             }
+            setPermicaoReloud(false)
         }
-
     },[idadePermitida , permicaoReloud ])
     
     return (
@@ -56,17 +56,10 @@ const calcularIdade = (dataNascimentoUsuario: string , idadePermitida: number) =
 
     // Verifica se já tem a idade recomendade
     if (anoNascimento > idadePermitida || (anoNascimento === idadePermitida && (mesNascimento > 0 || (mesNascimento === 0 && diaNascimento >= 0)))) {
-        console.log('maior');
-        
         return true
-        // document.querySelector('.modal')?.classList.add('hidden')
-        // window.sessionStorage.setItem("idade", anoNascimento.toString())
     } else{
-        
-        console.log('menor');
         return false
     }
-        // window.sessionStorage.setItem("idade", (anoNascimento -1).toString())
 }
 
 const useIdadeContext = () =>{

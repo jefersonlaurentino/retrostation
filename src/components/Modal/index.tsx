@@ -45,6 +45,23 @@ const fecharmodal = () =>{
     document.querySelector('body')!.removeAttribute("style")
     setavt(window.sessionStorage.getItem('avt'))
 }
+
+const setAvatarDateUser = () =>{
+    setImagemAvatar(avatarSelect)
+    const dataUser = {
+        ...dataLoginUser,
+        dataUser: {
+            ...dataLoginUser?.dataUser,
+            avatar: avatarAnterios,
+        },
+    }
+    window.sessionStorage.setItem("avt", avatarAnterios)
+    window.sessionStorage.setItem("login",JSON.stringify(dataUser))
+    window.sessionStorage.setItem(`user${dataLoginUser?.dataUser.mail}`,JSON.stringify(dataUser))
+
+    fecharmodal()
+}
+
     return(
         <>
         <div onClick={fecharmodal} className="modal fixed top-0 left-0 w-full h-full bg-neutral-200/80 dark:bg-dark z-10 flex justify-center items-center mt-6 hidden">
@@ -78,22 +95,7 @@ const fecharmodal = () =>{
                         <Button style="bg-terciaria text-white" f_function={()=>{
                             fecharmodal()
                         }}>Cancelar</Button>
-                        <Button style="bg-secundaria text-black" f_function={()=>{
-                            setImagemAvatar(avatarSelect)
-                            const dataUser = {
-                                ...dataLoginUser,
-                                dataUser: {
-                                    ...dataLoginUser?.dataUser,
-                                    avatar: avatarAnterios,
-                                },
-                            }
-                    
-                            window.sessionStorage.setItem("avt", avatarAnterios)
-                            window.sessionStorage.setItem("login",JSON.stringify(dataUser))
-                            window.sessionStorage.setItem(`user${dataLoginUser?.dataUser.mail}`,JSON.stringify(dataUser))
-                    
-                            fecharmodal()
-                        }}>Salvar</Button>
+                        <Button style="bg-secundaria text-black" f_function={setAvatarDateUser}>Salvar</Button>
                     </div>
             </div>
         </div>

@@ -26,7 +26,7 @@ export type datauserProps = {
 
 
 
-const submit = (getListCartJogo:string , setTotalItensCart:(value: number)=> void) => {
+const submit = (getListCartJogo:string , setTotalItensCart:(value: number)=> void , setReloud: (value: boolean)=> void) => {
     const getListJogos = JSON.parse(getListCartJogo)
     const userLogado:datauserProps = JSON.parse(window.sessionStorage.getItem('login')!)
     let setDataUser: object;
@@ -54,6 +54,7 @@ const submit = (getListCartJogo:string , setTotalItensCart:(value: number)=> voi
     }
     window.sessionStorage.setItem('login', JSON.stringify(setDataUser))
     window.sessionStorage.setItem(`user${userLogado.dataUser.mail}`, JSON.stringify(setDataUser))
+    setReloud(true)
     
     if (window.sessionStorage.getItem('cart')?.includes(window.sessionStorage.getItem('comprasCarrinho')!)) {
         window.sessionStorage.removeItem('cart')

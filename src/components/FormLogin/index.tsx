@@ -69,8 +69,8 @@ const handleUserSubmit = (data:formProps) => {
         if (passwordUser == data.userLogin.password) {
             window.sessionStorage.setItem('login', getUser );
             window.sessionStorage.removeItem('idade');
-            setReloud(Math.random() * 10)
-            setPermicaoReloud(Math.random() * 10)
+            setReloud(true)
+            setPermicaoReloud(true)
 
             if (window.sessionStorage.getItem('pageProduto')) {
                 const produto = window.sessionStorage.getItem('pageProduto')

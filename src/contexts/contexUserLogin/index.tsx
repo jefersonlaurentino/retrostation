@@ -4,7 +4,7 @@ import { createContext, useState , ReactNode, useContext, useEffect } from "reac
 
 type dataUserProps = {
     dataLoginUser: userProps | null,
-    setReloud: (reloud:number) => void,
+    setReloud: (reloud: boolean) => void,
     setDataLoginUser: (data: userProps) => void,
 }
 
@@ -33,11 +33,14 @@ const dataUserLoginContext = createContext<dataUserProps | null>(null)
 
 const DataUserProvider = ({ children }: {children: ReactNode}) => {
     const [ dataLoginUser , setDataLoginUser ] = useState<userProps | null>(null)
-    const [ reloud , setReloud ] = useState(0)
+    const [ reloud , setReloud ] = useState(true)
     useEffect(()=>{
-        const getUserLogin = window.sessionStorage.getItem('login')
-        if (getUserLogin) {
-            setDataLoginUser(JSON.parse(getUserLogin))
+        if (reloud) {
+            const getUserLogin = window.sessionStorage.getItem('login')
+            if (getUserLogin) {
+                setDataLoginUser(JSON.parse(getUserLogin))
+            }
+            setReloud(false)
         }
     },[reloud])
 
