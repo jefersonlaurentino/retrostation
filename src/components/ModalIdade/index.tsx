@@ -1,11 +1,10 @@
-'use client'
 import Link from "next/link";
 import { IoIosArrowDown } from "react-icons/io";
 import { TbAlertOctagonFilled } from "react-icons/tb";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import React from "react";
-import { campoSelection } from "./funcoes";
 import Campo from "./campo";
+import { campoSelection } from "./funcoes";
 
 export default function ModalIdade({ tituloJogo } : { tituloJogo: string }) {
     tituloJogo = tituloJogo.replace(/%20/g,' ')

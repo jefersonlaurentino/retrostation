@@ -1,6 +1,5 @@
 import Link from "next/link";
 import style from './style.module.css'
-import DireitosReservados from '../DireitosReservados'
 
 export default function Rodape() {
     return(
@@ -44,7 +43,7 @@ export default function Rodape() {
                 </article>
             </section>
             <section className="flex flex-col items-center">
-                <DireitosReservados/>
+                <p className="text-center">&copy; 2024 - {new Date().getFullYear()} Todos os direitos reservados a RetroStation</p>
                 <p>Site criado por <a href="https://www.linkedin.com/in/jefersonlaurentino" target="_blank" rel="noopener noreferrer"><strong>Jeferson Laurentino</strong></a></p>
             </section>
         </footer>

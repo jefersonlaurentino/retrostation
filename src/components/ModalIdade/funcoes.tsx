@@ -1,5 +1,3 @@
-import { fetchdate } from "@/services/dateService"
-
 let dia = 0
 const Mes = 12
 let anoBix = true
@@ -112,8 +110,8 @@ const anoBissexto = (ano :EventTarget) => {
     }
 }
 
-const ano = async() => {
-    const anoAtual = await fetchdate()
+const ano = () => {
+    const anoAtual = new Date().getFullYear()
     const campodia = document.querySelector(".ano .list")! as HTMLDivElement
 
     campodia.innerHTML = ""
